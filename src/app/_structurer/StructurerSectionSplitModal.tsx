@@ -42,7 +42,7 @@ const StructurerSectionSplitModal = (
             splitSection.text.length,
           ]);
         } catch (error) {
-          toastError(error.message);
+          toastError("Please set a split outside of an entity");
           return;
         }
       }

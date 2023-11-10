@@ -10,6 +10,7 @@ import {
 } from "@/types";
 import { FormEvent } from "react";
 import { addMatches } from "./annotator_utils";
+import { awsUrl } from "./constants";
 
 // Function to extract sections from the input
 const extractSections = (
@@ -303,7 +304,7 @@ export const EntityElementIntersectsSplitRange = (
 export const findNoMatches = (
   matchedOutline: Entities
 ): Entities | undefined => {
-  let noMatches: UnmatchedEntities | undefined = {};
+  let noMatches: Entities | undefined = {};
   for (const key in matchedOutline) {
     for (const entity of matchedOutline[key]) {
       if (!entityElementHasMatches(entity)) {
@@ -451,7 +452,7 @@ export const callLLMUnmatches = async (
   }
   try {
     const response = await fetch(
-      `http://localhost:8000/structurer/bundleOutlineUnmatched?gptVersion=${gptVersion}/`,
+      `${awsUrl}/structurer/bundleOutlineUnmatched?gptVersion=${gptVersion}/`,
       {
         method: "POST",
         mode: "cors",
@@ -477,6 +478,6 @@ export const callLLMUnmatches = async (
       );
     }
   } catch (error) {
-    toastError(error.message);
+    toastError("There was an error when trying to match your entities");
   }
 };

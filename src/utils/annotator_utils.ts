@@ -45,9 +45,7 @@ export const addMatches = (outline: Entities, text: string): void => {
           match.index! + match[0].length,
         ]);
       } catch (error) {
-        toastError(
-          `An error occurred during the processing of ${item}. Error: ${error.message}`
-        );
+        toastError(`An error occurred during the processing of ${item}`);
       }
     }
   }

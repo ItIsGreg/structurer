@@ -1,5 +1,6 @@
 import { toastError } from "@/toasts";
 import { StructurerUploadProps, TextExtractionApiEndpoints } from "@/types";
+import { awsUrl } from "@/utils/constants";
 import { useRef, useState } from "react";
 import { GrDocumentPdf, GrScan } from "react-icons/gr";
 import { TiUpload } from "react-icons/ti";
@@ -42,14 +43,11 @@ const StructurerUpload = (props: StructurerUploadProps) => {
       try {
         const formData = new FormData();
         formData.append("file", file);
-        const response = await fetch(
-          `http://localhost:8000/parse_input/${apiEndpoint}/`,
-          {
-            method: "POST",
-            body: formData,
-            mode: "cors",
-          }
-        );
+        const response = await fetch(`${awsUrl}/parse_input/${apiEndpoint}/`, {
+          method: "POST",
+          body: formData,
+          mode: "cors",
+        });
         if (!response.ok) {
           throw new Error("Error extracting text");
         }
@@ -60,7 +58,7 @@ const StructurerUpload = (props: StructurerUploadProps) => {
           throw new Error("Error extracting text");
         }
       } catch (error) {
-        toastError(error.message);
+        toastError("Error extracting text");
       } finally {
         setTextExtractionLoading(false);
       }
@@ -85,7 +83,9 @@ const StructurerUpload = (props: StructurerUploadProps) => {
         ref={pdfInputRef}
       />
       <button
-        className="bg-blue-500 rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105"
+        className={`${
+          textExtractionLoading ? "bg-gray-500" : "bg-blue-500"
+        } rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105`}
         onClick={() => handlePdfExtractClick()}
       >
         <GrDocumentPdf size={20} />
@@ -103,7 +103,9 @@ const StructurerUpload = (props: StructurerUploadProps) => {
         }}
       />
       <button
-        className="bg-blue-500 rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105"
+        className={`${
+          textExtractionLoading ? "bg-gray-500" : "bg-blue-500"
+        } rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105`}
         onClick={() => handleScanExtractClick()}
       >
         <GrScan size={20} />

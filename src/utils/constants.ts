@@ -4,6 +4,10 @@ export const isProd = () => {
   return process.env.NEXT_PUBLIC_ENV === "prod";
 };
 
+export const awsUrl = isProd()
+  ? process.env.NEXT_PUBLIC_AWS_URL
+  : "http://localhost:8000";
+
 export const segmentationCategories = [
   "Previous illnesses",
   "Discharge diagnosis",

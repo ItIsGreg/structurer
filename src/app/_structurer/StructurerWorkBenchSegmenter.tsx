@@ -6,7 +6,7 @@ import CategorySelector from "./CategorySelector";
 import { useState } from "react";
 import InputText from "./InputText";
 import DisplayCategoriesBasic from "./DisplayCategoriesBasic";
-import { segmentationCategories } from "@/utils/constants";
+import { awsUrl, segmentationCategories } from "@/utils/constants";
 // import { useStore } from "@/stores/useStore";
 import { toastError } from "@/toasts";
 import { PuffLoader } from "react-spinners";
@@ -39,7 +39,7 @@ const StructurerWorkBenchSegmenter = (
     try {
       setIslLoading(true);
       const response = await fetch(
-        "http://localhost:8000/structurer/structureTextWithTemplateAndInfer/",
+        `${awsUrl}/structurer/structureTextWithTemplateAndInfer/`,
         {
           method: "POST",
           mode: "cors",

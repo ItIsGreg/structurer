@@ -1,7 +1,7 @@
 import { Entities, StructurerWorkBenchLabelerProps } from "@/types";
 import CategorySelector from "./CategorySelector";
 import { useState } from "react";
-import { resourceOptions } from "@/utils/constants";
+import { awsUrl, resourceOptions } from "@/utils/constants";
 import { defaultFocusResources } from "@/utils/constants";
 import InputSelection from "./InputSelection";
 import DisplayCategoriesBasic from "./DisplayCategoriesBasic";
@@ -63,7 +63,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     try {
       setIslLoading(true);
       const response = await fetch(
-        `http://localhost:8000/structurer/bundleOutlineV${version}GPT${gpt}/`,
+        `${awsUrl}/structurer/bundleOutlineV${version}GPT${gpt}/`,
         {
           method: "POST",
           mode: "cors",
