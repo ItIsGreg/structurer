@@ -63,7 +63,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     try {
       setIslLoading(true);
       const response = await fetch(
-        `http://localhost:8000/fhirchain/bundleOutlineV${version}GPT${gpt}/`,
+        `http://localhost:8000/structurer/bundleOutlineV${version}GPT${gpt}/`,
         {
           method: "POST",
           mode: "cors",

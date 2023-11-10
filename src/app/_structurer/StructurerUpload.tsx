@@ -43,7 +43,7 @@ const StructurerUpload = (props: StructurerUploadProps) => {
         const formData = new FormData();
         formData.append("file", file);
         const response = await fetch(
-          `http://localhost:8000/textInput/${apiEndpoint}/`,
+          `http://localhost:8000/parse_input/${apiEndpoint}/`,
           {
             method: "POST",
             body: formData,

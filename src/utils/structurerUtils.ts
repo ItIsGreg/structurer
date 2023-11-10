@@ -451,7 +451,7 @@ export const callLLMUnmatches = async (
   }
   try {
     const response = await fetch(
-      `http://localhost:8000/fhirchain/bundleOutlineUnmatched?gptVersion=${gptVersion}/`,
+      `http://localhost:8000/structurer/bundleOutlineUnmatched?gptVersion=${gptVersion}/`,
       {
         method: "POST",
         mode: "cors",

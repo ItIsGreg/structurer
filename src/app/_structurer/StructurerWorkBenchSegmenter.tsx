@@ -26,7 +26,7 @@ const StructurerWorkBenchSegmenter = (
   //   };
   // });
 
-  const activeAPIKey = "";
+  const activeAPIKey = "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";
 
   const handleSelectCategory = (category: string) => {
     setSelectedCategories([...selectedCategories, category]);
@@ -40,7 +40,7 @@ const StructurerWorkBenchSegmenter = (
     try {
       setIslLoading(true);
       const response = await fetch(
-        "http://localhost:8000/fhirchain/structureTextWithTemplateAndInfer/",
+        "http://localhost:8000/structurer/structureTextWithTemplateAndInfer/",
         {
           method: "POST",
           mode: "cors",
