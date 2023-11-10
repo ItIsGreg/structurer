@@ -11,6 +11,9 @@ import { segmentationCategories } from "@/utils/constants";
 import { toastError } from "@/toasts";
 import { PuffLoader } from "react-spinners";
 import StructurerWorkBenchLabeler from "./StructurerWorkBenchLabeler";
+import ApiKeyAdmin from "./ApiKeyAdmin";
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "@/db/db";
 
 const StructurerWorkBenchSegmenter = (
   props: StructurerWorkBenchSegmenterProps
@@ -20,13 +23,9 @@ const StructurerWorkBenchSegmenter = (
     segmentationCategories
   );
   const [isLoading, setIslLoading] = useState<boolean>(false);
-  // const { activeAPIKey } = useStore((state) => {
-  //   return {
-  //     activeAPIKey: state.activeAPIKey,
-  //   };
-  // });
-
-  const activeAPIKey = "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";
+  const activeAPIKey = useLiveQuery(() => {
+    return db.apikeys.toArray();
+  }, [])?.[0]?.key;
 
   const handleSelectCategory = (category: string) => {
     setSelectedCategories([...selectedCategories, category]);

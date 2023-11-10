@@ -43,6 +43,11 @@ export enum StructurerModes {
   segmentText,
 }
 
+export interface ApiKeyElementProps {
+  apiKey: string;
+  id: number;
+}
+
 export interface StructurerProps {
   text: string;
   setText: (text: string) => void;
@@ -245,6 +250,10 @@ export interface Color {
 
 export interface StructurerUploadProps {
   setText: (text: string) => void;
+}
+
+export interface SetApiKeyModalProps {
+  setShowSetApiKeyModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface StructurerSectionCombineButtonProps {

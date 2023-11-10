@@ -10,6 +10,9 @@ import { PuffLoader } from "react-spinners";
 import { addMatches, transformOutline } from "@/utils/annotator_utils";
 import { toast } from "react-toastify";
 import { handleUnmatchedEntities } from "@/utils/structurerUtils";
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "@/db/db";
+import ApiKeyAdmin from "./ApiKeyAdmin";
 
 const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const {
@@ -30,13 +33,10 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const handleSelectCategory = (category: string) => {
     setSelectedCategories([...selectedCategories, category]);
   };
-  // const { activeAPIKey } = useStore((state) => {
-  //   return {
-  //     activeAPIKey: state.activeAPIKey,
-  //   };
-  // });
 
-  const activeAPIKey = ""; // need to handle this before I can move any further
+  const activeAPIKey = useLiveQuery(() => {
+    return db.apikeys.toArray();
+  }, [])?.[0]?.key;
 
   const setOutlineFromLabeler = (matchedOutline: Entities) => {
     if (focusedSection) {
@@ -123,6 +123,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         {isLoading ? "Loading" : "LLM Label!"}
         {isLoading && <PuffLoader size={20} />}
       </button>
+      <ApiKeyAdmin />
     </div>
   );
 };
