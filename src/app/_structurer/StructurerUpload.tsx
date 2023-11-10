@@ -43,11 +43,15 @@ const StructurerUpload = (props: StructurerUploadProps) => {
       try {
         const formData = new FormData();
         formData.append("file", file);
-        const response = await fetch(`${awsUrl}/parse_input/${apiEndpoint}/`, {
-          method: "POST",
-          body: formData,
-          mode: "cors",
-        });
+        // const response = await fetch(`${awsUrl}/parse_input/${apiEndpoint}/`, {
+        const response = await fetch(
+          `http://ec2-3-71-12-138.eu-central-1.compute.amazonaws.com:8080/parse_input/${apiEndpoint}/`,
+          {
+            method: "POST",
+            body: formData,
+            mode: "cors",
+          }
+        );
         if (!response.ok) {
           throw new Error("Error extracting text");
         }
