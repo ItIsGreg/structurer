@@ -9,17 +9,17 @@ export default function Layout(props: LayoutProps) {
   return (
     <html>
       <Head>
-        <title>FHIR Creator | Create and Analyze your FHIR Data</title>
+        <title>Structurer | Structure and Analyze your medical texts</title>
         <meta
           name="description"
-          content="Upload your FHIR data or create Resources from scratch. Analyze your data with the FHIR Creator."
+          content="Structure and Analyze your medical texts."
           key="desc"
         />
         <meta property="og:title" content="FHIR Creator" key="title" />
         <meta property="og:url" content="https://fhir-creator.vercel.app/" />
         <meta
           property="og:description"
-          content="Upload your FHIR data or create Resources from scratch. Analyze your data with the FHIR Creator."
+          content="Structure and Analyze your medical texts"
         />
       </Head>
       <body>
