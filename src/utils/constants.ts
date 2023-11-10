@@ -1,7 +1,8 @@
 import { OptionType, Outline, SectionInfo } from "../types";
 
 export const isProd = () => {
-  return process.env.NEXT_PUBLIC_ENV === "prod";
+  // return process.env.NEXT_PUBLIC_ENV === "prod";
+  return true;
 };
 
 export const awsUrl = isProd()
