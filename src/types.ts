@@ -128,15 +128,29 @@ export interface StructurerTextDisplaySectionProps
 export interface StructurerWorkBenchProps extends StructurerTextProps {}
 
 export interface StructurerWorkBenchTextInputProps
-  extends StructurerWorkBenchProps {}
+  extends StructurerWorkBenchProps {
+  gptModel: string;
+  setGptModel: (gptModel: string) => void;
+}
 
 export interface StructurerWorkBenchSegmenterProps
-  extends StructurerWorkBenchProps {}
+  extends StructurerWorkBenchProps {
+  gptModel: string;
+  setGptModel: (gptModel: string) => void;
+}
 
 export interface StructurerWorkBenchLabelerProps
-  extends StructurerWorkBenchProps {}
+  extends StructurerWorkBenchProps {
+  gptModel: string;
+  setGptModel: (gptModel: string) => void;
+}
 
 export interface StructurerTextInputProps extends StructurerProps {}
+
+export interface GPTModelAdminProps {
+  gptModel: string;
+  setGptModel: (gptModel: string) => void;
+}
 
 export enum CategorySelectorInputTypes {
   text,

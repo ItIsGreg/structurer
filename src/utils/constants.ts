@@ -25,6 +25,15 @@ export const segmentationCategories = [
   "Brief hospital course",
   "Discharge medications",
 ];
+// rewrite above options to react-select options
+export const gptModelOptions = [
+  { value: "gpt-3.5-turbo", label: "gpt-3.5-turbo" },
+  { value: "gpt-3.5-turbo-1106", label: "gpt-3.5-turbo-1106" },
+  { value: "gpt-4", label: "gpt-4" },
+  { value: "gpt-4-1106-preview", label: "gpt-4-1106-preview" },
+];
+
+export const defaultGPTModel = "gpt-4-1106-preview";
 
 export const validFhirTypes = [
   "Address",

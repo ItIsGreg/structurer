@@ -13,6 +13,7 @@ import { handleUnmatchedEntities } from "@/utils/structurerUtils";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import ApiKeyAdmin from "./ApiKeyAdmin";
+import GPTModelAdmin from "./GPTModelAdmin";
 
 const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const {
@@ -24,6 +25,8 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     colors,
     setColors,
     rng,
+    gptModel,
+    setGptModel,
   } = props;
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     defaultFocusResources.map((option) => option.value)
@@ -123,6 +126,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         {isLoading ? "Loading" : "LLM Label!"}
         {isLoading && <PuffLoader size={20} />}
       </button>
+      <GPTModelAdmin gptModel={gptModel} setGptModel={setGptModel} />
       <ApiKeyAdmin />
     </div>
   );
