@@ -6,7 +6,6 @@ const GPTModelAdmin = (props: GPTModelAdminProps) => {
   const { gptModel, setGptModel } = props;
 
   const handleSelect = (e: OptionType): void => {
-    console.log("e", e);
     setGptModel(e.value);
   };
 
