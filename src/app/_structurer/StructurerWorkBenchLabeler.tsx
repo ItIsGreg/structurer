@@ -5,9 +5,12 @@ import { awsUrl, resourceOptions } from "@/utils/constants";
 import { defaultFocusResources } from "@/utils/constants";
 import InputSelection from "./InputSelection";
 import DisplayCategoriesBasic from "./DisplayCategoriesBasic";
-// import { useStore } from "@/stores/useStore";
 import { PuffLoader } from "react-spinners";
-import { addMatches, transformOutline } from "@/utils/annotator_utils";
+import {
+  addMatches,
+  caseInsensitiveFindIter,
+  transformOutline,
+} from "@/utils/annotator_utils";
 import { toast } from "react-toastify";
 import { handleUnmatchedEntities } from "@/utils/structurerUtils";
 import { useLiveQuery } from "dexie-react-hooks";

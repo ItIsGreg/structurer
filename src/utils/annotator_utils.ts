@@ -27,19 +27,22 @@ export function llmJsonToAnnotatorFormat(llmJson: Entities) {
   return values;
 }
 
-const caseInsensitiveFindIter = (
+export const caseInsensitiveFindIter = (
   substring: string,
   text: string
 ): IterableIterator<RegExpMatchArray> => {
-  const pattern = new RegExp(substring, "ig");
-  return text.matchAll(pattern);
+  const cleanedText = text.replace(/\n/g, ""); // Removes newline characters
+  const pattern = new RegExp(substring, "igm");
+  return cleanedText.matchAll(pattern); // bit hacky, but it works, i hope
 };
 
 export const addMatches = (outline: Entities, text: string): void => {
   for (const key in outline) {
     for (const item of outline[key]) {
+      console.log(item);
       try {
         const matches = Array.from(caseInsensitiveFindIter(item.item, text));
+        console.log(matches);
         item.matches = matches.map((match) => [
           match.index!,
           match.index! + match[0].length,
