@@ -444,7 +444,7 @@ export const callLLMUnmatches = async (
   noMatchesLLM: NoMatchesLLM,
   text: string,
   apiKey: string | undefined,
-  gptVersion: string = "3"
+  gptModel: string = "gpt-3.5-turbo"
 ) => {
   if (!apiKey) {
     toastError("API key missing");
@@ -452,7 +452,7 @@ export const callLLMUnmatches = async (
   }
   try {
     const response = await fetch(
-      `${awsUrl}/structurer/bundleOutlineUnmatched?gptVersion=${gptVersion}/`,
+      `${awsUrl}/structurer/bundleOutlineUnmatched/?gptModel=${gptModel}`,
       {
         method: "POST",
         mode: "cors",

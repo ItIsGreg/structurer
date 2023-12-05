@@ -66,7 +66,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     try {
       setIslLoading(true);
       const response = await fetch(
-        `${awsUrl}/structurer/bundleOutlineV${version}GPT${gpt}/`,
+        `${awsUrl}/structurer/bundleOutlineV${version}/?gptModel=${gptModel}`,
         {
           method: "POST",
           mode: "cors",

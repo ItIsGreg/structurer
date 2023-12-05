@@ -25,7 +25,8 @@ export const segmentationCategories = [
   "Brief hospital course",
   "Discharge medications",
 ];
-// rewrite above options to react-select options
+
+// gpt model selection
 export const gptModelOptions = [
   { value: "gpt-3.5-turbo", label: "gpt-3.5-turbo" },
   { value: "gpt-3.5-turbo-1106", label: "gpt-3.5-turbo-1106" },

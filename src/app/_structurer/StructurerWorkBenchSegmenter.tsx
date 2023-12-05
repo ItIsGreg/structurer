@@ -18,7 +18,8 @@ import { db } from "@/db/db";
 const StructurerWorkBenchSegmenter = (
   props: StructurerWorkBenchSegmenterProps
 ) => {
-  const { text, setLlmResponse, setColors, rng, setFocusedCategory } = props;
+  const { text, setLlmResponse, setColors, rng, setFocusedCategory, gptModel } =
+    props;
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     segmentationCategories
   );
@@ -39,7 +40,7 @@ const StructurerWorkBenchSegmenter = (
     try {
       setIslLoading(true);
       const response = await fetch(
-        `${awsUrl}/structurer/structureTextWithTemplateAndInfer/`,
+        `${awsUrl}/structurer/structureTextWithTemplateAndInfer/?gptModel=${gptModel}`,
         {
           method: "POST",
           mode: "cors",
