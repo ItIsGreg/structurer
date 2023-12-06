@@ -214,6 +214,14 @@ export const AllergyIntoleranceAttributes = [
   "reaction",
 ];
 
+export const ResourceTypeAttributeOptions: EntityAttributes = {
+  Condition: ConditionAttributes,
+  Medication: MedicationAttributes,
+  Procedure: ProcedureAttributes,
+  Observation: ObservationAttributes,
+  AllergyIntolerance: AllergyIntoleranceAttributes,
+};
+
 export const primitiveTypes = [
   "base64Binary",
   "boolean",

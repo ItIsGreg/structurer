@@ -52,15 +52,12 @@ const DisplayCategoriesBasic = (props: DisplayCategoriesProps) => {
             />
             {entityAttributes && category in entityAttributes && (
               <Tooltip anchorSelect={`#${category}`} place="top" clickable>
-                <h2 className="font-bold">Attributes:</h2>
-                {entityAttributes[category].map((attribute) => (
-                  <div
-                    onClick={() => handleAttributeToolTipClick(category)}
-                    key={attribute}
-                  >
-                    {attribute}
-                  </div>
-                ))}
+                <div onClick={() => handleAttributeToolTipClick(category)}>
+                  <h2 className="font-bold">Attributes:</h2>
+                  {entityAttributes[category].map((attribute) => (
+                    <div key={attribute}>{attribute}</div>
+                  ))}
+                </div>
               </Tooltip>
             )}
           </div>
