@@ -1,17 +1,20 @@
-import { Entities, StructurerWorkBenchLabelerProps } from "@/types";
+import {
+  Entities,
+  EntityAttributes,
+  StructurerWorkBenchLabelerProps,
+} from "@/types";
 import CategorySelector from "./CategorySelector";
 import { useState } from "react";
-import { awsUrl, resourceOptions } from "@/utils/constants";
+import {
+  awsUrl,
+  defaultResourceTypeAttributes,
+  resourceOptions,
+} from "@/utils/constants";
 import { defaultFocusResources } from "@/utils/constants";
 import InputSelection from "./InputSelection";
 import DisplayCategoriesBasic from "./DisplayCategoriesBasic";
 import { PuffLoader } from "react-spinners";
-import {
-  addMatches,
-  caseInsensitiveFindIter,
-  caseInsensitiveFindIterNoNewline,
-  transformOutline,
-} from "@/utils/annotator_utils";
+import { addMatches, transformOutline } from "@/utils/annotator_utils";
 import { toast } from "react-toastify";
 import { handleUnmatchedEntities } from "@/utils/structurerUtils";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -41,6 +44,9 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const handleSelectCategory = (category: string) => {
     setSelectedCategories([...selectedCategories, category]);
   };
+  const [entityAttributes, setEntityAttributes] = useState<EntityAttributes>(
+    defaultResourceTypeAttributes
+  );
 
   const activeAPIKey = useLiveQuery(() => {
     return db.apikeys.toArray();
@@ -120,6 +126,8 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         colors={colors}
         setColors={setColors}
         rng={rng}
+        entityAttributes={entityAttributes}
+        setEntityAttributes={setEntityAttributes}
       />
       <button
         className={`${

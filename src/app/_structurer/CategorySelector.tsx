@@ -15,6 +15,8 @@ const CategorySelector = (props: CategorySelectorProps) => {
     setColors,
     getColor,
     rng,
+    entityAttributes,
+    setEntityAttributes,
   } = props;
 
   return (
@@ -33,6 +35,8 @@ const CategorySelector = (props: CategorySelectorProps) => {
         focusedCategory={focusedCategory}
         setFocusedCategory={setFocusedCategory}
         rng={rng}
+        entityAttributes={entityAttributes}
+        setEntityAttributes={setEntityAttributes}
       />
     </div>
   );

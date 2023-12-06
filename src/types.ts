@@ -96,6 +96,8 @@ export interface CategorySelectorProps {
   setColors: (colors: ColorStore) => void;
   getColor?: () => string;
   rng: seedrandom.PRNG;
+  entityAttributes?: EntityAttributes;
+  setEntityAttributes?: (attributes: EntityAttributes) => void;
 }
 
 export interface DisplayCategoriesProps {
@@ -107,6 +109,12 @@ export interface DisplayCategoriesProps {
   focusedCategory?: string;
   setFocusedCategory: (category: string) => void;
   rng: seedrandom.PRNG;
+  entityAttributes?: EntityAttributes;
+  setEntityAttributes?: (attributes: EntityAttributes) => void;
+}
+
+export interface EntityAttributes {
+  [key: string]: string[]; // {ResourceType1: [attribute1, attribute2, ...], ResourceType2: [attribute1, attribute2, ...], ...}
 }
 
 export interface StructurerTextDisplayProps extends StructurerTextProps {}

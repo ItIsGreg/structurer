@@ -1,4 +1,4 @@
-import { OptionType, Outline, SectionInfo } from "../types";
+import { EntityAttributes, OptionType, Outline, SectionInfo } from "../types";
 
 export const isProd = () => {
   return process.env.NEXT_PUBLIC_ENV === "prod";
@@ -101,6 +101,117 @@ export const validFhirTypes = [
   "url",
   "uuid",
   "xhtml",
+];
+
+export const defaultResourceTypeAttributes: EntityAttributes = {
+  Condition: ["clinicalStatus", "onset"],
+  Medication: ["status"],
+  Procedure: ["status"],
+  Observation: ["status", "value"],
+  AllergyIntolerance: ["clinicalStatus", "reaction"],
+};
+
+export const ConditionAttributes = [
+  "identifier",
+  "clinicalStatus",
+  "verificationStatus",
+  "category",
+  "severity",
+  "code",
+  "bodySite",
+  "subject",
+  "encounter",
+  "onset", // onset is [x]
+  "abatement", // abatement is [x]
+  "recordedDate",
+  "participant",
+  "stage",
+  "note",
+];
+
+export const MedicationAttributes = [
+  "identifier",
+  "code",
+  "status",
+  "doseForm",
+  "totalVolume",
+  "ingredient",
+  "batch",
+  "definition",
+];
+
+export const ProcedureAttributes = [
+  "identifier",
+  "instantiatesCanonical",
+  "instantiatesUri",
+  "basedOn",
+  "partOf",
+  "status",
+  "statusReason",
+  "category",
+  "code",
+  "subject",
+  "focus",
+  "encounter",
+  "occurrence", // occurrence is [x]
+  "recorded",
+  "recorder",
+  "reported", // reported is [x]
+  "performer",
+  "location",
+  "reason",
+  "bodySite",
+  "outcome",
+  "report",
+  "complication",
+  "followUp",
+  "note",
+  "focalDevice",
+  "used",
+  "supportingInfo",
+];
+
+export const ObservationAttributes = [
+  "identifier",
+  "basedOn",
+  "partOf",
+  "status",
+  "category",
+  "code",
+  "subject",
+  "focus",
+  "encounter",
+  "effective", // effective is [x]
+  "issued",
+  "performer",
+  "value",
+  "dataAbsentReason",
+  "interpretation",
+  "note",
+  "bodySite",
+  "method",
+  "specimen",
+  "device",
+  "referenceRange",
+  "hasMember",
+  "derivedFrom",
+  "component",
+];
+
+export const AllergyIntoleranceAttributes = [
+  "identifier",
+  "clinicalStatus",
+  "verificationStatus",
+  "type",
+  "category",
+  "criticality",
+  "code",
+  "patient",
+  "encounter",
+  "onset", // onset is [x]
+  "recordedDate",
+  "participant",
+  "reaction",
 ];
 
 export const primitiveTypes = [
