@@ -27,22 +27,34 @@ export function llmJsonToAnnotatorFormat(llmJson: Entities) {
   return values;
 }
 
+export const caseInsensitiveFindIterNoNewline = (
+  substring: string,
+  text: string
+): IterableIterator<RegExpMatchArray> => {
+  const cleanedText = text.replace(/\n/g, " "); // Removes newline characters
+  const pattern = new RegExp(substring, "ig");
+  return cleanedText.matchAll(pattern); // bit hacky, but it works, i hope
+};
+
 export const caseInsensitiveFindIter = (
   substring: string,
   text: string
 ): IterableIterator<RegExpMatchArray> => {
-  const cleanedText = text.replace(/\n/g, ""); // Removes newline characters
   const pattern = new RegExp(substring, "igm");
-  return cleanedText.matchAll(pattern); // bit hacky, but it works, i hope
+  return text.matchAll(pattern);
 };
 
 export const addMatches = (outline: Entities, text: string): void => {
   for (const key in outline) {
     for (const item of outline[key]) {
-      console.log(item);
       try {
-        const matches = Array.from(caseInsensitiveFindIter(item.item, text));
-        console.log(matches);
+        let matches = Array.from(caseInsensitiveFindIter(item.item, text));
+        if (matches.length === 0) {
+          // this is essantially a hack to deal with a peculiarity of my test data, where there are a lot of newlines inside of sentences.
+          matches = Array.from(
+            caseInsensitiveFindIterNoNewline(item.item, text)
+          );
+        }
         item.matches = matches.map((match) => [
           match.index!,
           match.index! + match[0].length,

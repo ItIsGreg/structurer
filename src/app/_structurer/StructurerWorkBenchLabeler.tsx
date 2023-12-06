@@ -9,6 +9,7 @@ import { PuffLoader } from "react-spinners";
 import {
   addMatches,
   caseInsensitiveFindIter,
+  caseInsensitiveFindIterNoNewline,
   transformOutline,
 } from "@/utils/annotator_utils";
 import { toast } from "react-toastify";
@@ -30,6 +31,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     rng,
     gptModel,
     setGptModel,
+    text,
   } = props;
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     defaultFocusResources.map((option) => option.value)
