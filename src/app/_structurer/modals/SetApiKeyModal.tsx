@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalWrapper from "../ModalWrapper";
+import ModalWrapper from "./ModalWrapper";
 import { toastError } from "@/toasts";
 import { db } from "@/db/db";
 import { SetApiKeyModalProps } from "@/types";

@@ -1,6 +1,6 @@
 import { db } from "@/db/db";
 import { useLiveQuery } from "dexie-react-hooks";
-import SetApiKeyModal from "./SetApiKeyModal";
+import SetApiKeyModal from "./modals/SetApiKeyModal";
 import { useState } from "react";
 import { toastError } from "@/toasts";
 

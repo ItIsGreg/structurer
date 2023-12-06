@@ -1,6 +1,6 @@
 import { StructurerSectionRenameModalProps } from "@/types";
 import { useState } from "react";
-import ModalWrapper from "../ModalWrapper";
+import ModalWrapper from "./ModalWrapper";
 
 const StructurerSectionRenameModal = (
   props: StructurerSectionRenameModalProps

@@ -6,7 +6,7 @@ import {
 import { LuSplitSquareHorizontal } from "react-icons/lu";
 import { splitEntities } from "@/utils/structurerUtils";
 import { toastError } from "@/toasts";
-import ModalWrapper from "../ModalWrapper";
+import ModalWrapper from "./ModalWrapper";
 
 const StructurerSectionSplitModal = (
   props: StructurerSectionSplitModalProps

@@ -5,8 +5,8 @@ import {
 } from "@/types";
 import { prepareIndexList } from "@/utils/structurerUtils";
 import { useEffect, useState } from "react";
-import StructurerSectionSplitModal from "./StructurerSectionSplitModal";
-import StructurerSectionRenameModal from "./StructurerSectionRenameModal";
+import StructurerSectionSplitModal from "./modals/StructurerSectionSplitModal";
+import StructurerSectionRenameModal from "./modals/StructurerSectionRenameModal";
 import StructurerTextDisplaySection from "./StructurerTextDisplaySection";
 import ExpandAccordionToggle from "../ExpandAccordionToggle";
 
