@@ -1,0 +1,55 @@
+{
+  "Condition": {
+    "Diabetes": {
+      "ClinicalStatus": "Active",
+      "VerificationStatus": "Confirmed"
+    },
+    "CHF": {
+      "ClinicalStatus": "Active",
+      "VerificationStatus": "Confirmed"
+    }
+  },
+  "Medication": {
+    "Aspirin": {
+      "Status": "Active"
+    },
+    "Plavix": {
+      "Status": "Active"
+    },
+    "Carvedilol": {
+      "Status": "Active"
+    },
+    "Lasix": {
+      "Status": "Active"
+    },
+    "Steroids": {
+      "Status": "Active"
+    }
+  },
+  "Observation": {
+    "VitalSigns": {
+      "Temperature": "98",
+      "Pulse": "88",
+      "BloodPressure": "190/120",
+      "RespirationRate": "18",
+      "OxygenSaturation": "98%"
+    },
+    "LabResults": {
+      "Creatinine": "2.1",
+      "BUN": "29",
+      "WBC": "4.3",
+      "Hemoglobin": "8.6",
+      "Platelets": "147",
+      "Troponin": "<0.01",
+      "BNP": "4279"
+    },
+    "Imaging": {
+      "CXR": "No pulmonary edema, pleural effusions, or consolidation, borderline cardiomegaly"
+    }
+  },
+  "Procedure": {
+    "NuclearStressTest": {
+      "Status": "Scheduled"
+    }
+  }
+}

@@ -117,6 +117,12 @@ export interface EntityAttributes {
   [key: string]: string[]; // {ResourceType1: [attribute1, attribute2, ...], ResourceType2: [attribute1, attribute2, ...], ...}
 }
 
+// for LLM communication
+export interface FocusResourceWithAttributes {
+  resource_type: string;
+  attributes: string[];
+}
+
 export interface StructurerTextDisplayProps extends StructurerTextProps {}
 
 export interface StructurerTextDisplaySectionProps
@@ -229,6 +235,21 @@ export interface ValueState {
 export interface EntityElement {
   item: string;
   matches?: [number, number][];
+  attributes?: EntityElementAttributes;
+}
+
+export interface LLMOutlineWithAttributes {
+  [key: string]: {
+    // resource type
+    [key: string]: {
+      // entity
+      [key: string]: string; // attribute
+    };
+  };
+}
+
+export interface EntityElementAttributes {
+  [key: string]: string;
 }
 
 export interface NoMatchesLLM {
