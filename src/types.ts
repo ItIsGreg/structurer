@@ -88,14 +88,14 @@ export interface CategorySelectorProps {
   onSelectCategory: (category: string) => void;
   placeholder: string;
   InputComponent: React.FC<InputTextProps | InputSelectionProps>;
-  fetchCategories?: () => Promise<string[]>;
   DisplayComponent: React.FC<DisplayCategoriesProps>;
-  focusedCategory?: string;
   setFocusedCategory: (category: string) => void;
-  colors?: ColorStore;
   setColors: (colors: ColorStore) => void;
+  rng?: seedrandom.PRNG;
+  fetchCategories?: () => Promise<string[]>;
+  focusedCategory?: string;
+  colors?: ColorStore;
   getColor?: () => string;
-  rng: seedrandom.PRNG;
   entityAttributes?: EntityAttributes;
   setEntityAttributes?: (attributes: EntityAttributes) => void;
 }
@@ -108,7 +108,7 @@ export interface DisplayCategoriesProps {
   getColor?: () => string;
   focusedCategory?: string;
   setFocusedCategory: (category: string) => void;
-  rng: seedrandom.PRNG;
+  rng?: seedrandom.PRNG;
   entityAttributes?: EntityAttributes;
   setEntityAttributes?: (attributes: EntityAttributes) => void;
 }
@@ -276,6 +276,15 @@ export interface StructurerUploadProps {
 
 export interface SetApiKeyModalProps {
   setShowSetApiKeyModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface SetEntityAttributesModalProps {
+  setShowSetEntityAttributesModal: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
+  entityAttributes: EntityAttributes;
+  setEntityAttributes: (attributes: EntityAttributes) => void;
+  entity: string;
 }
 
 export interface StructurerSectionCombineButtonProps {

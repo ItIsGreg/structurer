@@ -7,11 +7,9 @@ import { useState } from "react";
 import InputText from "./InputText";
 import DisplayCategoriesBasic from "./DisplayCategoriesBasic";
 import { awsUrl, segmentationCategories } from "@/utils/constants";
-// import { useStore } from "@/stores/useStore";
 import { toastError } from "@/toasts";
 import { PuffLoader } from "react-spinners";
 import StructurerWorkBenchLabeler from "./StructurerWorkBenchLabeler";
-import ApiKeyAdmin from "./ApiKeyAdmin";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 

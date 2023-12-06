@@ -1,6 +1,8 @@
 import { DisplayCategoriesProps } from "@/types";
 import { TiDelete } from "react-icons/ti";
 import { Tooltip } from "react-tooltip";
+import SetEntityAttributesModal from "./modals/SetEntityAttributesModal";
+import { useState } from "react";
 
 const DisplayCategoriesBasic = (props: DisplayCategoriesProps) => {
   const {
@@ -15,6 +17,15 @@ const DisplayCategoriesBasic = (props: DisplayCategoriesProps) => {
     entityAttributes,
     setEntityAttributes,
   } = props;
+
+  const [showSetEntityAttributesModal, setShowSetEntityAttributesModal] =
+    useState<boolean>(false);
+  const [setAttributesCategory, setSetAttributesCategory] =
+    useState<string>("");
+  const handleAttributeToolTipClick = (category: string) => {
+    setSetAttributesCategory(category);
+    setShowSetEntityAttributesModal(true);
+  };
 
   return (
     <div className="flex flex-row flex-wrap overflow-scroll h-full border border-black rounded-md p-2 gap-1">
@@ -44,9 +55,7 @@ const DisplayCategoriesBasic = (props: DisplayCategoriesProps) => {
                 <h2 className="font-bold">Attributes:</h2>
                 {entityAttributes[category].map((attribute) => (
                   <div
-                    onClick={() => {
-                      console.log(category, " clicked");
-                    }}
+                    onClick={() => handleAttributeToolTipClick(category)}
                     key={attribute}
                   >
                     {attribute}
@@ -57,6 +66,16 @@ const DisplayCategoriesBasic = (props: DisplayCategoriesProps) => {
           </div>
         </div>
       ))}
+      {showSetEntityAttributesModal &&
+        entityAttributes &&
+        setEntityAttributes && (
+          <SetEntityAttributesModal
+            entity={setAttributesCategory}
+            entityAttributes={entityAttributes}
+            setEntityAttributes={setEntityAttributes}
+            setShowSetEntityAttributesModal={setShowSetEntityAttributesModal}
+          />
+        )}
     </div>
   );
 };
