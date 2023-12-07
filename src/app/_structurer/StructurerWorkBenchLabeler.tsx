@@ -27,8 +27,6 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import ApiKeyAdmin from "./ApiKeyAdmin";
 import GPTModelAdmin from "./GPTModelAdmin";
-// DEV REMOVE
-// import devOutlineWithAttributes from "@/../data/tmp/DevOutlineWithAttributes.json";
 
 const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const {
@@ -164,7 +162,9 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         await handleUnmatchedEntities(
           matchedOutline,
           focusedSection.text,
-          activeAPIKey
+          activeAPIKey,
+          gptModel,
+          true
         );
         setOutlineFromLabeler(matchedOutline);
       }
@@ -174,13 +174,6 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
       setIslLoading(false);
     }
   };
-
-  // const testOutline: LLMOutlineWithAttributes = devOutlineWithAttributes;
-
-  // const handleTransformTestOutline = () => {
-  //   const outline = transformOutlineWithAttributes(testOutline);
-  //   console.log(outline);
-  // };
 
   return (
     <div className="w-full flex flex-col gap-3">
@@ -224,9 +217,6 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
       </button>
       <GPTModelAdmin gptModel={gptModel} setGptModel={setGptModel} />
       <ApiKeyAdmin />
-      {/* <button onClick={handleTransformTestOutline}>
-        Transform TestOutline
-      </button> */}
     </div>
   );
 };

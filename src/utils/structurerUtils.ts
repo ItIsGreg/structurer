@@ -7,9 +7,11 @@ import {
   Entities,
   NoMatchesLLM,
   MatchedEntitiesLLM,
+  EntityAttributes,
+  EntityElementAttributes,
 } from "@/types";
 import { FormEvent } from "react";
-import { addMatches } from "./annotator_utils";
+import { addMatches, transformOutlineWithAttributes } from "./annotator_utils";
 import { awsUrl } from "./constants";
 
 // Function to extract sections from the input
@@ -327,11 +329,22 @@ export const prepareNotMatchesLLM = (
 ): NoMatchesLLM => {
   const noMatchesLLM: NoMatchesLLM = {};
   for (const key in unmatchedEntities) {
-    const entityElements: { [key: string]: string }[] = [];
+    const entityElements: {
+      [key: string]: string | EntityElementAttributes;
+    }[] = [];
     unmatchedEntities[key].forEach((entity) => {
-      entityElements.push({
-        [entity.item]: "",
-      });
+      if (entity.attributes) {
+        // handle both cases where attributes are defined and undefined
+        entityElements.push({
+          [entity.item]: "",
+          attributes: entity.attributes,
+        });
+        return;
+      } else {
+        entityElements.push({
+          [entity.item]: "",
+        });
+      }
     });
     noMatchesLLM[key] = entityElements;
   }
@@ -350,7 +363,9 @@ export const entityElementHasMatches = (
 export const handleUnmatchedEntities = async (
   matchedOutline: Entities,
   text: string,
-  apiKey: string
+  apiKey: string,
+  gptModel: string = "gpt-3.5-turbo",
+  withAttributes: boolean = false
 ) => {
   const unmatchedEntities = findNoMatches(matchedOutline);
   if (unmatchedEntities) {
@@ -358,7 +373,9 @@ export const handleUnmatchedEntities = async (
     const matchedEntitiesLLM = await callLLMUnmatches(
       noMatchesLLM,
       text,
-      apiKey
+      apiKey,
+      gptModel,
+      withAttributes
     );
     if (!matchedEntitiesLLM) return;
     const transformedMatchedEntitiesLLM =
@@ -434,7 +451,12 @@ export const transformUnmatchedEntitiesLLM = (
   for (const key of Object.keys(matchedEntitiesLLM)) {
     matchedEntities[key] = [];
     for (const e of matchedEntitiesLLM[key]) {
-      const entityElement: EntityElement = { item: e[Object.keys(e)[0]] };
+      const entityElement: EntityElement = {
+        item: e[Object.keys(e)[0]] as unknown as string,
+      }; // kinda risky
+      if (e.attributes) {
+        entityElement.attributes = e.attributes as EntityElementAttributes;
+      }
       matchedEntities[key].push(entityElement);
     }
   }
@@ -444,7 +466,8 @@ export const callLLMUnmatches = async (
   noMatchesLLM: NoMatchesLLM,
   text: string,
   apiKey: string | undefined,
-  gptModel: string = "gpt-3.5-turbo"
+  gptModel: string = "gpt-3.5-turbo",
+  withAttributes: boolean = false
 ) => {
   if (!apiKey) {
     toastError("API key missing");
@@ -452,7 +475,9 @@ export const callLLMUnmatches = async (
   }
   try {
     const response = await fetch(
-      `${awsUrl}/structurer/bundleOutlineUnmatched/?gptModel=${gptModel}`,
+      `${awsUrl}/structurer/bundleOutlineUnmatched${
+        withAttributes ? "WithAttributes" : ""
+      }/?gptModel=${gptModel}`,
       {
         method: "POST",
         mode: "cors",

@@ -254,7 +254,8 @@ export interface EntityElementAttributes {
 
 export interface NoMatchesLLM {
   [key: string]: {
-    [key: string]: string;
+    // entity/resourceType
+    [key: string]: string | EntityElementAttributes; // unmatched entityElement: "" empty to be filled by LLM
   }[];
 }
 
@@ -267,7 +268,7 @@ export interface StructurerOutlineDownloadButtonProps {
 }
 
 export interface MatchedEntitiesLLM {
-  [key: string]: { [key: string]: string }[]; // first key: Entity (e.g. "Condition"), second key: entityElement (e.g. "diabetes")
+  [key: string]: { [key: string]: string | EntityElementAttributes }[]; // first key: Entity (e.g. "Condition"), second key: entityElement (e.g. "diabetes")
 }
 
 export interface OldOutline {
