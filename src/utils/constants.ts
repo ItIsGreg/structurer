@@ -34,7 +34,7 @@ export const gptModelOptions = [
   { value: "gpt-4-1106-preview", label: "gpt-4-1106-preview" },
 ];
 
-export const defaultGPTModel = "gpt-4-1106-preview";
+export const defaultGPTModel = "gpt-3.5-turbo-1106";
 
 export const validFhirTypes = [
   "Address",

@@ -3,11 +3,11 @@ import StructurerWorkBenchTextInput from "./StructurerWorkBenchTextInput";
 import StructurerWorkBenchSegmenter from "./StructurerWorkBenchSegmenter";
 import StructurerWorkBenchLabeler from "./StructurerWorkBenchLabeler";
 import { useEffect, useState } from "react";
-import { dummySections } from "@/utils/constants";
+import { defaultGPTModel, dummySections } from "@/utils/constants";
 
 const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
   const { mode, text, setOutline, setFocusedSection } = props;
-  const [gptModel, setGPTModel] = useState<string>("gpt-4-1106-preview");
+  const [gptModel, setGPTModel] = useState<string>(defaultGPTModel);
 
   const labelerSection = {
     key: "Text",
