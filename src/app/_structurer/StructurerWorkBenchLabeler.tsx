@@ -192,7 +192,19 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
       }
       //wait for all promises to resolve
       const responses = await Promise.all(promises);
-      console.log(responses);
+      //add attributes to outline
+      for (const response of responses) {
+        const resourceType = response.resourceType;
+        const item = response.item;
+        const attributes = response.attributes;
+        if (resourceType && item && attributes) {
+          for (const entityElement of outline[resourceType]) {
+            if (entityElement.item === item) {
+              entityElement.attributes = attributes;
+            }
+          }
+        }
+      }
     } catch (error) {
       toast.error("Error extracting attributes");
     }
