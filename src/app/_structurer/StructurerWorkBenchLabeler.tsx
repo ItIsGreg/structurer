@@ -205,66 +205,6 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     }
   };
 
-  const buildFocusResourcesWithAttributes = (
-    focusResources: string[],
-    entityAttributes: EntityAttributes
-  ) => {
-    let focusResourcesWithAttributes: FocusResourceWithAttributes[] = [];
-    focusResources.forEach((focusResource) => {
-      focusResourcesWithAttributes.push({
-        resource_type: focusResource,
-        attributes: entityAttributes[focusResource],
-      });
-    });
-    return focusResourcesWithAttributes;
-  };
-  // does not work that well can probably get rid of this call and respective endpoint in API
-  const handleLLMLabelWithAttributes = async () => {
-    if (!activeAPIKey || !focusedSection || !focusedSection.text) {
-      toast.error("API key missing or no text");
-      return;
-    }
-    try {
-      setIslLoading(true);
-      const focusResourcesWithAttributes = buildFocusResourcesWithAttributes(
-        selectedCategories,
-        entityAttributes
-      );
-      const response = await fetch(
-        `${awsUrl}/structurer/bundleOutlineWithAttributes/?gptModel=${gptModel}`,
-        {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            text: focusedSection?.text,
-            focus_resources: focusResourcesWithAttributes,
-            api_key: activeAPIKey,
-          }),
-        }
-      );
-      const data = await response.json();
-      if (data && data.outline) {
-        let matchedOutline = transformOutlineWithAttributes(data.outline);
-        addMatches(matchedOutline, focusedSection.text);
-        await handleUnmatchedEntities(
-          matchedOutline,
-          focusedSection.text,
-          activeAPIKey,
-          gptModel,
-          true
-        );
-        setOutlineFromLabeler(matchedOutline);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIslLoading(false);
-    }
-  };
-
   return (
     <div className="w-full flex flex-col gap-3">
       <CategorySelector
@@ -293,16 +233,6 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         onClick={async () => await handleLLMLabel()}
       >
         {isLoading ? "Loading" : "LLM Label!"}
-        {isLoading && <PuffLoader size={20} />}
-      </button>
-      <button
-        className={`${
-          isLoading || !focusedSection ? "bg-gray-500" : "bg-blue-500"
-        } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
-        disabled={isLoading || !focusedSection}
-        onClick={async () => await handleLLMLabelWithAttributes()}
-      >
-        {isLoading ? "Loading" : "LLM Label with Attributes!"}
         {isLoading && <PuffLoader size={20} />}
       </button>
       <button
