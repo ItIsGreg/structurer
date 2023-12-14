@@ -2,11 +2,7 @@ import {
   Entities,
   EntityAttributes,
   EntityElement,
-  EntityElementAttributes,
   FocusResourceWithAttributes,
-  LLMOutlineWithAttributes,
-  OldOutline,
-  SectionInfo,
   StructurerWorkBenchLabelerProps,
 } from "@/types";
 import CategorySelector from "./CategorySelector";
@@ -31,7 +27,6 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import ApiKeyAdmin from "./ApiKeyAdmin";
 import GPTModelAdmin from "./GPTModelAdmin";
-import { set } from "lodash";
 
 const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const {
