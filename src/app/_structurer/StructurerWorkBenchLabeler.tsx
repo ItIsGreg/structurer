@@ -1,8 +1,12 @@
 import {
   Entities,
   EntityAttributes,
+  EntityElement,
+  EntityElementAttributes,
   FocusResourceWithAttributes,
   LLMOutlineWithAttributes,
+  OldOutline,
+  SectionInfo,
   StructurerWorkBenchLabelerProps,
 } from "@/types";
 import CategorySelector from "./CategorySelector";
@@ -27,6 +31,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import ApiKeyAdmin from "./ApiKeyAdmin";
 import GPTModelAdmin from "./GPTModelAdmin";
+import { set } from "lodash";
 
 const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const {
@@ -75,7 +80,10 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     }
   };
 
-  const handleLLMLabel = async (version: string = "2") => {
+  const handleLLMLabel = async (
+    version: string = "2",
+    extractAttributes: boolean = false
+  ) => {
     if (!activeAPIKey || !focusedSection || !focusedSection.text) {
       toast.error("API key missing or no text");
       return;
@@ -106,12 +114,87 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
           focusedSection.text,
           activeAPIKey
         );
+        if (extractAttributes) {
+          await extractAttributesForOutline(
+            matchedOutline,
+            activeAPIKey,
+            gptModel,
+            focusedSection.text,
+            entityAttributes
+          );
+        }
         setOutlineFromLabeler(matchedOutline);
       }
     } catch (error) {
       console.log(error);
     } finally {
       setIslLoading(false);
+    }
+  };
+
+  // need a text excerpt around the entity to properly extract attributes
+  // some context for the llm
+  const getTextExcerpt = (
+    text: string,
+    entity: EntityElement
+  ): string | undefined => {
+    // get the text excerpt around the entity, 50 characters before and after
+    if (entity.matches && entity.matches.length > 0) {
+      const match = entity.matches[0];
+      return text.substring(
+        Math.min(match[0] - 50, 0),
+        Math.max(match[1] + 50, text.length)
+      );
+    }
+  };
+
+  const extractAttributesForOutline = async (
+    outline: Entities,
+    apiKey: string,
+    gptModel: string,
+    sectionText: string,
+    entityAttributes: EntityAttributes
+  ) => {
+    try {
+      //collect all promises
+      const promises: Promise<any>[] = [];
+      for (const key in outline) {
+        const entityElements = outline[key];
+        for (const entityElement of entityElements) {
+          const textExcerpt = getTextExcerpt(sectionText, entityElement);
+          if (textExcerpt) {
+            promises.push(
+              fetch(
+                `${awsUrl}/structurer/extractAttributesForConcept/?gptModel=${gptModel}`,
+                {
+                  method: "POST",
+                  mode: "cors",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    text_excerpt: textExcerpt,
+                    concept: entityElement.item,
+                    api_key: apiKey,
+                    attributes: entityAttributes[key],
+                  }),
+                }
+              )
+                .then((response) => response.json())
+                .then((data) => {
+                  data.item = entityElement.item;
+                  data.resourceType = key;
+                  return data;
+                })
+            );
+          }
+        }
+      }
+      //wait for all promises to resolve
+      const responses = await Promise.all(promises);
+      console.log(responses);
+    } catch (error) {
+      toast.error("Error extracting attributes");
     }
   };
 
@@ -128,7 +211,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     });
     return focusResourcesWithAttributes;
   };
-
+  // does not work that well can probably get rid of this call and respective endpoint in API
   const handleLLMLabelWithAttributes = async () => {
     if (!activeAPIKey || !focusedSection || !focusedSection.text) {
       toast.error("API key missing or no text");
@@ -213,6 +296,16 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         onClick={async () => await handleLLMLabelWithAttributes()}
       >
         {isLoading ? "Loading" : "LLM Label with Attributes!"}
+        {isLoading && <PuffLoader size={20} />}
+      </button>
+      <button
+        className={`${
+          isLoading || !focusedSection ? "bg-gray-500" : "bg-blue-500"
+        } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
+        disabled={isLoading || !focusedSection}
+        onClick={async () => await handleLLMLabel("2", true)}
+      >
+        {isLoading ? "Loading" : "LLM Label with AttributesV2!"}
         {isLoading && <PuffLoader size={20} />}
       </button>
       <GPTModelAdmin gptModel={gptModel} setGptModel={setGptModel} />
