@@ -2,7 +2,6 @@ import {
   Entities,
   EntityAttributes,
   FocusResourceWithAttributes,
-  LLMOutlineWithAttributes,
   StructurerWorkBenchLabelerProps,
 } from "@/types";
 import CategorySelector from "./CategorySelector";
@@ -16,11 +15,7 @@ import { defaultFocusResources } from "@/utils/constants";
 import InputSelection from "./InputSelection";
 import DisplayCategoriesBasic from "./DisplayCategoriesBasic";
 import { PuffLoader } from "react-spinners";
-import {
-  addMatches,
-  transformOutline,
-  transformOutlineWithAttributes,
-} from "@/utils/annotator_utils";
+import { addMatches, transformOutline } from "@/utils/annotator_utils";
 import { toast } from "react-toastify";
 import { handleUnmatchedEntities } from "@/utils/structurerUtils";
 import { useLiveQuery } from "dexie-react-hooks";
