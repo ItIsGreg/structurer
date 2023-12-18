@@ -1,7 +1,9 @@
 import {
+  CodeSystemsResponse,
   Entities,
   EntityAttributes,
   EntityElement,
+  SectionInfo,
   StructurerWorkBenchLabelerProps,
 } from "@/types";
 import CategorySelector from "./CategorySelector";
@@ -22,6 +24,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import ApiKeyAdmin from "./ApiKeyAdmin";
 import GPTModelAdmin from "./GPTModelAdmin";
+import { toastError } from "@/toasts";
 
 const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const {
@@ -200,6 +203,121 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     }
   };
 
+  const handleGetCodes = async () => {
+    if (!focusedSection) {
+      toastError("No entities");
+      return;
+    }
+    try {
+      setIslLoading(true);
+      const promises: Promise<any>[] = [];
+      const workingSection = outline.find(
+        (section) => section.key === focusedSection.key
+      );
+      if (!workingSection) {
+        toastError("No entities");
+        return;
+      }
+      for (const entity in workingSection.entities) {
+        for (const entityElement of workingSection.entities[entity]) {
+          if (entityElement.attributes && entityElement.attributes.Paraphrase) {
+            promises.push(
+              fetchCode(entityElement.attributes.Paraphrase, "snomed", entity)
+            );
+            promises.push(
+              fetchCode(entityElement.attributes.Paraphrase, "icd10", entity)
+            );
+          } else {
+            promises.push(fetchCode(entityElement.item, "snomed", entity));
+            promises.push(fetchCode(entityElement.item, "icd10", entity));
+          }
+        }
+      }
+      const responses = (await Promise.all(promises)) as CodeSystemsResponse[];
+      addCodes(responses);
+    } catch (error) {
+      toastError("Error getting codes");
+    } finally {
+      setIslLoading(false);
+    }
+  };
+
+  const addCodes = (codeSystemResponses: CodeSystemsResponse[]) => {
+    if (!focusedSection) {
+      toastError("No entities");
+      return;
+    }
+    let newOutline = JSON.parse(JSON.stringify(outline)) as SectionInfo[];
+    for (const codeSystemResponse of codeSystemResponses) {
+      // Teufelsfunktion
+      // set the code and code term for the entity in attributes
+      newOutline = newOutline.map((section) => {
+        if (section.key === focusedSection.key) {
+          return {
+            ...section,
+            entities: {
+              ...section.entities,
+              [codeSystemResponse.entity]: section.entities![
+                codeSystemResponse.entity
+              ].map((entityElement) => {
+                if (
+                  entityElement.item === codeSystemResponse.searchTerm ||
+                  entityElement.attributes?.Paraphrase ===
+                    codeSystemResponse.searchTerm
+                ) {
+                  return {
+                    ...entityElement,
+                    attributes: {
+                      ...entityElement.attributes,
+                      [codeSystemResponse.index]: `${codeSystemResponse.code} (${codeSystemResponse.codeTerm})`,
+                    },
+                  };
+                } else {
+                  return entityElement;
+                }
+              }),
+            },
+          };
+        } else {
+          return section;
+        }
+      });
+    }
+    setOutline(newOutline);
+  };
+
+  const fetchCode = async (
+    searchTerm: string,
+    codeSystem: string = "snomed",
+    entity: string
+  ) => {
+    return fetch(
+      `${awsUrl}/codeSystems/${
+        codeSystem === "snomed"
+          ? "searchSnomed"
+          : codeSystem === "icd10"
+          ? "searchICD10"
+          : "searchSnomed"
+      }/`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          search_term: searchTerm,
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        data.searchTerm = searchTerm;
+        data.entity = entity;
+        return data;
+      });
+  };
+
   return (
     <div className="w-full flex flex-col gap-3">
       <CategorySelector
@@ -240,8 +358,20 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         {isLoading ? "Loading" : "LLM Label with AttributesV2!"}
         {isLoading && <PuffLoader size={20} />}
       </button>
+      <button
+        className={`${
+          isLoading || !focusedSection ? "bg-gray-500" : "bg-blue-500"
+        } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
+        disabled={isLoading || !focusedSection}
+        onClick={async () => await handleGetCodes()}
+      >
+        {isLoading ? "Loading" : "Get codes"}
+        {isLoading && <PuffLoader size={20} />}
+      </button>
       <GPTModelAdmin gptModel={gptModel} setGptModel={setGptModel} />
       <ApiKeyAdmin />
+
+      <p>{"test"}</p>
     </div>
   );
 };

@@ -236,6 +236,15 @@ export interface EntityElementAttributes {
   [key: string]: string;
 }
 
+export interface CodeSystemsResponse {
+  codeTerm: string;
+  code: string;
+  index: string;
+  score: number;
+  searchTerm: string;
+  entity: string;
+}
+
 export interface NoMatchesLLM {
   [key: string]: {
     // entity/resourceType
