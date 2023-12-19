@@ -6,7 +6,6 @@ import {
   Entities,
   EntityElement,
   ValueState,
-  LLMOutlineWithAttributes,
 } from "@/types";
 import seedrandom from "seedrandom";
 
@@ -79,25 +78,6 @@ export const transformOutline = (outline: OldOutline): Entities => {
     }
   }
 
-  return newOutline;
-};
-
-export const transformOutlineWithAttributes = (
-  outline: LLMOutlineWithAttributes
-): Entities => {
-  const newOutline: Entities = {};
-
-  for (const key in outline) {
-    newOutline[key] = [];
-    for (const entity of Object.keys(outline[key])) {
-      const preppedDict: EntityElement = {
-        item: entity,
-        matches: [],
-        attributes: outline[key][entity],
-      };
-      newOutline[key].push(preppedDict);
-    }
-  }
   return newOutline;
 };
 
