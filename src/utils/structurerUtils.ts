@@ -11,7 +11,7 @@ import {
   EntityElementAttributes,
 } from "@/types";
 import { FormEvent } from "react";
-import { addMatches, transformOutlineWithAttributes } from "./annotator_utils";
+import { addMatches } from "./annotator_utils";
 import { awsUrl } from "./constants";
 
 // Function to extract sections from the input
