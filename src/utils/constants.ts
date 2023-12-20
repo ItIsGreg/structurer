@@ -22,8 +22,23 @@ export const segmentationCategories = [
   "Imaging results",
   "Consultations",
   "Procedures",
-  "Brief hospital course",
   "Discharge medications",
+];
+
+export const segmentationCategoriesGerman = [
+  "Vorerkrankungen",
+  "Entlassungsdiagnose",
+  "Medikation",
+  "Allergien",
+  "Familienanamnese",
+  "Sozialanamnese",
+  "Körperliche Untersuchung",
+  "Laborwerte",
+  "Bildgebende Verfahren",
+  "Konsultationen",
+  "Prozeduren",
+  "Krankheitsverlauf",
+  "Entlassungsmedikation",
 ];
 
 // gpt model selection

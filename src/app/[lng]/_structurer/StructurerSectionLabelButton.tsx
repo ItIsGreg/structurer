@@ -1,3 +1,4 @@
+import { useTranslation } from "@/app/i18n/client";
 import { StructurerSectionLabelButtonProps } from "@/types";
 import { LiaMarkerSolid } from "react-icons/lia";
 import { Tooltip } from "react-tooltip";
@@ -5,11 +6,13 @@ import { Tooltip } from "react-tooltip";
 const StructurerSectionLabelButton = (
   props: StructurerSectionLabelButtonProps
 ) => {
-  const { focusedSection, section, setFocusedSection } = props;
+  const { focusedSection, section, setFocusedSection, lng } = props;
+
+  const { t } = useTranslation(lng, "StructurerSectionLabelButton");
 
   return (
     <div
-      data-tooltip-content={"Label this section"}
+      data-tooltip-content={t("Label this section")}
       data-tooltip-id="label-tooltip"
     >
       <button

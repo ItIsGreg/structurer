@@ -6,20 +6,33 @@ import CategorySelector from "./CategorySelector";
 import { useState } from "react";
 import InputText from "./InputText";
 import DisplayCategoriesBasic from "./DisplayCategoriesBasic";
-import { awsUrl, segmentationCategories } from "@/utils/constants";
+import {
+  awsUrl,
+  segmentationCategories,
+  segmentationCategoriesGerman,
+} from "@/utils/constants";
 import { toastError } from "@/toasts";
 import { PuffLoader } from "react-spinners";
 import StructurerWorkBenchLabeler from "./StructurerWorkBenchLabeler";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
+import { useTranslation } from "@/app/i18n/client";
 
 const StructurerWorkBenchSegmenter = (
   props: StructurerWorkBenchSegmenterProps
 ) => {
-  const { text, setLlmResponse, setColors, rng, setFocusedCategory, gptModel } =
-    props;
+  const {
+    text,
+    setLlmResponse,
+    setColors,
+    rng,
+    setFocusedCategory,
+    gptModel,
+    lng,
+  } = props;
+  const { t } = useTranslation(lng, "StructurerWorkBenchSegmenter");
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
-    segmentationCategories
+    lng === "de" ? segmentationCategoriesGerman : segmentationCategories
   );
   const [isLoading, setIslLoading] = useState<boolean>(false);
   const activeAPIKey = useLiveQuery(() => {
@@ -69,11 +82,14 @@ const StructurerWorkBenchSegmenter = (
         setSelectedCategories={setSelectedCategories}
         InputComponent={InputText}
         onSelectCategory={handleSelectCategory}
-        placeholder="Enter categories to look for in the text (e.g. Medication, History of Present Illness)"
+        placeholder={t(
+          "Enter categories to look for in the text (e.g. Medication, History of Present Illness)"
+        )}
         DisplayComponent={DisplayCategoriesBasic}
         setColors={setColors}
         rng={rng}
         setFocusedCategory={setFocusedCategory}
+        lng={lng}
       />
       <button
         onClick={async () => await handleLLMSegment()}
@@ -82,7 +98,7 @@ const StructurerWorkBenchSegmenter = (
         } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
         disabled={isLoading}
       >
-        {isLoading ? "Loading" : "LLM Segment!"}
+        {isLoading ? t("Loading") : t("LLM Segment!")}
         {isLoading && <PuffLoader size={20} />}
       </button>
       <h2 className="border-y-2 border text-center">Labeler</h2>

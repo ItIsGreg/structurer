@@ -14,7 +14,14 @@ import seedrandom from "seedrandom";
 import { colorSeed, defaultFocusResources } from "@/utils/constants";
 import { setColorsForDefaultResources } from "@/utils/annotator_utils";
 
-const StructurerBody = () => {
+interface StructurerBodyProps {
+  params: {
+    lng: string;
+  };
+}
+
+const StructurerBody = (props: StructurerBodyProps) => {
+  const lng = props.params.lng;
   const [text, setText] = useState("");
   const [mode, setMode] = useState<StructurerModes>(StructurerModes.inputText);
   const [llmResponse, setLlmResponse] = useState<string>();
@@ -28,7 +35,6 @@ const StructurerBody = () => {
   const [expandedSections, setExpandedSections] = useState<ExpandedSections>(
     {}
   );
-
   useEffect(() => {
     const newExpandedSections: ExpandedSections = {};
     outline.forEach((section) => {
@@ -43,7 +49,6 @@ const StructurerBody = () => {
   }, [outline]);
 
   const sectionRefs = outline.map(() => createRef<HTMLDivElement>());
-
   return (
     <div className="w-full p-2 flex flex-row gap-2">
       <StructurerText
@@ -65,6 +70,7 @@ const StructurerBody = () => {
         rng={rng}
         expandedSections={expandedSections}
         setExpandedSections={setExpandedSections}
+        lng={lng}
       />
       <StructurerWorkBench
         mode={mode}
@@ -85,6 +91,7 @@ const StructurerBody = () => {
         rng={rng}
         expandedSections={expandedSections}
         setExpandedSections={setExpandedSections}
+        lng={lng}
       />
       <StructurerOutline
         setMode={setMode}
@@ -104,6 +111,7 @@ const StructurerBody = () => {
         rng={rng}
         expandedSections={expandedSections}
         setExpandedSections={setExpandedSections}
+        lng={lng}
       />
     </div>
   );

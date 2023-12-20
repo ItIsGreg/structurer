@@ -17,6 +17,7 @@ const CategorySelector = (props: CategorySelectorProps) => {
     rng,
     entityAttributes,
     setEntityAttributes,
+    lng,
   } = props;
 
   return (
@@ -25,6 +26,7 @@ const CategorySelector = (props: CategorySelectorProps) => {
         onSelect={onSelectCategory}
         placeholder={placeholder}
         fetchCategories={fetchCategories}
+        lng={lng}
       />
       <DisplayComponent
         selectedCategories={selectedCategories}
@@ -37,6 +39,7 @@ const CategorySelector = (props: CategorySelectorProps) => {
         rng={rng}
         entityAttributes={entityAttributes}
         setEntityAttributes={setEntityAttributes}
+        lng={lng}
       />
     </div>
   );

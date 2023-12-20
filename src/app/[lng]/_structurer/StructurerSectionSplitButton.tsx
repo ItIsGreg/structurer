@@ -1,3 +1,4 @@
+import { useTranslation } from "@/app/i18n/client";
 import { StructurerSectionSplitButtonProps } from "@/types";
 import { LuSplitSquareVertical } from "react-icons/lu";
 import { Tooltip } from "react-tooltip";
@@ -5,7 +6,9 @@ import { Tooltip } from "react-tooltip";
 const StructurerSectionSplitButton = (
   props: StructurerSectionSplitButtonProps
 ) => {
-  const { setShowSplitSectionModal, setSplitSection, section } = props;
+  const { setShowSplitSectionModal, setSplitSection, section, lng } = props;
+
+  const { t } = useTranslation(lng, "StructurerSectionSplitButton");
 
   const handleSplitClick = () => {
     setSplitSection(section);
@@ -16,7 +19,7 @@ const StructurerSectionSplitButton = (
     <div className="bg-blue-500 rounded-md p-1 flex items-center transform hover:scale-105">
       <button
         data-tooltip-id="unite-button"
-        data-tooltip-content={"Split Section"}
+        data-tooltip-content={t("Split Section")}
         onClick={handleSplitClick}
       >
         <LuSplitSquareVertical />

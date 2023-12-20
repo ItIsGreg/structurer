@@ -4,7 +4,7 @@ import StructurerTextDisplaySegmenter from "./StructurerTextDisplaySegmenter";
 import StructurerTextDisplayLabeler from "./StructurerTextDisplayLabeler";
 
 const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
-  const { mode, setMode } = props;
+  const { mode, setMode, lng } = props;
 
   return (
     <div className="flex flex-col gap-3">
@@ -15,7 +15,10 @@ const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
           <StructurerTextDisplayLabeler {...props} />
         ) : null}
       </div>
-      <ChangeTextButton onClick={() => setMode(StructurerModes.inputText)} />
+      <ChangeTextButton
+        onClick={() => setMode(StructurerModes.inputText)}
+        lng={lng}
+      />
     </div>
   );
 };

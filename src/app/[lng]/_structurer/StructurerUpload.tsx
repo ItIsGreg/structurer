@@ -1,3 +1,4 @@
+import { useTranslation } from "@/app/i18n/client";
 import { toastError } from "@/toasts";
 import { StructurerUploadProps, TextExtractionApiEndpoints } from "@/types";
 import { awsUrl } from "@/utils/constants";
@@ -6,9 +7,10 @@ import { GrDocumentPdf, GrScan } from "react-icons/gr";
 import { TiUpload } from "react-icons/ti";
 
 const StructurerUpload = (props: StructurerUploadProps) => {
-  const { setText } = props;
+  const { setText, lng } = props;
 
   const [textExtractionLoading, setTextExtractionLoading] = useState(false);
+  const { t } = useTranslation(lng, "StructurerUpload");
 
   const pdfInputRef = useRef<HTMLInputElement>(null);
   const scanInputRef = useRef<HTMLInputElement>(null);
@@ -90,7 +92,7 @@ const StructurerUpload = (props: StructurerUploadProps) => {
         onClick={() => handlePdfExtractClick()}
       >
         <GrDocumentPdf size={20} />
-        Extract Text from PDF
+        {t("Extract Text from PDF")}
         <TiUpload size={20} />
       </button>
       <input
@@ -110,7 +112,7 @@ const StructurerUpload = (props: StructurerUploadProps) => {
         onClick={() => handleScanExtractClick()}
       >
         <GrScan size={20} />
-        Extract Text from Scan
+        {t("Extract Text from Scan")}
         <TiUpload size={20} />
       </button>
     </div>

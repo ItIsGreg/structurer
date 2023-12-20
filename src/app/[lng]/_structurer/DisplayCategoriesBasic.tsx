@@ -16,6 +16,7 @@ const DisplayCategoriesBasic = (props: DisplayCategoriesProps) => {
     rng,
     entityAttributes,
     setEntityAttributes,
+    lng,
   } = props;
 
   const [showSetEntityAttributesModal, setShowSetEntityAttributesModal] =
@@ -71,6 +72,7 @@ const DisplayCategoriesBasic = (props: DisplayCategoriesProps) => {
             entityAttributes={entityAttributes}
             setEntityAttributes={setEntityAttributes}
             setShowSetEntityAttributesModal={setShowSetEntityAttributesModal}
+            lng={lng}
           />
         )}
     </div>

@@ -22,6 +22,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import ApiKeyAdmin from "./ApiKeyAdmin";
 import GPTModelAdmin from "./GPTModelAdmin";
+import { useTranslation } from "@/app/i18n/client";
 
 const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
   const {
@@ -35,8 +36,9 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     rng,
     gptModel,
     setGptModel,
-    text,
+    lng,
   } = props;
+  const { t } = useTranslation(lng, "StructurerWorkBenchLabeler");
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     defaultFocusResources.map((option) => option.value)
   );
@@ -205,7 +207,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
       <CategorySelector
         InputComponent={InputSelection}
         DisplayComponent={DisplayCategoriesBasic}
-        placeholder="Select a resource"
+        placeholder={t("Select a resource")}
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
         onSelectCategory={handleSelectCategory}
@@ -219,6 +221,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         rng={rng}
         entityAttributes={entityAttributes}
         setEntityAttributes={setEntityAttributes}
+        lng={lng}
       />
       <button
         className={`${
@@ -227,7 +230,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         disabled={isLoading || !focusedSection}
         onClick={async () => await handleLLMLabel()}
       >
-        {isLoading ? "Loading" : "LLM Label!"}
+        {isLoading ? t("Loading") : t("LLM Label!")}
         {isLoading && <PuffLoader size={20} />}
       </button>
       <button
@@ -237,11 +240,11 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         disabled={isLoading || !focusedSection}
         onClick={async () => await handleLLMLabel("2", true)}
       >
-        {isLoading ? "Loading" : "LLM Label with AttributesV2!"}
+        {isLoading ? t("Loading") : t("LLM Label with Attributes!")}
         {isLoading && <PuffLoader size={20} />}
       </button>
       <GPTModelAdmin gptModel={gptModel} setGptModel={setGptModel} />
-      <ApiKeyAdmin />
+      <ApiKeyAdmin lng={lng} />
     </div>
   );
 };

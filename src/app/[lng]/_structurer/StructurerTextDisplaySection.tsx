@@ -30,6 +30,7 @@ const StructurerTextDisplaySection = (
     index,
     expandedSections,
     setExpandedSections,
+    lng,
   } = props;
 
   let dummyValue: ValueState[] = []; // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability
@@ -57,6 +58,7 @@ const StructurerTextDisplaySection = (
             section={section}
             setRenameSection={setRenameSection}
             setShowSectionRenameModal={setShowSectionRenameModal}
+            lng={lng}
           />
           <span className="text-lg font-semibold">{section.key}:</span>
         </div>
@@ -64,11 +66,13 @@ const StructurerTextDisplaySection = (
           focusedSection={focusedSection}
           section={section}
           setFocusedSection={setFocusedSection}
+          lng={lng}
         />
         <StructurerSectionSplitButton
           setShowSplitSectionModal={setShowSplitSectionModal}
           setSplitSection={setSplitSection}
           section={section}
+          lng={lng}
         />
       </div>
       {section.text && expandedSections[section.key] && (
@@ -99,6 +103,7 @@ const StructurerTextDisplaySection = (
           outline={outline}
           setOutline={setOutline}
           section={section}
+          lng={lng}
         />
       </div>
     </div>

@@ -9,6 +9,7 @@ import StructurerSectionSplitModal from "./modals/StructurerSectionSplitModal";
 import StructurerSectionRenameModal from "./modals/StructurerSectionRenameModal";
 import StructurerTextDisplaySection from "./StructurerTextDisplaySection";
 import ExpandAccordionToggle from "../ExpandAccordionToggle";
+import { useTranslation } from "@/app/i18n/client";
 
 const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
   const {
@@ -18,12 +19,15 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
     setOutline,
     expandedSections,
     setExpandedSections,
+    lng,
   } = props;
 
   const [showSplitSectionModal, setShowSplitSectionModal] = useState(false);
   const [splitSection, setSplitSection] = useState<SectionInfo | undefined>();
   const [showSectionRenameModal, setShowSectionRenameModal] = useState(false);
   const [renameSection, setRenameSection] = useState<SectionInfo | undefined>();
+
+  const { t } = useTranslation(lng, "StructurerTextDisplaySegmenter");
 
   useEffect(() => {
     if (llmResponse) {
@@ -77,6 +81,7 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
           splitSection={splitSection}
           setOutline={setOutline}
           outline={outline}
+          lng={lng}
         />
       )}
       {showSectionRenameModal && renameSection && (
@@ -86,6 +91,7 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
           setOutline={setOutline}
           setRenameSection={setRenameSection}
           setShowSectionRenameModal={setShowSectionRenameModal}
+          lng={lng}
         />
       )}
       <button
@@ -93,7 +99,7 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
         onClick={() => handleExpandAll()}
       >
         <ExpandAccordionToggle isOpen={!checkAllClosed()} size={26} />
-        {checkAllClosed() ? "Expand all" : "Collapse all"}
+        {checkAllClosed() ? t("Expand all") : t("Collapse all")}
       </button>
       {outline.length > 0
         ? outline.map((section, index) => (
@@ -106,6 +112,7 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
               setShowSectionRenameModal={setShowSectionRenameModal}
               setShowSplitSectionModal={setShowSplitSectionModal}
               setSplitSection={setSplitSection}
+              lng={lng}
             />
           ))
         : text}

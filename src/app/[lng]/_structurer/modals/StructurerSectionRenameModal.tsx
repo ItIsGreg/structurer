@@ -1,6 +1,7 @@
 import { StructurerSectionRenameModalProps } from "@/types";
 import { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
+import { useTranslation } from "@/app/i18n/client";
 
 const StructurerSectionRenameModal = (
   props: StructurerSectionRenameModalProps
@@ -11,9 +12,12 @@ const StructurerSectionRenameModal = (
     renameSection,
     setOutline,
     outline,
+    lng,
   } = props;
 
   const [newKey, setNewKey] = useState<string>(renameSection.key);
+
+  const { t } = useTranslation(lng, "StructurerSectionRenameModal");
 
   const handleRenameClick = () => {
     if (renameSection && newKey && outline) {
@@ -46,7 +50,7 @@ const StructurerSectionRenameModal = (
           onClick={handleRenameClick}
           className="bg-blue-500 rounded-md p-1"
         >
-          Rename
+          {t("Rename")}
         </button>
       </div>
     </ModalWrapper>

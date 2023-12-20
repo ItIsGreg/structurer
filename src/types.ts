@@ -66,6 +66,7 @@ export interface StructurerProps {
   rng: seedrandom.PRNG;
   expandedSections: ExpandedSections;
   setExpandedSections: (expandedSections: ExpandedSections) => void;
+  lng: string;
 }
 
 export interface StructurerTextProps extends StructurerProps {
@@ -98,6 +99,7 @@ export interface CategorySelectorProps {
   getColor?: () => string;
   entityAttributes?: EntityAttributes;
   setEntityAttributes?: (attributes: EntityAttributes) => void;
+  lng: string;
 }
 
 export interface DisplayCategoriesProps {
@@ -111,6 +113,7 @@ export interface DisplayCategoriesProps {
   rng?: seedrandom.PRNG;
   entityAttributes?: EntityAttributes;
   setEntityAttributes?: (attributes: EntityAttributes) => void;
+  lng: string;
 }
 
 export interface EntityAttributes {
@@ -131,6 +134,7 @@ export interface StructurerTextDisplaySectionProps
   setRenameSection: React.Dispatch<
     React.SetStateAction<SectionInfo | undefined>
   >;
+  lng: string;
 }
 
 export interface StructurerWorkBenchProps extends StructurerTextProps {}
@@ -168,6 +172,7 @@ export enum CategorySelectorInputTypes {
 export interface InputProps {
   onSelect: (category: string) => void;
   placeholder: string;
+  lng: string;
 }
 
 export interface InputSelectionProps extends InputProps {
@@ -278,6 +283,7 @@ export interface Color {
 
 export interface StructurerUploadProps {
   setText: (text: string) => void;
+  lng: string;
 }
 
 export interface SetApiKeyModalProps {
@@ -291,6 +297,7 @@ export interface SetEntityAttributesModalProps {
   entityAttributes: EntityAttributes;
   setEntityAttributes: (attributes: EntityAttributes) => void;
   entity: string;
+  lng: string;
 }
 
 export interface StructurerSectionCombineButtonProps {
@@ -298,6 +305,7 @@ export interface StructurerSectionCombineButtonProps {
   outline: SectionInfo[];
   setOutline: (outline: SectionInfo[]) => void;
   section: SectionInfo;
+  lng: string;
 }
 
 export enum CombineSectionButtonState {
@@ -316,6 +324,7 @@ export interface StructurerSectionSplitModalProps {
   splitSection: SectionInfo;
   setOutline: (outline: SectionInfo[]) => void;
   outline: SectionInfo[];
+  lng: string;
 }
 
 export interface StructurerSectionSplitButtonProps {
@@ -324,12 +333,14 @@ export interface StructurerSectionSplitButtonProps {
     React.SetStateAction<SectionInfo | undefined>
   >;
   section: SectionInfo;
+  lng: string;
 }
 
 export interface StructurerSectionLabelButtonProps {
   focusedSection: SectionInfo | undefined;
   section: SectionInfo;
   setFocusedSection: (section: SectionInfo) => void;
+  lng: string;
 }
 
 export interface StructurerSectionRenameButtonProps {
@@ -338,6 +349,7 @@ export interface StructurerSectionRenameButtonProps {
     React.SetStateAction<SectionInfo | undefined>
   >;
   section: SectionInfo;
+  lng: string;
 }
 
 export interface StructurerSectionRenameModalProps {
@@ -346,6 +358,7 @@ export interface StructurerSectionRenameModalProps {
   renameSection: SectionInfo;
   setOutline: (outline: SectionInfo[]) => void;
   outline: SectionInfo[];
+  lng: string;
 }
 
 export interface InputDict {

@@ -1,10 +1,12 @@
+import { useTranslation } from "@/app/i18n/client";
 import { InputTextProps } from "@/types";
 import { useState } from "react";
 
 const InputText = (props: InputTextProps) => {
-  const { onSelect, placeholder } = props;
+  const { onSelect, placeholder, lng } = props;
   const [inputValue, setInputValue] = useState<string>("");
 
+  const { t } = useTranslation(lng, "InputText");
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -21,7 +23,7 @@ const InputText = (props: InputTextProps) => {
         type="submit"
         className="bg-blue-500 text-white p-2 rounded-md transform hover:scale-110"
       >
-        Add
+        {t("Add")}
       </button>
       <input
         type="text"

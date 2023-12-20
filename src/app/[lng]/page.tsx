@@ -1,8 +1,21 @@
-import StructurerBody from "./_structurer/StructurerBody";
-import Layout from "./layout";
+"use client";
 
-const Structurer = () => {
-  return <StructurerBody />;
+import StructurerBody from "./_structurer/StructurerBody";
+
+interface StructurerProps {
+  params: {
+    lng: string;
+  };
+}
+
+const Structurer = (props: StructurerProps) => {
+  return (
+    <StructurerBody
+      params={{
+        lng: props.params.lng,
+      }}
+    />
+  );
 };
 
 export default Structurer;

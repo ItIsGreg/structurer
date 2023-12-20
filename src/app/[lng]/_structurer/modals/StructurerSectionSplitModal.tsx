@@ -7,6 +7,7 @@ import { LuSplitSquareHorizontal } from "react-icons/lu";
 import { splitEntities } from "@/utils/structurerUtils";
 import { toastError } from "@/toasts";
 import ModalWrapper from "./ModalWrapper";
+import { useTranslation } from "@/app/i18n/client";
 
 const StructurerSectionSplitModal = (
   props: StructurerSectionSplitModalProps
@@ -17,7 +18,10 @@ const StructurerSectionSplitModal = (
     setOutline,
     outline,
     setSpliceSection,
+    lng,
   } = props;
+
+  const { t } = useTranslation(lng, "StructurerSectionSplitModal");
 
   const handleSplitSectionClick = () => {
     const selection = window.getSelection();
@@ -42,7 +46,7 @@ const StructurerSectionSplitModal = (
             splitSection.text.length,
           ]);
         } catch (error) {
-          toastError("Please set a split outside of an entity");
+          toastError(t("Please set a split outside of an entity"));
           return;
         }
       }
@@ -83,8 +87,9 @@ const StructurerSectionSplitModal = (
     <ModalWrapper setShow={setShowSplitSectionModal}>
       <div>
         <p>
-          Click where you want to set the split indicator. Then click the button
-          below.
+          {t(
+            "Click where you want to set the split indicator. Then click the Split button below."
+          )}
         </p>
         {splitSection.text && (
           <div

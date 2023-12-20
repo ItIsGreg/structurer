@@ -1,3 +1,4 @@
+import { useTranslation } from "@/app/i18n/client";
 import {
   CombineSectionButtonState,
   StructurerSectionCombineButtonProps,
@@ -9,7 +10,9 @@ import { Tooltip } from "react-tooltip";
 const StructurerSectionCombineButton = (
   props: StructurerSectionCombineButtonProps
 ) => {
-  const { state, outline, setOutline, section } = props;
+  const { state, outline, setOutline, section, lng } = props;
+
+  const { t } = useTranslation(lng, "StructurerSectionCombineButton");
 
   const handleCombineClick = () => {
     const sectionIndex = outline.findIndex((sec) => sec.key === section.key);
@@ -51,8 +54,8 @@ const StructurerSectionCombineButton = (
         data-tooltip-id="unite-button"
         data-tooltip-content={`${
           state === CombineSectionButtonState.CombineAbove
-            ? "Combine with Section Above"
-            : "Combine with Section Below"
+            ? t("Combine with Section Above")
+            : t("Combine with Section Below")
         }`}
         onClick={handleCombineClick}
       >

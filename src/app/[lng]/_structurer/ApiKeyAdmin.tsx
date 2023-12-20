@@ -3,10 +3,17 @@ import { useLiveQuery } from "dexie-react-hooks";
 import SetApiKeyModal from "./modals/SetApiKeyModal";
 import { useState } from "react";
 import { toastError } from "@/toasts";
+import { useTranslation } from "@/app/i18n/client";
 
-const ApiKeyAdmin = () => {
+interface ApiKeyAdminProps {
+  lng: string;
+}
+
+const ApiKeyAdmin = (props: ApiKeyAdminProps) => {
+  const { lng } = props;
   const apiKeys = useLiveQuery(() => db.apikeys.toArray(), []);
   const [showApiKeyModal, setShowApiKeyModal] = useState<boolean>(false);
+  const { t } = useTranslation(lng, "ApiKeyAdmin");
 
   const handleClear = () => {
     try {
@@ -37,13 +44,13 @@ const ApiKeyAdmin = () => {
           className="bg-blue-500 p-1 rounded-md transform hover:scale-105"
           onClick={() => setShowApiKeyModal(true)}
         >
-          Set Api Key
+          {t("Set Api Key")}
         </button>
         <button
           onClick={() => handleClear()}
           className="bg-blue-500 p-1 rounded-md transform hover:scale-105"
         >
-          Clear API Key
+          {t("Clear API Key")}
         </button>
       </div>
     </div>
