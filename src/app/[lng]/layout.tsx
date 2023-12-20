@@ -1,10 +1,19 @@
 import Head from "next/head";
 import Header from "./Header";
 import "./globals.css";
+import { languages } from "../i18n/settings";
 
 interface LayoutProps {
   children: React.ReactNode;
+  params: {
+    lng: string;
+  };
 }
+
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }));
+}
+
 export default function Layout(props: LayoutProps) {
   return (
     <html>
@@ -24,7 +33,11 @@ export default function Layout(props: LayoutProps) {
       </Head>
       <body>
         <div className="w-screen h-screen overflow-hidden">
-          <Header />
+          <Header
+            params={{
+              lng: props.params.lng,
+            }}
+          />
           <main className="flex flex-row h-full w-full overflow-hidden">
             {props.children}
           </main>
