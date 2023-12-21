@@ -1,4 +1,6 @@
 {
   "Extract Text from PDF": "Text aus PDF extrahieren",
-  "Extract Text from Scan": "Text aus Scan extrahieren"
+  "Extract Text from Scan": "Text aus Scan extrahieren",
+  "Upload Sections": "Sektionen hochladen",
+  "The File provided does not conform to the Section DataFormat": "Die Daten der hochgeladenen Datei sind nicht im richtigen Format"
 }

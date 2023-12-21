@@ -3,12 +3,17 @@ import StructurerUpload from "./StructurerUpload";
 import { useTranslation } from "@/app/i18n/client";
 
 const StructurerTextInput = (props: StructurerTextInputProps) => {
-  const { setText, text, lng } = props;
+  const { setText, text, lng, setOutline, setMode } = props;
   const { t } = useTranslation(lng, "StructurerTextInput");
 
   return (
     <div className="flex-flex-col gap-2">
-      <StructurerUpload setText={setText} lng={lng} />
+      <StructurerUpload
+        setText={setText}
+        lng={lng}
+        setOutline={setOutline}
+        setMode={setMode}
+      />
       <textarea
         className="rounded"
         rows={30}

@@ -506,3 +506,44 @@ export const callLLMUnmatches = async (
     toastError("There was an error when trying to match your entities");
   }
 };
+
+// Function to check if a given object is a SectionInfo
+export const isSectionInfo = (obj: any): obj is SectionInfo => {
+  return (
+    "key" in obj &&
+    "startIndex" in obj &&
+    "endIndex" in obj &&
+    "askedFor" in obj
+  );
+};
+
+// Function to check if a given object is an EntityElement
+export const isEntityElement = (obj: any): obj is EntityElement => {
+  return (
+    "item" in obj &&
+    (!obj.matches ||
+      obj.matches.every(
+        (match: any) =>
+          Array.isArray(match) &&
+          match.length === 2 &&
+          match.every(Number.isInteger)
+      ))
+  );
+};
+
+// Function to check if an object is a valid Entities structure
+export const isEntities = (obj: any): obj is Entities => {
+  if (typeof obj !== "object" || obj === null) return false;
+  return Object.values(obj).every(
+    (value) => Array.isArray(value) && value.every(isEntityElement)
+  );
+};
+
+// Main function to validate if an object is an array of SectionInfo
+export const isValidSectionInfoArray = (data: any): data is SectionInfo[] => {
+  if (!Array.isArray(data)) return false;
+  return data.every(
+    (item) =>
+      isSectionInfo(item) && (!item.entities || isEntities(item.entities))
+  );
+};

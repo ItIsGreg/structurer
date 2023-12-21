@@ -284,6 +284,8 @@ export interface Color {
 export interface StructurerUploadProps {
   setText: (text: string) => void;
   lng: string;
+  setOutline: (outline: SectionInfo[]) => void;
+  setMode: (mode: StructurerModes) => void;
 }
 
 export interface SetApiKeyModalProps {

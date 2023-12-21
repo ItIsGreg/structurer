@@ -1,4 +1,6 @@
 {
   "Extract Text from PDF": "Extract Text from PDF",
-  "Extract Text from Scan": "Extract Text from Scan"
+  "Extract Text from Scan": "Extract Text from Scan",
+  "Upload Sections": "Upload Sections",
+  "The File provided does not conform to the Section DataFormat": "The File provided does not conform to the Section DataFormat"
 }

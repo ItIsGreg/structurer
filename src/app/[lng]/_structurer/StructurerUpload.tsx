@@ -1,19 +1,30 @@
 import { useTranslation } from "@/app/i18n/client";
 import { toastError } from "@/toasts";
-import { StructurerUploadProps, TextExtractionApiEndpoints } from "@/types";
+import {
+  SectionInfo,
+  StructurerModes,
+  StructurerUploadProps,
+  TextExtractionApiEndpoints,
+} from "@/types";
 import { awsUrl } from "@/utils/constants";
+import { isValidSectionInfoArray } from "@/utils/structurerUtils";
 import { useRef, useState } from "react";
 import { GrDocumentPdf, GrScan } from "react-icons/gr";
 import { TiUpload } from "react-icons/ti";
 
+interface JsonData {
+  [key: string]: any; // Use a more specific type if you know the structure of your JSON
+}
+
 const StructurerUpload = (props: StructurerUploadProps) => {
-  const { setText, lng } = props;
+  const { setText, lng, setOutline, setMode } = props;
 
   const [textExtractionLoading, setTextExtractionLoading] = useState(false);
   const { t } = useTranslation(lng, "StructurerUpload");
 
   const pdfInputRef = useRef<HTMLInputElement>(null);
   const scanInputRef = useRef<HTMLInputElement>(null);
+  const outlineUploadRef = useRef<HTMLInputElement>(null);
 
   const handlePdfExtractClick = () => {
     setTextExtractionLoading(true);
@@ -25,6 +36,10 @@ const StructurerUpload = (props: StructurerUploadProps) => {
     scanInputRef.current?.click();
   };
 
+  const handleUploadOutlineClick = () => {
+    outlineUploadRef.current?.click();
+  };
+
   const correctFileType = (
     file: File,
     apiEndpoint: TextExtractionApiEndpoints
@@ -34,6 +49,31 @@ const StructurerUpload = (props: StructurerUploadProps) => {
     } else if (apiEndpoint === TextExtractionApiEndpoints.extractScanText) {
       return file.type === "image/png" || file.type === "image/jpeg";
     } else return false;
+  };
+
+  const handleOutlineUpload = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      try {
+        const text = e.target?.result;
+        const json = JSON.parse(text as string);
+        if (isValidSectionInfoArray(json)) {
+          setOutline(json as SectionInfo[]);
+        } else {
+          toastError(
+            t("The File provided does not conform to the Section DataFormat")
+          );
+        }
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
+    };
+    reader.readAsText(file);
   };
 
   const handleFileChange = async (
@@ -113,6 +153,23 @@ const StructurerUpload = (props: StructurerUploadProps) => {
       >
         <GrScan size={20} />
         {t("Extract Text from Scan")}
+        <TiUpload size={20} />
+      </button>
+      <input
+        type="file"
+        name="outlineUpload"
+        id=""
+        className="hidden"
+        ref={outlineUploadRef}
+        onChange={(e) => {
+          handleOutlineUpload(e);
+        }}
+      />
+      <button
+        className="bg-blue-500 rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105"
+        onClick={async () => handleUploadOutlineClick()}
+      >
+        {t("Upload Sections")}
         <TiUpload size={20} />
       </button>
     </div>
