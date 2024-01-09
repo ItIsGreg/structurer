@@ -29,6 +29,7 @@ const InputSelection = (props: InputSelectionProps) => {
         <div>Loading...</div>
       ) : (
         <select
+          id="joyride-entity-selection"
           onChange={(e) => onSelect(e.target.value)}
           className="rounded-md h-16 p-2"
         >

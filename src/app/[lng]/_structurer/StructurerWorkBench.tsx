@@ -6,7 +6,14 @@ import { useEffect, useState } from "react";
 import { defaultGPTModel, dummySections } from "@/utils/constants";
 
 const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
-  const { mode, text, setOutline, setFocusedSection } = props;
+  const {
+    mode,
+    text,
+    setOutline,
+    setFocusedSection,
+    runJoyride,
+    setRunJoyride,
+  } = props;
   const [gptModel, setGPTModel] = useState<string>(defaultGPTModel);
 
   const labelerSection = {
@@ -33,6 +40,8 @@ const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
           {...props}
           gptModel={gptModel}
           setGptModel={setGPTModel}
+          setRunJoyride={setRunJoyride}
+          runJoyride={runJoyride}
         />
       ) : mode === StructurerModes.segmentText ? (
         <StructurerWorkBenchSegmenter

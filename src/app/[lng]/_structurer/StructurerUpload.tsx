@@ -27,12 +27,10 @@ const StructurerUpload = (props: StructurerUploadProps) => {
   const outlineUploadRef = useRef<HTMLInputElement>(null);
 
   const handlePdfExtractClick = () => {
-    setTextExtractionLoading(true);
     pdfInputRef.current?.click();
   };
 
   const handleScanExtractClick = () => {
-    setTextExtractionLoading(true);
     scanInputRef.current?.click();
   };
 
@@ -80,6 +78,7 @@ const StructurerUpload = (props: StructurerUploadProps) => {
     e: React.ChangeEvent<HTMLInputElement>,
     apiEndpoint: TextExtractionApiEndpoints
   ) => {
+    setTextExtractionLoading(true);
     const file = e.target.files?.[0];
     if (file && correctFileType(file, apiEndpoint)) {
       try {
@@ -130,6 +129,7 @@ const StructurerUpload = (props: StructurerUploadProps) => {
           textExtractionLoading ? "bg-gray-500" : "bg-blue-500"
         } rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105`}
         onClick={() => handlePdfExtractClick()}
+        id="joyride-extract-text-pdf" // Used for testing, REMOVE
       >
         <GrDocumentPdf size={20} />
         {t("Extract Text from PDF")}
@@ -138,7 +138,6 @@ const StructurerUpload = (props: StructurerUploadProps) => {
       <input
         type="file"
         name="scanupload"
-        id=""
         className="hidden"
         ref={scanInputRef}
         onChange={(e) => {
@@ -150,6 +149,7 @@ const StructurerUpload = (props: StructurerUploadProps) => {
           textExtractionLoading ? "bg-gray-500" : "bg-blue-500"
         } rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105`}
         onClick={() => handleScanExtractClick()}
+        id="scan-upload-button" // Used for testing, REMOVE
       >
         <GrScan size={20} />
         {t("Extract Text from Scan")}

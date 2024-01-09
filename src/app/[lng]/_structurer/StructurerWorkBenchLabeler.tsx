@@ -221,7 +221,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         setEntityAttributes={setEntityAttributes}
         lng={lng}
       />
-      <button
+      {/* <button
         className={`${
           isLoading || !focusedSection ? "bg-gray-500" : "bg-blue-500"
         } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
@@ -230,15 +230,16 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
       >
         {isLoading ? t("Loading") : t("LLM Label!")}
         {isLoading && <PuffLoader size={20} />}
-      </button>
+      </button> */}
       <button
         className={`${
           isLoading || !focusedSection ? "bg-gray-500" : "bg-blue-500"
         } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
         disabled={isLoading || !focusedSection}
         onClick={async () => await handleLLMLabel("2", true)}
+        id="joyride-find-entities"
       >
-        {isLoading ? t("Loading") : t("LLM Label with Attributes!")}
+        {isLoading ? t("Loading") : t("Find Entities")}
         {isLoading && <PuffLoader size={20} />}
       </button>
       <GPTModelAdmin gptModel={gptModel} setGptModel={setGptModel} />

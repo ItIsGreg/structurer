@@ -73,7 +73,10 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-1 whitespace-pre">
+    <div
+      className="flex flex-col gap-1 whitespace-pre"
+      id="joyride-find-label-button"
+    >
       {showSplitSectionModal && splitSection && (
         <StructurerSectionSplitModal
           setShowSplitSectionModal={setShowSplitSectionModal}
@@ -97,6 +100,7 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
       <button
         className="flex justify-center items-center p-1"
         onClick={() => handleExpandAll()}
+        id="joyride-expand-all"
       >
         <ExpandAccordionToggle isOpen={!checkAllClosed()} size={26} />
         {checkAllClosed() ? t("Expand all") : t("Collapse all")}

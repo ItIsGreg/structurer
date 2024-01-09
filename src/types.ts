@@ -67,6 +67,8 @@ export interface StructurerProps {
   expandedSections: ExpandedSections;
   setExpandedSections: (expandedSections: ExpandedSections) => void;
   lng: string;
+  runJoyride: boolean;
+  setRunJoyride: (runJoyride: boolean) => void;
 }
 
 export interface StructurerTextProps extends StructurerProps {
@@ -143,6 +145,8 @@ export interface StructurerWorkBenchTextInputProps
   extends StructurerWorkBenchProps {
   gptModel: string;
   setGptModel: (gptModel: string) => void;
+  runJoyride: boolean;
+  setRunJoyride: (runJoyride: boolean) => void;
 }
 
 export interface StructurerWorkBenchSegmenterProps

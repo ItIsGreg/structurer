@@ -12,7 +12,7 @@ const StructurerOutline = (props: StructurerOutlineProps) => {
 
   return (
     <div className="flex flex-col w-2/12 gap-1 h-[90vh]">
-      <div className="flex items-center">
+      <div className="flex items-center" id="joyride-outline">
         {outline.length > 0 ? (
           <div className="flex-shrink-0 transform hover:bg-blue-500 p-1 rounded-md">
             <ExpandAccordionToggle

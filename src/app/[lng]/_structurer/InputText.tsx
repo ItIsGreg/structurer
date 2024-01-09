@@ -18,7 +18,11 @@ const InputText = (props: InputTextProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-row gap-2">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-row gap-2"
+      id="joyride-add-sections"
+    >
       <button
         type="submit"
         className="bg-blue-500 text-white p-2 rounded-md transform hover:scale-110"

@@ -35,6 +35,7 @@ const StructurerWorkBenchSegmenter = (
     lng === "de" ? segmentationCategoriesGerman : segmentationCategories
   );
   const [isLoading, setIslLoading] = useState<boolean>(false);
+
   const activeAPIKey = useLiveQuery(() => {
     return db.apikeys.toArray();
   }, [])?.[0]?.key;
@@ -83,7 +84,7 @@ const StructurerWorkBenchSegmenter = (
         InputComponent={InputText}
         onSelectCategory={handleSelectCategory}
         placeholder={t(
-          "Enter categories to look for in the text (e.g. Medication, History of Present Illness)"
+          "Enter sections (e.g. Medication, History of Present Illness)"
         )}
         DisplayComponent={DisplayCategoriesBasic}
         setColors={setColors}
@@ -97,8 +98,9 @@ const StructurerWorkBenchSegmenter = (
           isLoading ? "bg-gray-500" : "bg-blue-500"
         } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
         disabled={isLoading}
+        id="joyride-find-sections"
       >
-        {isLoading ? t("Loading") : t("LLM Segment!")}
+        {isLoading ? t("Loading") : t("Find Sections")}
         {isLoading && <PuffLoader size={20} />}
       </button>
       <h2 className="border-y-2 border text-center">Labeler</h2>
