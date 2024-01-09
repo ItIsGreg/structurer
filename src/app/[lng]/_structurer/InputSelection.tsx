@@ -30,7 +30,7 @@ const InputSelection = (props: InputSelectionProps) => {
       ) : (
         <select
           onChange={(e) => onSelect(e.target.value)}
-          className="rounded-md"
+          className="rounded-md h-16 p-2"
         >
           {categories.map((category) => (
             <option key={category} value={category}>

@@ -195,22 +195,15 @@ export const primitiveTypes = [
 
 export const resourceTypeList = [
   // I want to move back from FHIR a bit, so I am going to limit this
-  "AllergyIntolerance",
-  "ClinicalImpression",
-  "Condition",
-  "Encounter",
-  "Goal",
   "Medication",
   "Observation",
-  "Practitioner",
   "Procedure",
+  "Condition",
+  "AllergyIntolerance",
 ];
 
 export const defaultFocusResources: OptionType[] = [
   { value: "Condition", label: "Condition" },
-  { value: "Medication", label: "Medication" },
-  { value: "Procedure", label: "Procedure" },
-  { value: "Observation", label: "Observation" },
 ];
 
 export const dummyOutline: Outline = {

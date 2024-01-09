@@ -9,9 +9,9 @@ import { useState } from "react";
 import {
   awsUrl,
   defaultResourceTypeAttributes,
-  resourceOptions,
+  resourceTypeList,
+  defaultFocusResources,
 } from "@/utils/constants";
-import { defaultFocusResources } from "@/utils/constants";
 import InputSelection from "./InputSelection";
 import DisplayCategoriesBasic from "./DisplayCategoriesBasic";
 import { PuffLoader } from "react-spinners";
@@ -213,9 +213,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         onSelectCategory={handleSelectCategory}
         focusedCategory={focusedCategory}
         setFocusedCategory={setFocusedCategory}
-        fetchCategories={() =>
-          Promise.resolve(resourceOptions.map((option) => option.value))
-        }
+        fetchCategories={() => Promise.resolve(resourceTypeList)}
         colors={colors}
         setColors={setColors}
         rng={rng}
