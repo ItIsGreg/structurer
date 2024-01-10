@@ -206,6 +206,14 @@ export const defaultFocusResources: OptionType[] = [
   { value: "Condition", label: "Condition" },
 ];
 
+export const resourcesToColor: OptionType[] = [
+  { value: "Condition", label: "Condition" },
+  { value: "Medication", label: "Medication" },
+  { value: "Observation", label: "Observation" },
+  { value: "Procedure", label: "Procedure" },
+  { value: "AllergyIntolerance", label: "AllergyIntolerance" },
+];
+
 export const dummyOutline: Outline = {
   Medication: {
     MedicationRequest: [

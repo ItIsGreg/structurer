@@ -11,7 +11,12 @@ import StructurerText from "./StructurerText";
 import StructurerWorkBench from "./StructurerWorkBench";
 import StructurerOutline from "./StructurerOutline";
 import seedrandom from "seedrandom";
-import { awsUrl, colorSeed, defaultFocusResources } from "@/utils/constants";
+import {
+  awsUrl,
+  colorSeed,
+  defaultFocusResources,
+  resourcesToColor,
+} from "@/utils/constants";
 import { setColorsForDefaultResources } from "@/utils/annotator_utils";
 import dynamic from "next/dynamic";
 import { Step, ACTIONS, EVENTS, STATUS, CallBackProps } from "react-joyride";
@@ -37,7 +42,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
   const [focusedCategory, setFocusedCategory] = useState<string>();
   const [rng, setRng] = useState<seedrandom.PRNG>(() => seedrandom(colorSeed));
   const [colors, setColors] = useState<ColorStore>(
-    setColorsForDefaultResources(defaultFocusResources, rng)
+    setColorsForDefaultResources(resourcesToColor, rng)
   );
   const [expandedSections, setExpandedSections] = useState<ExpandedSections>(
     {}
