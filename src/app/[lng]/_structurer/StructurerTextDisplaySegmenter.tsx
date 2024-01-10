@@ -73,10 +73,7 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
   };
 
   return (
-    <div
-      className="flex flex-col gap-1 whitespace-pre"
-      id="joyride-find-label-button"
-    >
+    <div className="flex flex-col gap-1 whitespace-pre">
       {showSplitSectionModal && splitSection && (
         <StructurerSectionSplitModal
           setShowSplitSectionModal={setShowSplitSectionModal}

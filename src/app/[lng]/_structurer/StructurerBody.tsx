@@ -11,11 +11,13 @@ import StructurerText from "./StructurerText";
 import StructurerWorkBench from "./StructurerWorkBench";
 import StructurerOutline from "./StructurerOutline";
 import seedrandom from "seedrandom";
-import { colorSeed, defaultFocusResources } from "@/utils/constants";
+import { awsUrl, colorSeed, defaultFocusResources } from "@/utils/constants";
 import { setColorsForDefaultResources } from "@/utils/annotator_utils";
 import dynamic from "next/dynamic";
 import { Step, ACTIONS, EVENTS, STATUS, CallBackProps } from "react-joyride";
 import { useTranslation } from "@/app/i18n/client";
+import { LiaMarkerSolid } from "react-icons/lia";
+import { TiDownload } from "react-icons/ti";
 
 const Joyride = dynamic(() => import("react-joyride"), { ssr: false });
 
@@ -43,6 +45,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
   const [runJoyride, setRunJoyride] = useState<boolean>(false);
   const [stepIndex, setStepIndex] = useState<number>(0);
   const [steps, setSteps] = useState<Step[]>([]);
+
   useEffect(() => {
     const newExpandedSections: ExpandedSections = {};
     outline.forEach((section) => {
@@ -50,7 +53,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
         // If the key already exists, use its current state, otherwise initialize to false
         newExpandedSections[section.key] = expandedSections[section.key];
       } else {
-        newExpandedSections[section.key] = false;
+        newExpandedSections[section.key] = true;
       }
     });
     setExpandedSections(newExpandedSections);
@@ -71,8 +74,27 @@ const StructurerBody = (props: StructurerBodyProps) => {
     }
   };
 
-  const sleep = (ms: number) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+  const handleDownloadExampleFile = async () => {
+    // download example file from API endpoint
+    try {
+      const response = await fetch(`${awsUrl}/example/tutorial/`);
+      if (!response.ok) {
+        throw new Error("Could not download example file");
+      }
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "example_discharge_summary.pdf";
+      document.body.appendChild(a);
+      a.click();
+
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -81,13 +103,21 @@ const StructurerBody = (props: StructurerBodyProps) => {
         {
           target: "#joyride-start",
           content: (
-            <div>
+            <div className="flex flex-col gap-2 justify-center items-center">
               <p>
-                Welcome to the structurer. Download the example file and let us
-                get going.
+                Welcome to the <b>Structurer</b>. The <b>Structurer</b> helps to
+                extract structured data from medical texts. In this tutorial we
+                will extract the <b>previous conditions</b> from a discharge
+                summary. With the button below you can download an anonymized
+                <b>example discharge summary</b>, that we will use for this
+                tutorial.
               </p>
-              <button className="bg-blue-500 rounded-md p-1">
-                Download example file
+              <div></div>
+              <button
+                className="bg-blue-500 rounded-md p-1 m-1 flex flex-row gap-2 justify-center items-center transform hover:scale-105 "
+                onClick={() => handleDownloadExampleFile()}
+              >
+                Download example file <TiDownload />
               </button>
             </div>
           ),
@@ -118,70 +148,124 @@ const StructurerBody = (props: StructurerBodyProps) => {
       setSteps([
         {
           target: "#joyride-start",
-          content: "This is the structurer view.",
+          content: (
+            <div>
+              <p>
+                This is the <b>structurer view</b>.
+              </p>
+            </div>
+          ),
+
           placement: "center",
           disableBeacon: true,
         },
         {
           target: "#joyride-add-sections",
-          content:
-            "Here you can set sections that you want to extract from the text. For now let's keep the default",
+          content: (
+            <div>
+              <p>
+                Here you can set <b>sections</b> that you want to extract from
+                the text. For now let us keep the default
+              </p>
+            </div>
+          ),
         },
         {
           target: "#joyride-find-sections",
-          content:
-            "Click here to start the extraction process. It might take a few seconds.",
+          content: (
+            <div>
+              <p>
+                Click here to start the <b>extraction process</b>. It might take
+                a few seconds.
+              </p>
+            </div>
+          ),
           spotlightClicks: true,
-          hideFooter: true,
         },
         {
           target: "#joyride-expand-all",
-          content:
-            "Click here to expand all Section that were extracted from the text. Take a look around. Then click on the beacon to continue",
-          spotlightClicks: true,
-          hideFooter: true,
+          content: (
+            <div>
+              <p>
+                Here you can see the <b>sections</b> that were extracted from
+                the text. Take a look around. Then click on the beacon to
+                continue
+              </p>
+            </div>
+          ),
         },
         {
           target: "#joyride-find-label-button",
           content: (
             <div>
               <p>
-                There should be a section called previous illnesses. On the
-                right it has a button that looks like this:
+                There should be a section called <b>previous illnesses</b>. On
+                the right it has a button that looks like this:
               </p>
-              <button className="bg-blue-500 rounded-md p-1">
-                <span className="text-white">+</span>
+              <button
+                className={
+                  "bg-blue-500 text-right rounded-md p-1 transform hover:scale-105"
+                }
+              >
+                <LiaMarkerSolid />
               </button>
               <p>
-                Click on it so that the button is highlighted. Then click on the
-                next beacon.
+                Click on it so that the button is <b>highlighted</b>. Then click
+                on the next beacon.
               </p>
             </div>
           ),
+          placement: "top",
         },
         {
           target: "#joyride-entity-selection",
-          content:
-            "Here you can set which entities should be extracted from the text. For now let's keep the default",
+          content: (
+            <div>
+              <p>
+                Here you can set <b>which entities</b> should be extracted from
+                the text. For now let us keep the default
+              </p>
+            </div>
+          ),
           disableBeacon: false,
         },
         {
           target: "#joyride-find-entities",
-          content:
-            "Click here to start the extraction process. It might take a few seconds.",
+          content: (
+            <div>
+              <p>
+                Click here to start <b>the extraction process</b>. It might take
+                a few seconds.
+              </p>
+            </div>
+          ),
           spotlightClicks: true,
           hideFooter: true,
         },
         {
           target: "#joyride-outline",
-          content:
-            "The outline provides an overview of the extracted sections and entities. You can also download the whole outline or individual sections",
+          content: (
+            <div>
+              <p>
+                The <b>outline</b> provides an overview of the extracted
+                sections and entities. You can also <b>download</b> the whole
+                outline or individual sections
+              </p>
+            </div>
+          ),
           placement: "left",
         },
         {
           target: "#joyride-start",
-          content:
-            "That is the end of the tutorial. Play around a bit. Maybe try to extract Medication entities from the Discharge Medication section.",
+          content: (
+            <div>
+              <p>
+                That is the end of the tutorial. Play around a bit. Maybe try to
+                extract <b>Medication</b> entities from the{" "}
+                <b>Discharge Medication</b> section.
+              </p>
+            </div>
+          ),
           placement: "center",
           disableBeacon: true,
         },

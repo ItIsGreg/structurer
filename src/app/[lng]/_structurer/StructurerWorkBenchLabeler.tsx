@@ -244,6 +244,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
       </button>
       <GPTModelAdmin gptModel={gptModel} setGptModel={setGptModel} />
       <ApiKeyAdmin lng={lng} />
+      <div id="joyride-find-label-button"></div>
     </div>
   );
 };
