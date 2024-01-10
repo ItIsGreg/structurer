@@ -195,10 +195,10 @@ export const primitiveTypes = [
 
 export const resourceTypeList = [
   // I want to move back from FHIR a bit, so I am going to limit this
+  "Condition",
   "Medication",
   "Observation",
   "Procedure",
-  "Condition",
   "AllergyIntolerance",
 ];
 
