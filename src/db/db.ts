@@ -1,4 +1,4 @@
-import Dexie, { Table } from "dexie";
+import Dexie, { Table, Transaction } from "dexie";
 
 export interface APIKey {
   id?: number;
@@ -12,6 +12,9 @@ export class MySubClassedDexie extends Dexie {
     super("MySubClassedDexie");
     this.version(1).stores({
       apikeys: "++id,key",
+    });
+    this.on("populate", (transaction: Transaction) => {
+      transaction.table("apikeys").add({ key: "default" });
     });
   }
 }
