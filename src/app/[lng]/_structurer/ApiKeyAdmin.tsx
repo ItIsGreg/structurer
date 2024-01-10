@@ -23,6 +23,15 @@ const ApiKeyAdmin = (props: ApiKeyAdminProps) => {
     }
   };
 
+  const handleSetDefault = () => {
+    try {
+      db.apikeys.clear();
+      db.apikeys.add({ key: "default" });
+    } catch (error) {
+      toastError("There was an error setting the default key");
+    }
+  };
+
   return (
     <div className="flex flex-col gap-1 items-center">
       {showApiKeyModal && (
@@ -46,6 +55,13 @@ const ApiKeyAdmin = (props: ApiKeyAdminProps) => {
         >
           {t("Set Api Key")}
         </button>
+        <button
+          className="bg-blue-500 p-1 rounded-md transform hover:scale-105"
+          onClick={() => handleSetDefault()}
+        >
+          {t("Set Default Key")}
+        </button>
+
         <button
           onClick={() => handleClear()}
           className="bg-blue-500 p-1 rounded-md transform hover:scale-105"
