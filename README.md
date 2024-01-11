@@ -1,5 +1,7 @@
 The structurer is a web interface that let's you divide medical texts into sections and extract named entities. It does by utilising LLM calls.
 
+You can find the app hosted [here](https://structurer.vercel.app/en).
+
 ## Getting Started
 
 Clone the repo.
