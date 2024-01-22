@@ -9,7 +9,7 @@ const StructurerTextDisplayLabeler = (props: StructurerTextDisplayProps) => {
   let dummyValue: ValueState[] = []; // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability
 
   return (
-    <div className="">
+    <div className="whitespace-pre">
       {outline[0] && (
         <TextAnnotator
           content={text}

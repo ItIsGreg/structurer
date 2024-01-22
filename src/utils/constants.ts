@@ -193,17 +193,33 @@ export const primitiveTypes = [
   "uuid",
 ];
 
+// export const resourceTypeList = [
+//   // I want to move back from FHIR a bit, so I am going to limit this
+//   "Condition",
+//   "Medication",
+//   "Observation",
+//   "Procedure",
+//   "AllergyIntolerance",
+// ];
 export const resourceTypeList = [
   // I want to move back from FHIR a bit, so I am going to limit this
-  "Condition",
-  "Medication",
-  "Observation",
-  "Procedure",
-  "AllergyIntolerance",
+  "ConditionList",
+  "DischargeMedication",
+  "AdmissionMedication",
+  "LabResults",
+  "Allergies",
 ];
 
+// export const defaultFocusResources: OptionType[] = [
+//   { value: "Condition", label: "Condition" },
+// ];
+
 export const defaultFocusResources: OptionType[] = [
-  { value: "Condition", label: "Condition" },
+  { value: "ConditionList", label: "ConditionList" },
+  { value: "DischargeMedication", label: "DischargeMedication" },
+  { value: "AdmissionMedication", label: "AdmissionMedication" },
+  { value: "LabResults", label: "LabResults" },
+  { value: "Allergies", label: "Allergies" },
 ];
 
 export const resourcesToColor: OptionType[] = [
