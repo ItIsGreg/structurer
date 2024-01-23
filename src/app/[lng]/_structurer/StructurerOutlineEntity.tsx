@@ -3,10 +3,30 @@ import StructurerOutlineEntityElement from "./StructurerOutlineEntityElement";
 import { useState } from "react";
 import StructurerOutlineDownloadButton from "./StructurerOutlineDownloadButton";
 import ExpandAccordionToggle from "../ExpandAccordionToggle";
+import { TiDelete } from "react-icons/ti";
 
 const StructuerOutlineEntity = (props: StructurerOutlineEntityProps) => {
-  const { entity, entityName, colors } = props;
+  const { entity, entityName, colors, section } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleXClick = () => {
+    // delete entity from section of outline
+    props.setOutline(
+      props.outline.map((outlineSection) => {
+        if (outlineSection.key === section.key && outlineSection.entities) {
+          // Create a new object without the entityName key
+          const { [entityName]: _, ...remainingEntities } =
+            outlineSection.entities;
+          return {
+            ...outlineSection,
+            entities: remainingEntities,
+          };
+        } else {
+          return outlineSection;
+        }
+      })
+    );
+  };
 
   return (
     <div
@@ -23,6 +43,10 @@ const StructuerOutlineEntity = (props: StructurerOutlineEntityProps) => {
           </div>
         ) : null}
         <div className="flex-grow">{entityName}</div>
+        <TiDelete
+          onClick={() => handleXClick()}
+          className="flex-shrink-0 transform hover:bg-gray-700"
+        />
         <StructurerOutlineDownloadButton
           outlinePart={{ [entityName]: entity }}
         />
