@@ -2,6 +2,7 @@ import { StructurerModes, StructurerTextDisplayProps } from "@/types";
 import ChangeTextButton from "./ChangeTextButton";
 import StructurerTextDisplaySegmenter from "./StructurerTextDisplaySegmenter";
 import StructurerTextDisplayLabeler from "./StructurerTextDisplayLabeler";
+import StructurerTextDisplayAnnotator from "./StructurerTextDisplayAnnotator";
 
 const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
   const { mode, setMode, lng, setOutline } = props;
@@ -13,6 +14,8 @@ const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
           <StructurerTextDisplaySegmenter {...props} />
         ) : mode === StructurerModes.labelText ? (
           <StructurerTextDisplayLabeler {...props} />
+        ) : mode === StructurerModes.annotateText ? (
+          <StructurerTextDisplayAnnotator {...props} />
         ) : null}
       </div>
       <ChangeTextButton

@@ -193,16 +193,15 @@ export const primitiveTypes = [
   "uuid",
 ];
 
-// export const resourceTypeList = [
-//   // I want to move back from FHIR a bit, so I am going to limit this
-//   "Condition",
-//   "Medication",
-//   "Observation",
-//   "Procedure",
-//   "AllergyIntolerance",
-// ];
 export const resourceTypeList = [
   // I want to move back from FHIR a bit, so I am going to limit this
+  "Condition",
+  "Medication",
+  "Observation",
+  "Procedure",
+  "AllergyIntolerance",
+];
+export const sectionTypeList = [
   "ConditionList",
   "DischargeMedication",
   "AdmissionMedication",
@@ -210,11 +209,15 @@ export const resourceTypeList = [
   "Allergies",
 ];
 
-// export const defaultFocusResources: OptionType[] = [
-//   { value: "Condition", label: "Condition" },
-// ];
-
 export const defaultFocusResources: OptionType[] = [
+  { value: "Condition", label: "Condition" },
+  { value: "Medication", label: "Medication" },
+  { value: "Observation", label: "Observation" },
+  { value: "Procedure", label: "Procedure" },
+  { value: "AllergyIntolerance", label: "AllergyIntolerance" },
+];
+
+export const defaultFocusSections: OptionType[] = [
   { value: "ConditionList", label: "ConditionList" },
   { value: "DischargeMedication", label: "DischargeMedication" },
   { value: "AdmissionMedication", label: "AdmissionMedication" },

@@ -141,6 +141,58 @@ interface HandleAnnotationChangeArgs {
   outline: SectionInfo[];
 }
 
+const getNumberString = (number: number) => {
+  if (number < 10) {
+    return `0${number}`;
+  }
+  return `${number}`;
+};
+
+const transformValueToSection = (
+  value: ValueState[],
+  text: string,
+  sectionCategory: string,
+  categoryCounter: number
+) => {
+  const section: SectionInfo = {
+    key: `${sectionCategory}${getNumberString(categoryCounter)}`,
+    startIndex: value[0].start,
+    endIndex: value[value.length - 1].end,
+    text: text.slice(value[0].start, value[value.length - 1].end),
+    askedFor: true,
+  };
+  return section;
+};
+
+export const handleAnnotationChangeForSection = (
+  args: HandleAnnotationChangeArgs
+) => {
+  const { value, focusedSection, focusedCategory, text, setOutline, outline } =
+    args;
+
+  if (!focusedCategory) {
+    toastError("Please select a Category!");
+    return;
+  }
+  if (!text) {
+    toastError("Please set a text!");
+    return;
+  }
+  if (Array.isArray(value)) {
+    const categoryCounter = outline.filter((section) =>
+      section.key.includes(focusedCategory)
+    ).length;
+    const newSection = transformValueToSection(
+      value,
+      text,
+      focusedCategory,
+      categoryCounter
+    );
+    // add new section to outline
+    setOutline([...outline, newSection]);
+  }
+};
+
 export const handleAnnotationChange = (args: HandleAnnotationChangeArgs) => {
   const { value, focusedSection, focusedCategory, text, setOutline, outline } =
     args;

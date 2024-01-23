@@ -12,6 +12,12 @@ const StructurerWorkBenchTextInput = (
     <div className="flex flex-col justify-center items-center gap-3 h-screen w-500">
       <button
         className="bg-blue-500 rounded-md text-white w-full transform hover:bg-blue-700 hover:scale-110"
+        onClick={() => props.setMode(StructurerModes.annotateText)}
+      >
+        {t("Annotate Medical Text")}
+      </button>
+      <button
+        className="bg-blue-500 rounded-md text-white w-full transform hover:bg-blue-700 hover:scale-110"
         onClick={() => props.setMode(StructurerModes.labelText)}
       >
         {t("Label Medical Entities")}

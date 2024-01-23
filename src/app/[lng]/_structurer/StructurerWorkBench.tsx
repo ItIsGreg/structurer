@@ -4,6 +4,7 @@ import StructurerWorkBenchSegmenter from "./StructurerWorkBenchSegmenter";
 import StructurerWorkBenchLabeler from "./StructurerWorkBenchLabeler";
 import { useEffect, useState } from "react";
 import { defaultGPTModel, dummySections } from "@/utils/constants";
+import StructurerWorkBenchAnnotator from "./StructurerWorkBenchAnnotator";
 
 const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
   const {
@@ -51,6 +52,12 @@ const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
         />
       ) : mode === StructurerModes.labelText ? (
         <StructurerWorkBenchLabeler
+          {...props}
+          gptModel={gptModel}
+          setGptModel={setGPTModel}
+        />
+      ) : mode === StructurerModes.annotateText ? (
+        <StructurerWorkBenchAnnotator
           {...props}
           gptModel={gptModel}
           setGptModel={setGPTModel}

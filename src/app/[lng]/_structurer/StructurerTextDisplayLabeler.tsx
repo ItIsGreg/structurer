@@ -1,5 +1,8 @@
 import { StructurerTextDisplayProps, ValueState } from "@/types";
-import { handleAnnotationChange } from "@/utils/structurerUtils";
+import {
+  handleAnnotationChange,
+  handleAnnotationChangeForSection,
+} from "@/utils/structurerUtils";
 import { TextAnnotator } from "@/utils/text-annotate/TextAnnotator";
 
 const StructurerTextDisplayLabeler = (props: StructurerTextDisplayProps) => {
@@ -15,7 +18,8 @@ const StructurerTextDisplayLabeler = (props: StructurerTextDisplayProps) => {
           content={text}
           outline={outline[0].entities}
           onChange={(value) =>
-            handleAnnotationChange({
+            // handleAnnotationChange({
+            handleAnnotationChangeForSection({
               value: value,
               outline: outline,
               setOutline: setOutline,

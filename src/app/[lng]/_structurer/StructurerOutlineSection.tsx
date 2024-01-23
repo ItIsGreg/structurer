@@ -3,6 +3,7 @@ import StructuerOutlineEntity from "./StructurerOutlineEntity";
 import { useState } from "react";
 import StructurerOutlineDownloadButton from "./StructurerOutlineDownloadButton";
 import ExpandAccordionToggle from "../ExpandAccordionToggle";
+import { TiDelete } from "react-icons/ti";
 
 const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
   const {
@@ -26,6 +27,12 @@ const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
     }
   };
 
+  const handleXClick = () => {
+    setOutline(
+      outline.filter((outlineSection) => outlineSection.key !== section.key)
+    );
+  };
+
   return (
     <div className="flex flex-col gap-1">
       <div className="flex gap-1 bg-blue-500 rounded-md p-1 items-center">
@@ -39,10 +46,14 @@ const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
         )}
         <button
           onClick={() => handleSectionClick()}
-          className="text-left flex-grow transform hover:bg-gray-700 p-1 rounded-md"
+          className="text-left flex flex-row flex-grow transform hover:bg-gray-700 p-1 rounded-md"
         >
-          {section.key}
+          <div>{section.key}</div>
         </button>
+        <TiDelete
+          onClick={() => handleXClick()}
+          className="flex-shrink-0 transform hover:bg-gray-700"
+        />
         <StructurerOutlineDownloadButton outlinePart={outline} />
       </div>
       <div

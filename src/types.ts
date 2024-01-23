@@ -41,6 +41,12 @@ export enum StructurerModes {
   inputText,
   labelText,
   segmentText,
+  annotateText,
+}
+
+export enum AnnotatorModes {
+  segmentText,
+  labelText,
 }
 
 export interface ApiKeyElementProps {
@@ -69,6 +75,8 @@ export interface StructurerProps {
   lng: string;
   runJoyride: boolean;
   setRunJoyride: (runJoyride: boolean) => void;
+  annotatorMode: AnnotatorModes;
+  setAnnotatorMode: (annotatorMode: AnnotatorModes) => void;
 }
 
 export interface StructurerTextProps extends StructurerProps {

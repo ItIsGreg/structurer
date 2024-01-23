@@ -6,6 +6,7 @@ import {
   SectionInfo,
   ColorStore,
   ExpandedSections,
+  AnnotatorModes,
 } from "@/types";
 import StructurerText from "./StructurerText";
 import StructurerWorkBench from "./StructurerWorkBench";
@@ -48,8 +49,10 @@ const StructurerBody = (props: StructurerBodyProps) => {
     {}
   );
   const [runJoyride, setRunJoyride] = useState<boolean>(false);
-  const [stepIndex, setStepIndex] = useState<number>(0);
   const [steps, setSteps] = useState<Step[]>([]);
+  const [annotatorMode, setAnnotatorMode] = useState<AnnotatorModes>(
+    AnnotatorModes.segmentText
+  );
 
   useEffect(() => {
     const newExpandedSections: ExpandedSections = {};
@@ -63,21 +66,6 @@ const StructurerBody = (props: StructurerBodyProps) => {
     });
     setExpandedSections(newExpandedSections);
   }, [outline]);
-
-  const handleJoyrideCallback = (data: CallBackProps) => {
-    const { action, index, status, type } = data;
-    if (
-      ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND] as string[]).includes(type)
-    ) {
-      // Update state to advance the tour
-      setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1));
-    } else if (
-      ([STATUS.FINISHED, STATUS.SKIPPED] as string[]).includes(status)
-    ) {
-      // Need to set our running state to false, so we can restart if we click start again.
-      setRunJoyride(false);
-    }
-  };
 
   const handleDownloadExampleFile = async () => {
     // download example file from API endpoint
@@ -324,6 +312,8 @@ const StructurerBody = (props: StructurerBodyProps) => {
         lng={lng}
         runJoyride={runJoyride}
         setRunJoyride={setRunJoyride}
+        annotatorMode={annotatorMode}
+        setAnnotatorMode={setAnnotatorMode}
       />
       <StructurerWorkBench
         mode={mode}
@@ -347,6 +337,8 @@ const StructurerBody = (props: StructurerBodyProps) => {
         lng={lng}
         runJoyride={runJoyride}
         setRunJoyride={setRunJoyride}
+        annotatorMode={annotatorMode}
+        setAnnotatorMode={setAnnotatorMode}
       />
       <StructurerOutline
         setMode={setMode}
@@ -369,6 +361,8 @@ const StructurerBody = (props: StructurerBodyProps) => {
         lng={lng}
         runJoyride={runJoyride}
         setRunJoyride={setRunJoyride}
+        annotatorMode={annotatorMode}
+        setAnnotatorMode={setAnnotatorMode}
       />
     </div>
   );
