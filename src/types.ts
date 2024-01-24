@@ -11,7 +11,7 @@ export interface SectionInfo {
   key: string;
   startIndex: number;
   endIndex: number;
-  askedFor: boolean;
+  askedFor?: boolean;
   text?: string;
   entities?: Entities;
 }
@@ -250,7 +250,7 @@ export interface ValueState {
 
 export interface EntityElement {
   item: string;
-  matches?: [number, number][];
+  matches?: number[][];
   attributes?: EntityElementAttributes;
   resources?: DomainResource[];
 }

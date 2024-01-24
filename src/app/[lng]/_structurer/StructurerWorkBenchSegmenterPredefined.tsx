@@ -53,12 +53,6 @@ const StructurerWorkBenchSegmenterPredefined = (
     }
   };
 
-  const setAskedForOutline = (data: Any) => {
-    for (const section of data) {
-      section.askedFor = true;
-    }
-  };
-
   const setDummyOutline = () => {
     console.log(dummyOutlineWithResources);
     // setAskedForOutline(dummyOutlineWithResources);
