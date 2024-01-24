@@ -16,15 +16,11 @@ const ModalWrapper = (props: ModalWrapperProps) => {
       }}
     >
       <div
-        className={`bg-white rounded-xl ${
+        className={`bg-white rounded-xl p-4 max-h-[80vh] overflow-y-auto ${
           props.height ? props.height : "auto"
         } ${
-          props.size == "sm"
-            ? "h-auto w-1/4"
-            : props.size == "md"
-            ? "h-auto w-1/3"
-            : "h-auto w-1/2"
-        } mb-8 p-4`}
+          props.size == "sm" ? "w-1/4" : props.size == "md" ? "w-1/3" : "w-1/2"
+        }`}
         onClick={(e) => {
           e.stopPropagation();
         }}

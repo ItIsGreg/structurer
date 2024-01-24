@@ -3,9 +3,10 @@ import StructurerOutlineEntityElement from "./StructurerOutlineEntityElement";
 import { useState } from "react";
 import StructurerOutlineDownloadButton from "./StructurerOutlineDownloadButton";
 import ExpandAccordionToggle from "../ExpandAccordionToggle";
+import StructurerOutlineShowJsonButton from "./StructurerOutlineShowJsonButton";
 
 const StructuerOutlineEntity = (props: StructurerOutlineEntityProps) => {
-  const { entity, entityName, colors } = props;
+  const { entity, entityName, colors, setOutlinePart, setShowJson } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -23,6 +24,11 @@ const StructuerOutlineEntity = (props: StructurerOutlineEntityProps) => {
           </div>
         ) : null}
         <div className="flex-grow">{entityName}</div>
+        <StructurerOutlineShowJsonButton
+          outlinePart={{ [entityName]: entity }}
+          setOutlinePart={setOutlinePart}
+          setShowJson={setShowJson}
+        />
         <StructurerOutlineDownloadButton
           outlinePart={{ [entityName]: entity }}
         />

@@ -74,12 +74,12 @@ const StructurerWorkBenchSegmenterPredefined = (
         GO
         {isLoading && <PuffLoader size={20} />}
       </button>
-      {/* <button
+      <button
         className="text-5xl p-5 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
         onClick={() => setDummyOutline()}
       >
         Set Dummy outline
-      </button> */}
+      </button>
     </div>
   );
 };

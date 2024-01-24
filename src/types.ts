@@ -208,6 +208,17 @@ export interface StructurerOutlineProps extends StructurerProps {}
 
 export interface StructurerOutlineSectionProps extends StructurerOutlineProps {
   section: SectionInfo;
+  setOutlinePart: React.Dispatch<
+    React.SetStateAction<
+      | SectionInfo[]
+      | SectionInfo
+      | Entities
+      | EntityElement[]
+      | EntityElement
+      | undefined
+    >
+  >;
+  setShowJson: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface StructurerOutlineEntityProps
@@ -261,6 +272,38 @@ export interface Entities {
 
 export interface StructurerOutlineDownloadButtonProps {
   outlinePart: SectionInfo[] | SectionInfo | Entities;
+}
+
+export interface StructurerOutlineShowJsonButtonProps {
+  setOutlinePart: React.Dispatch<
+    React.SetStateAction<
+      | SectionInfo[]
+      | SectionInfo
+      | Entities
+      | EntityElement[]
+      | EntityElement
+      | undefined
+    >
+  >;
+  setShowJson: React.Dispatch<React.SetStateAction<boolean>>;
+  outlinePart:
+    | SectionInfo[]
+    | SectionInfo
+    | Entities
+    | EntityElement[]
+    | EntityElement
+    | undefined;
+}
+
+export interface JsonViewModalProps {
+  setShowJson: React.Dispatch<React.SetStateAction<boolean>>;
+  outlinePart:
+    | SectionInfo[]
+    | SectionInfo
+    | Entities
+    | EntityElement[]
+    | EntityElement
+    | undefined;
 }
 
 export interface MatchedEntitiesLLM {
