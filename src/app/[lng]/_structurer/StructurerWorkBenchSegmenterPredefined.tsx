@@ -1,4 +1,4 @@
-import { StructurerWorkBenchSegmenterProps } from "@/types";
+import { SectionInfo, StructurerWorkBenchSegmenterProps } from "@/types";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import { toastError } from "@/toasts";
@@ -17,8 +17,44 @@ const StructurerWorkBenchSegmenterPredefined = (
     return db.apikeys.toArray();
   }, [])?.[0]?.key;
 
-  const setOutlineFromResponse = (response: any) => {
-    setOutline(response);
+  const combineResponseWithRemainingText = (
+    outline: SectionInfo[],
+    text: string
+  ): SectionInfo[] => {
+    // the response from the API does only contain the sections that were found
+    // I want to display the sections in the context of the whole text
+    // for not found sections, I want to display them as unnamed sections
+    const new_outline: SectionInfo[] = [];
+    let last_end = 0;
+    // sort outline
+    outline.sort((a, b) => {
+      return a.startIndex - b.endIndex;
+    });
+    let unnamedCounter = 0;
+    for (const section of outline) {
+      if (section.startIndex > last_end) {
+        // add unnamed section
+        new_outline.push({
+          startIndex: last_end,
+          endIndex: section.startIndex,
+          key: `Unnamed section ${unnamedCounter++}`,
+          text: text.substring(last_end, section.startIndex),
+        });
+      }
+      new_outline.push(section);
+      last_end = section.endIndex;
+    }
+    // add last unnamed section
+    if (last_end < text.length) {
+      new_outline.push({
+        startIndex: last_end,
+        endIndex: text.length,
+        key: `Unnamed section ${unnamedCounter++}`,
+        text: text.substring(last_end, text.length),
+      });
+    }
+
+    return new_outline;
   };
 
   // fetch from APE
@@ -42,8 +78,8 @@ const StructurerWorkBenchSegmenterPredefined = (
         throw new Error("Error with APE API");
       }
       const data = await response.json();
-      setOutline(data);
-      // setOutlineFromResponse(response);
+      const outline = combineResponseWithRemainingText(data, text);
+      setOutline(outline);
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -53,27 +89,26 @@ const StructurerWorkBenchSegmenterPredefined = (
     }
   };
 
-  const setDummyOutline = () => {
-    console.log(dummyOutlineWithResources);
-    // setAskedForOutline(dummyOutlineWithResources);
-    setOutline(dummyOutlineWithResources);
-  };
+  // const setDummyOutline = () => {
+  //   console.log(dummyOutlineWithResources);
+  //   setOutline(dummyOutlineWithResources);
+  // };
 
   return (
     <div className="flex justify-center items-center h-screen">
       <button
-        className="text-5xl p-5 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+        className="flex flex-row gap-1 text-5xl p-5 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
         onClick={callApeAPI}
+        disabled={isLoading}
       >
-        GO
-        {isLoading && <PuffLoader size={20} />}
+        {isLoading ? <PuffLoader size={50} /> : "GO"}
       </button>
-      <button
+      {/* <button
         className="text-5xl p-5 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
         onClick={() => setDummyOutline()}
       >
         Set Dummy outline
-      </button>
+      </button> */}
     </div>
   );
 };
