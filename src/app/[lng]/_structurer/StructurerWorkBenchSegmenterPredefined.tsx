@@ -4,12 +4,12 @@ import { db } from "@/db/db";
 import { toastError } from "@/toasts";
 import { useState } from "react";
 import PuffLoader from "react-spinners/PuffLoader";
-import { dummyOutlineWithResources } from "@/utils/constants";
+import { dummyOutlineWithResources, structurerUrl } from "@/utils/constants";
 
 const StructurerWorkBenchSegmenterPredefined = (
   props: StructurerWorkBenchSegmenterProps
 ) => {
-  const { text, setOutline, outline } = props;
+  const { text, setOutline, outline, lng } = props;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -62,18 +62,21 @@ const StructurerWorkBenchSegmenterPredefined = (
     try {
       console.log("callApeAPI");
       setIsLoading(true);
-      const response = await fetch(`http://localhost:8002/structurer/text/`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          text: text,
-          patient_id: "123",
-          api_key: activeAPIKey,
-        }),
-      });
+      const response = await fetch(
+        `${structurerUrl}/structurer/text/?language=${lng}`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            text: text,
+            patient_id: "123",
+            api_key: activeAPIKey,
+          }),
+        }
+      );
       if (!response.ok) {
         throw new Error("Error with APE API");
       }
