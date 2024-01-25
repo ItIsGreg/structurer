@@ -561,12 +561,7 @@ export const callLLMUnmatches = async (
 
 // Function to check if a given object is a SectionInfo
 export const isSectionInfo = (obj: any): obj is SectionInfo => {
-  return (
-    "key" in obj &&
-    "startIndex" in obj &&
-    "endIndex" in obj &&
-    "askedFor" in obj
-  );
+  return "key" in obj && "startIndex" in obj && "endIndex" in obj;
 };
 
 // Function to check if a given object is an EntityElement

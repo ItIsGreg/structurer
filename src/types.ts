@@ -10,7 +10,7 @@ export interface SectionInfo {
   key: string;
   startIndex: number;
   endIndex: number;
-  askedFor: boolean;
+  askedFor?: boolean;
   text?: string;
   entities?: Entities;
 }

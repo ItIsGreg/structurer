@@ -60,9 +60,15 @@ const StructurerUpload = (props: StructurerUploadProps) => {
       try {
         const text = e.target?.result;
         const json = JSON.parse(text as string);
-        if (isValidSectionInfoArray(json)) {
+        const sections = json.sections;
+        const base_text = json.text;
+        if (isValidSectionInfoArray(sections)) {
           setOutline(json as SectionInfo[]);
         } else {
+          console.log("Error parsing JSON:", json);
+          console.log(
+            "The file provided does not conform to the Section DataFormat"
+          );
           toastError(
             t("The File provided does not conform to the Section DataFormat")
           );
