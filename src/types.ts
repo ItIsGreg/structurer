@@ -1,3 +1,4 @@
+import { DomainResource } from "fhir/r4";
 import React, { RefObject } from "react";
 import seedrandom from "seedrandom";
 
@@ -41,6 +42,7 @@ export enum StructurerModes {
   inputText,
   labelText,
   segmentText,
+  segmentPredefined,
 }
 
 export interface ApiKeyElementProps {
@@ -239,6 +241,7 @@ export interface EntityElement {
   item: string;
   matches?: [number, number][];
   attributes?: EntityElementAttributes;
+  resources?: DomainResource[];
 }
 
 export interface EntityElementAttributes {

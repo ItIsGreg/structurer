@@ -494,3 +494,160 @@ export const resourceOptions: OptionType[] = [
 ];
 
 export const colorSeed = "ello Darling, Do you know, where the Taj Mahal is?";
+
+export const dummyOutlineWithResources = [
+  {
+    key: "Allergies",
+    startIndex: 169,
+    endIndex: 214,
+    text: "Allergies: \nSulfonamides / Codeine / Bactrim\n",
+    entities: {
+      AllergyIntolerance: [
+        {
+          item: "Sulfonamides",
+          matches: [[12, 24]],
+          attributes: {
+            clinicalStatus: "active",
+            category: "medication",
+            verificationStatus: "confirmed",
+            snomed_code: "59255006",
+            snomed_display: "Sulfonamide",
+          },
+          resources: [
+            {
+              resourceType: "AllergyIntolerance",
+              clinicalStatus: {
+                coding: [
+                  {
+                    system:
+                      "http://hl7.org/fhir/ValueSet/allergyintolerance-clinical",
+                    code: "active",
+                  },
+                ],
+              },
+              verificationStatus: {
+                coding: [
+                  {
+                    system:
+                      "http://hl7.org/fhir/ValueSet/allergyintolerance-verification",
+                    code: "confirmed",
+                  },
+                ],
+              },
+              category: ["medication"],
+              code: {
+                coding: [
+                  {
+                    system: "http://snomed.info/sct",
+                    code: "59255006",
+                    display: "Sulfonamide",
+                  },
+                ],
+                text: "Sulfonamides",
+              },
+              patient: {
+                reference: "test",
+              },
+            },
+          ],
+        },
+        {
+          item: "Codeine",
+          matches: [[27, 34]],
+          attributes: {
+            clinicalStatus: "active",
+            category: "medication",
+            verificationStatus: "confirmed",
+            snomed_code: "85990009",
+            snomed_display: "Codeine",
+          },
+          resources: [
+            {
+              resourceType: "AllergyIntolerance",
+              clinicalStatus: {
+                coding: [
+                  {
+                    system:
+                      "http://hl7.org/fhir/ValueSet/allergyintolerance-clinical",
+                    code: "active",
+                  },
+                ],
+              },
+              verificationStatus: {
+                coding: [
+                  {
+                    system:
+                      "http://hl7.org/fhir/ValueSet/allergyintolerance-verification",
+                    code: "confirmed",
+                  },
+                ],
+              },
+              category: ["medication"],
+              code: {
+                coding: [
+                  {
+                    system: "http://snomed.info/sct",
+                    code: "85990009",
+                    display: "Codeine",
+                  },
+                ],
+                text: "Codeine",
+              },
+              patient: {
+                reference: "test",
+              },
+            },
+          ],
+        },
+        {
+          item: "Bactrim",
+          matches: [[37, 44]],
+          attributes: {
+            clinicalStatus: "active",
+            category: "medication",
+            verificationStatus: "confirmed",
+            snomed_code: "5220000",
+            snomed_display: "Bacitracin",
+          },
+          resources: [
+            {
+              resourceType: "AllergyIntolerance",
+              clinicalStatus: {
+                coding: [
+                  {
+                    system:
+                      "http://hl7.org/fhir/ValueSet/allergyintolerance-clinical",
+                    code: "active",
+                  },
+                ],
+              },
+              verificationStatus: {
+                coding: [
+                  {
+                    system:
+                      "http://hl7.org/fhir/ValueSet/allergyintolerance-verification",
+                    code: "confirmed",
+                  },
+                ],
+              },
+              category: ["medication"],
+              code: {
+                coding: [
+                  {
+                    system: "http://snomed.info/sct",
+                    code: "5220000",
+                    display: "Bacitracin",
+                  },
+                ],
+                text: "Bactrim",
+              },
+              patient: {
+                reference: "test",
+              },
+            },
+          ],
+        },
+      ],
+    },
+  },
+];

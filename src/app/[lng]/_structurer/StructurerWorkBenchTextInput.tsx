@@ -17,17 +17,23 @@ const StructurerWorkBenchTextInput = (
         {!runJoyride ? t("Do the tutorial") : t("Stop the tutorial")}
       </button>
       <button
-        className="bg-blue-500 rounded-md text-white text-4xl w-full transform hover:bg-blue-700 p-4"
-        onClick={() => props.setMode(StructurerModes.labelText)}
+        className="bg-blue-500 rounded-md text-white w-full transform hover:bg-blue-700 hover:scale-110"
+        onClick={() => props.setMode(StructurerModes.segmentPredefined)}
       >
-        {t("Label Medical Entities")}
+        {t("Segment Text")}
       </button>
       <button
         className="bg-blue-500 rounded-md text-white text-4xl w-full transform hover:bg-blue-700 p-4"
         onClick={() => props.setMode(StructurerModes.segmentText)}
         id="joyride-segment-text"
       >
-        {t("Segment Text")}
+        {t("Segmenter Playground")}
+      </button>
+      <button
+        className="bg-blue-500 rounded-md text-white w-full transform hover:bg-blue-700 hover:scale-110"
+        onClick={() => props.setMode(StructurerModes.labelText)}
+      >
+        {t("Label Medical Entities")}
       </button>
     </div>
   );
