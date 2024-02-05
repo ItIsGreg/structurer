@@ -165,8 +165,10 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
                     "Content-Type": "application/json",
                   },
                   body: JSON.stringify({
+                    section: "dummy",
                     text_excerpt: textExcerpt,
-                    concept: entityElement.item,
+                    entity: key,
+                    entity_element: entityElement,
                     api_key: apiKey,
                     attributes: entityAttributes[key],
                   }),
