@@ -7,7 +7,8 @@ export const isProd = () => {
 
 export const awsUrl = isProd()
   ? process.env.NEXT_PUBLIC_AWS_URL
-  : "http://localhost:8000";
+  : // : "http://localhost:8000";
+    "http://localhost:8002";
 
 export const structurerUrl = isProd()
   ? process.env.NEXT_PUBLIC_STRUCTURER_URL

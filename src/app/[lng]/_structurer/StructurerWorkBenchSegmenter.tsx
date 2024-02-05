@@ -17,6 +17,7 @@ import StructurerWorkBenchLabeler from "./StructurerWorkBenchLabeler";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/db";
 import { useTranslation } from "@/app/i18n/client";
+import { combineResponseWithRemainingText } from "@/utils/structurerUtils";
 
 const StructurerWorkBenchSegmenter = (
   props: StructurerWorkBenchSegmenterProps
@@ -29,6 +30,7 @@ const StructurerWorkBenchSegmenter = (
     setFocusedCategory,
     gptModel,
     lng,
+    setOutline,
   } = props;
   const { t } = useTranslation(lng, "StructurerWorkBenchSegmenter");
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
@@ -44,6 +46,19 @@ const StructurerWorkBenchSegmenter = (
     setSelectedCategories([...selectedCategories, category]);
   };
 
+  const buildSectionConfig = (selectedCategories: string[]) => {
+    const section_config = [];
+
+    for (let i = 0; i < selectedCategories.length; i++) {
+      section_config.push({
+        section_key: selectedCategories[i],
+        entities: [],
+      });
+    }
+
+    return section_config;
+  };
+
   const handleLLMSegment = async () => {
     if (!activeAPIKey) {
       toastError("No API Key selected");
@@ -52,7 +67,7 @@ const StructurerWorkBenchSegmenter = (
     try {
       setIslLoading(true);
       const response = await fetch(
-        `${awsUrl}/structurer/structureTextWithTemplateAndInfer/?gptModel=${gptModel}`,
+        `${awsUrl}/sections/segmentSectionsFromSpecific/?model=${gptModel}&language=${lng}`,
         {
           method: "POST",
           mode: "cors",
@@ -61,14 +76,16 @@ const StructurerWorkBenchSegmenter = (
           },
           body: JSON.stringify({
             text: text,
-            sections_to_look_for: selectedCategories,
             api_key: activeAPIKey,
+            section_config: buildSectionConfig(selectedCategories),
+            patient_id: "patient_id",
           }),
         }
       );
-      const data: structureTextWithTemplateAndInferResponse =
-        await response.json();
-      setLlmResponse(data.text);
+      const data = await response.json();
+      const outline = combineResponseWithRemainingText(data, text);
+      setOutline(outline);
+      console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
