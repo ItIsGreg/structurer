@@ -1,6 +1,6 @@
 "use client";
-
-import StructurerBody from "./_structurer/StructurerBody";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 interface StructurerProps {
   params: {
@@ -8,14 +8,15 @@ interface StructurerProps {
   };
 }
 
-const Structurer = (props: StructurerProps) => {
+const IndexPage = (props: StructurerProps) => {
   return (
-    <StructurerBody
-      params={{
-        lng: props.params.lng,
-      }}
-    />
+    <div className="h-full">
+      <div className="h-full grid w-1/2 gap-2">
+        <Textarea placeholder="Type your message here." className="h-full" />
+        <Button>Send message</Button>
+      </div>
+    </div>
   );
 };
 
-export default Structurer;
+export default IndexPage;
