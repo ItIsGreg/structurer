@@ -364,7 +364,7 @@ export const handleUnmatchedEntities = async (
   matchedOutline: Entities,
   text: string,
   apiKey: string,
-  gptModel: string = "gpt-3.5-turbo",
+  gptModel: string,
   withAttributes: boolean = false
 ) => {
   const unmatchedEntities = findNoMatches(matchedOutline);
@@ -466,7 +466,7 @@ export const callLLMUnmatches = async (
   noMatchesLLM: NoMatchesLLM,
   text: string,
   apiKey: string | undefined,
-  gptModel: string = "gpt-3.5-turbo",
+  gptModel: string,
   withAttributes: boolean = false
 ) => {
   if (!apiKey) {

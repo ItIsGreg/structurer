@@ -4,11 +4,7 @@ import { db } from "@/db/db";
 import { toastError } from "@/toasts";
 import { useState } from "react";
 import PuffLoader from "react-spinners/PuffLoader";
-import {
-  awsUrl,
-  dummyOutlineWithResources,
-  structurerUrl,
-} from "@/utils/constants";
+import { awsUrl, dummyOutlineWithResources } from "@/utils/constants";
 import { combineResponseWithRemainingText } from "@/utils/structurerUtils";
 
 const StructurerWorkBenchSegmenterPredefined = (

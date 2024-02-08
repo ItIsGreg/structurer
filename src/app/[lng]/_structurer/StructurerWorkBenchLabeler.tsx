@@ -104,7 +104,8 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         await handleUnmatchedEntities(
           matchedOutline,
           focusedSection.text,
-          activeAPIKey
+          activeAPIKey,
+          gptModel
         );
         if (extractAttributes) {
           await extractAttributesForOutline(

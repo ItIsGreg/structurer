@@ -2,13 +2,11 @@ import { EntityAttributes, OptionType, Outline, SectionInfo } from "../types";
 
 export const isProd = () => {
   return process.env.NEXT_PUBLIC_ENV === "prod";
-  // return true;
 };
 
 export const awsUrl = isProd()
   ? process.env.NEXT_PUBLIC_AWS_URL
-  : // : "http://localhost:8000";
-    "http://localhost:8002";
+  : "http://localhost:8002";
 
 export const structurerUrl = isProd()
   ? process.env.NEXT_PUBLIC_STRUCTURER_URL
@@ -34,7 +32,7 @@ export const gptModelOptions = [
   { value: "gpt-4-turbo-preview", label: "gpt-4-turbo-preview" },
 ];
 
-export const defaultGPTModel = "gpt-3.5-turbo-1106";
+export const defaultGPTModel = "gpt-3.5-turbo-0125";
 
 export const validFhirTypes = [
   "Address",
