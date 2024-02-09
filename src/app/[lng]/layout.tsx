@@ -2,6 +2,7 @@ import { languages } from "../i18n/settings";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
+import { Button } from "@/components/ui/button";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -42,7 +43,12 @@ export default function Layout(props: LayoutProps) {
           fontSans.variable
         )}
       >
-        <div className="relative flex min-h-screen flex-col">
+        <div className="relative flex h-screen flex-col">
+          <div className="bg-secondary h-12 w-full backdrop:blur-lg backdrop-blur-xl">
+            <Button variant="link" className="text-secondary-foreground">
+              EN
+            </Button>
+          </div>
           {props.children}
         </div>
       </body>

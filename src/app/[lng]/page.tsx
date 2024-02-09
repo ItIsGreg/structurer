@@ -2,18 +2,15 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
-interface StructurerProps {
-  params: {
-    lng: string;
-  };
-}
-
-const IndexPage = (props: StructurerProps) => {
+const IndexPage = () => {
   return (
-    <div className="h-full">
-      <div className="h-full grid w-1/2 gap-2">
-        <Textarea placeholder="Type your message here." className="h-full" />
-        <Button>Send message</Button>
+    <div>
+      <div className="h-full w-full gap-2 p-6">
+        <Textarea
+          placeholder="Paste your medical text."
+          className="flex-1 resize-none h-5/6"
+        />
+        <Button className="w-full mt-2">Analyze</Button>
       </div>
     </div>
   );
