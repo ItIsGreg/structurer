@@ -1,8 +1,7 @@
+import Head from "next/head";
+import Header from "./Header";
 import { languages } from "../i18n/settings";
-import { Inter as FontSans } from "next/font/google";
-import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
-import { Button } from "@/components/ui/button";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,11 +10,6 @@ interface LayoutProps {
   };
 }
 
-export const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
 }
@@ -23,7 +17,7 @@ export async function generateStaticParams() {
 export default function Layout(props: LayoutProps) {
   return (
     <html>
-      {/* <Head>
+      <Head>
         <title>Structurer | Structure and Analyze your medical texts</title>
         <meta
           name="description"
@@ -36,20 +30,19 @@ export default function Layout(props: LayoutProps) {
           property="og:description"
           content="Structure and Analyze your medical texts"
         />
-      </Head> */}
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <div className="relative flex h-screen flex-col">
-          <div className="bg-secondary h-12 w-full backdrop:blur-lg backdrop-blur-xl">
-            <Button variant="link" className="text-secondary-foreground">
-              EN
-            </Button>
-          </div>
-          {props.children}
+      </Head>
+      <body>
+        <div className="w-screen h-screen overflow-hidden">
+          <Header
+            params={{
+              lng: props.params.lng,
+            }}
+          />
+          <main className="flex flex-row h-full w-full overflow-hidden">
+            {props.children}
+          </main>
+
+          <footer></footer>
         </div>
       </body>
     </html>

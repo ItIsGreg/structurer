@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { use } from "react";
 import { RiAncientGateFill } from "react-icons/ri";
 import { useTranslation } from "../i18n/client";
+import { Button } from "@/components/ui/button";
 
 export interface HeaderProps {
   params: {
@@ -14,22 +15,23 @@ const Header = (props: HeaderProps) => {
   const lng = props.params.lng;
   const { t } = useTranslation(lng, "Header");
   return (
-    <nav className="flex flex-row w-full h-10 bg-blue-400 items-center text-white font-light px-4 z-10">
-      <Link href={"/"} className="transition ease-in-out hover:font-bold">
-        {" "}
-        {t("Structurer")}
-      </Link>
+    <nav className="flex flex-row w-full h-10 bg-primary items-center px-4 z-10">
+      <Button variant="link" className="text-primary-foreground">
+        <Link href={"/"} legacyBehavior passHref>
+          {"Structurer"}
+        </Link>
+      </Button>
       <span className="flex-grow"></span>
-      <div className="flex flex-row gap-4">
-        <Link href={"/de"} className="transition ease-in-out hover:font-bold">
-          🇩🇪 Deutsch
-        </Link>
-        <Link href={"/en"} className="transition ease-in-out hover:font-bold">
-          🇬🇧 English
-        </Link>
-        <a href="https://healthnerd.solutions" target="_blank">
+      <div className="flex items-center flex-row gap-4">
+        <Button variant="link" className="text-primary-foreground">
+          <Link href={"/de"}>🇩🇪 Deutsch</Link>
+        </Button>
+        <Button variant="link" className="text-primary-foreground">
+          <Link href={"/en"}>🇬🇧 English</Link>
+        </Button>
+        <Button variant="link" className="text-primary-foreground">
           <RiAncientGateFill size={32} style={{ color: "white" }} />
-        </a>
+        </Button>
       </div>
     </nav>
   );

@@ -64,21 +64,6 @@ const StructurerBody = (props: StructurerBodyProps) => {
     setExpandedSections(newExpandedSections);
   }, [outline]);
 
-  const handleJoyrideCallback = (data: CallBackProps) => {
-    const { action, index, status, type } = data;
-    if (
-      ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND] as string[]).includes(type)
-    ) {
-      // Update state to advance the tour
-      setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1));
-    } else if (
-      ([STATUS.FINISHED, STATUS.SKIPPED] as string[]).includes(status)
-    ) {
-      // Need to set our running state to false, so we can restart if we click start again.
-      setRunJoyride(false);
-    }
-  };
-
   const handleDownloadExampleFile = async () => {
     // download example file from API endpoint
     try {

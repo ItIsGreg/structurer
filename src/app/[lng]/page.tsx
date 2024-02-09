@@ -1,19 +1,21 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 
-const IndexPage = () => {
+import StructurerBody from "./_structurer/StructurerBody";
+
+interface StructurerProps {
+  params: {
+    lng: string;
+  };
+}
+
+const Structurer = (props: StructurerProps) => {
   return (
-    <div>
-      <div className="h-full w-full gap-2 p-6">
-        <Textarea
-          placeholder="Paste your medical text."
-          className="flex-1 resize-none h-5/6"
-        />
-        <Button className="w-full mt-2">Analyze</Button>
-      </div>
-    </div>
+    <StructurerBody
+      params={{
+        lng: props.params.lng,
+      }}
+    />
   );
 };
 
-export default IndexPage;
+export default Structurer;
