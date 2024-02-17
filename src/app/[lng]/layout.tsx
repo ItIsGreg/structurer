@@ -32,18 +32,15 @@ export default function Layout(props: LayoutProps) {
         />
       </Head>
       <body>
-        <div className="w-screen h-screen overflow-hidden">
+        <main className="flex flex-col h-screen antialiased">
           <Header
             params={{
               lng: props.params.lng,
             }}
           />
-          <main className="flex flex-row h-full w-full overflow-hidden">
-            {props.children}
-          </main>
-
-          <footer></footer>
-        </div>
+          <div className="flex-1 container mx-auto pt-20">{props.children}</div>
+        </main>
+        <footer></footer>
       </body>
     </html>
   );

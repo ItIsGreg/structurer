@@ -8,15 +8,15 @@ const StructurerTextInput = (props: StructurerTextInputProps) => {
   const { t } = useTranslation(lng, "StructurerTextInput");
 
   return (
-    <div className="flex-flex-col gap-2">
-      <StructurerUpload
+    <div className="h-full w-full">
+      {/* <StructurerUpload
         setText={setText}
         lng={lng}
         setOutline={setOutline}
         setMode={setMode}
-      />
+      /> */}
       <Textarea
-        className="rounded resize-none"
+        className="resize-none"
         rows={30}
         cols={60}
         placeholder={t("Or, paste a medical text to be structured here")}

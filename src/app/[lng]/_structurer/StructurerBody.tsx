@@ -23,6 +23,7 @@ import { Step, ACTIONS, EVENTS, STATUS, CallBackProps } from "react-joyride";
 import { useTranslation } from "@/app/i18n/client";
 import { LiaMarkerSolid } from "react-icons/lia";
 import { TiDownload } from "react-icons/ti";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Joyride = dynamic(() => import("react-joyride"), { ssr: false });
 
@@ -265,51 +266,71 @@ const StructurerBody = (props: StructurerBodyProps) => {
 
   const sectionRefs = outline.map(() => createRef<HTMLDivElement>());
   return (
-    <div className="w-full p-2 flex flex-row gap-2" id="joyride-start">
-      {mode === StructurerModes.inputText && (
-        <Joyride
-          steps={steps}
-          run={runJoyride}
-          continuous
-          showSkipButton
-          showProgress
-          // stepIndex={stepIndex}
-          // callback={handleJoyrideCallback}
-        />
-      )}
-      {mode === StructurerModes.segmentText && (
-        <Joyride
-          steps={steps}
-          run={runJoyride}
-          showSkipButton
-          showProgress
-          // stepIndex={stepIndex}
-          // callback={handleJoyrideCallback}
-        />
-      )}
-      <StructurerText
-        setMode={setMode}
-        setText={setText}
-        text={text}
-        mode={mode}
-        llmResponse={llmResponse}
-        setLlmResponse={setLlmResponse}
-        outline={outline}
-        setOutline={setOutline}
-        focusedSection={focusSection}
-        setFocusedSection={setFocusSection}
-        sectionRefs={sectionRefs}
-        focusedCategory={focusedCategory}
-        setFocusedCategory={setFocusedCategory}
-        colors={colors}
-        setColors={setColors}
-        rng={rng}
-        expandedSections={expandedSections}
-        setExpandedSections={setExpandedSections}
-        lng={lng}
-        runJoyride={runJoyride}
-        setRunJoyride={setRunJoyride}
-      />
+    <div className="flex w-full h-full" id="joyride-start">
+      <div className="flex flex-col w-full">
+        <Tabs defaultValue="pipeline" className="">
+          <TabsList>
+            <TabsTrigger
+              value="pipeline"
+              onClick={() => setMode(StructurerModes.inputText)}
+            >
+              APE Pipeline
+            </TabsTrigger>
+            <TabsTrigger
+              value="annotator"
+              onClick={() => setMode(StructurerModes.segmentText)}
+            >
+              Annotator
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+        {mode === StructurerModes.inputText && (
+          <Joyride
+            steps={steps}
+            run={runJoyride}
+            continuous
+            showSkipButton
+            showProgress
+            // stepIndex={stepIndex}
+            // callback={handleJoyrideCallback}
+          />
+        )}
+        {mode === StructurerModes.segmentText && (
+          <Joyride
+            steps={steps}
+            run={runJoyride}
+            showSkipButton
+            showProgress
+            // stepIndex={stepIndex}
+            // callback={handleJoyrideCallback}
+          />
+        )}
+        <div className="mt-4 h-5/6">
+          <StructurerText
+            setMode={setMode}
+            setText={setText}
+            text={text}
+            mode={mode}
+            llmResponse={llmResponse}
+            setLlmResponse={setLlmResponse}
+            outline={outline}
+            setOutline={setOutline}
+            focusedSection={focusSection}
+            setFocusedSection={setFocusSection}
+            sectionRefs={sectionRefs}
+            focusedCategory={focusedCategory}
+            setFocusedCategory={setFocusedCategory}
+            colors={colors}
+            setColors={setColors}
+            rng={rng}
+            expandedSections={expandedSections}
+            setExpandedSections={setExpandedSections}
+            lng={lng}
+            runJoyride={runJoyride}
+            setRunJoyride={setRunJoyride}
+          />
+        </div>
+      </div>
       <StructurerWorkBench
         mode={mode}
         setMode={setMode}
@@ -333,7 +354,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
         runJoyride={runJoyride}
         setRunJoyride={setRunJoyride}
       />
-      <StructurerOutline
+      {/* <StructurerOutline
         setMode={setMode}
         text={text}
         setText={setText}
@@ -354,7 +375,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
         lng={lng}
         runJoyride={runJoyride}
         setRunJoyride={setRunJoyride}
-      />
+      /> */}
     </div>
   );
 };

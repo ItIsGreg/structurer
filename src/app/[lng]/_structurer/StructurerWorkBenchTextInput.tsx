@@ -9,7 +9,7 @@ const StructurerWorkBenchTextInput = (
   const { lng, runJoyride, setRunJoyride } = props;
   const { t } = useTranslation(lng, "StructurerWorkBenchTextInput");
   return (
-    <div className="flex flex-col justify-center items-center gap-3 h-screen w-500">
+    <div className="flex flex-col justify-center items-center gap-3">
       <button
         className="bg-blue-500 rounded-md text-white text-4xl w-full transform hover:bg-blue-700 p-4"
         onClick={() => setRunJoyride(!runJoyride)}

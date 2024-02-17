@@ -5,15 +5,24 @@ import StructurerTextDisplay from "./StructurerTextDisplay";
 const StructurerText = (props: StructurerTextProps) => {
   const { mode, text, setMode, setText, llmResponse, setLlmResponse } = props;
 
-  return (
-    <div className="w-6/12">
-      {mode === StructurerModes.inputText ? (
-        <StructurerTextInput {...props} />
-      ) : (
-        <StructurerTextDisplay {...props} />
-      )}
-    </div>
-  );
+  if (mode === StructurerModes.inputText) {
+    return (
+      <StructurerTextInput
+        {...props}
+        setText={setText}
+        setMode={setMode}
+        text={text}
+      />
+    );
+  } else {
+    return (
+      <StructurerTextDisplay
+        {...props}
+        llmResponse={llmResponse}
+        setLlmResponse={setLlmResponse}
+      />
+    );
+  }
 };
 
 export default StructurerText;
