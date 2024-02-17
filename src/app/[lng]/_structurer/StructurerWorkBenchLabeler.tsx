@@ -83,7 +83,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
     try {
       setIslLoading(true);
       const response = await fetch(
-        `${awsUrl}/structurer/bundleOutlineV${version}/?gptModel=${gptModel}`,
+        `${awsUrl}/entities/bundleOutlineV${version}/?model=${gptModel}`,
         {
           method: "POST",
           mode: "cors",
@@ -104,7 +104,8 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         await handleUnmatchedEntities(
           matchedOutline,
           focusedSection.text,
-          activeAPIKey
+          activeAPIKey,
+          gptModel
         );
         if (extractAttributes) {
           await extractAttributesForOutline(
@@ -157,7 +158,7 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
           if (textExcerpt) {
             promises.push(
               fetch(
-                `${awsUrl}/structurer/extractAttributesForConcept/?gptModel=${gptModel}`,
+                `${awsUrl}/attributes/extractAttributesForConcept/?model=${gptModel}`,
                 {
                   method: "POST",
                   mode: "cors",
@@ -165,8 +166,10 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
                     "Content-Type": "application/json",
                   },
                   body: JSON.stringify({
+                    section: "dummy",
                     text_excerpt: textExcerpt,
-                    concept: entityElement.item,
+                    entity: key,
+                    entity_element: entityElement,
                     api_key: apiKey,
                     attributes: entityAttributes[key],
                   }),

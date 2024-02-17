@@ -3,6 +3,7 @@ import StructuerOutlineEntity from "./StructurerOutlineEntity";
 import { useState } from "react";
 import StructurerOutlineDownloadButton from "./StructurerOutlineDownloadButton";
 import ExpandAccordionToggle from "../ExpandAccordionToggle";
+import StructurerOutlineShowJsonButton from "./StructurerOutlineShowJsonButton";
 
 const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
   const {
@@ -12,6 +13,8 @@ const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
     sectionRefs,
     expandedSections,
     setExpandedSections,
+    setOutlinePart,
+    setShowJson,
   } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
@@ -43,6 +46,11 @@ const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
         >
           {section.key}
         </button>
+        <StructurerOutlineShowJsonButton
+          outlinePart={section}
+          setOutlinePart={setOutlinePart}
+          setShowJson={setShowJson}
+        />
         <StructurerOutlineDownloadButton outlinePart={outline} />
       </div>
       <div

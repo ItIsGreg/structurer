@@ -18,16 +18,22 @@ const StructurerWorkBenchTextInput = (
       </button>
       <button
         className="bg-blue-500 rounded-md text-white text-4xl w-full transform hover:bg-blue-700 p-4"
-        onClick={() => props.setMode(StructurerModes.labelText)}
+        onClick={() => props.setMode(StructurerModes.segmentPredefined)}
       >
-        {t("Label Medical Entities")}
+        {t("Segment Text")}
       </button>
       <button
         className="bg-blue-500 rounded-md text-white text-4xl w-full transform hover:bg-blue-700 p-4"
         onClick={() => props.setMode(StructurerModes.segmentText)}
         id="joyride-segment-text"
       >
-        {t("Segment Text")}
+        {t("Segmenter Playground")}
+      </button>
+      <button
+        className="bg-blue-500 rounded-md text-white text-4xl w-full transform hover:bg-blue-700 p-4"
+        onClick={() => props.setMode(StructurerModes.labelText)}
+      >
+        {t("Labeler Playground")}
       </button>
     </div>
   );

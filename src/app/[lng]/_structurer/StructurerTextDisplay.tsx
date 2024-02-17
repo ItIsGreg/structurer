@@ -9,7 +9,8 @@ const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
   return (
     <div className="flex flex-col gap-3">
       <div className="border-blue-500 border rounded-md overflow-auto h-[85vh]">
-        {mode === StructurerModes.segmentText ? (
+        {mode === StructurerModes.segmentText ||
+        mode === StructurerModes.segmentPredefined ? (
           <StructurerTextDisplaySegmenter {...props} />
         ) : mode === StructurerModes.labelText ? (
           <StructurerTextDisplayLabeler {...props} />

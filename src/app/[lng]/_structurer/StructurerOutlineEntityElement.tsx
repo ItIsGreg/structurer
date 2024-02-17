@@ -1,12 +1,21 @@
 import { StructurerOutlineEntityElementProps } from "@/types";
 import { TiDelete } from "react-icons/ti";
 import { Tooltip } from "react-tooltip";
+import StructurerOutlineShowJsonButton from "./StructurerOutlineShowJsonButton";
 
 const StructurerOutlineEntityElement = (
   props: StructurerOutlineEntityElementProps
 ) => {
-  const { outline, setOutline, section, entity, entityElement, entityName } =
-    props;
+  const {
+    outline,
+    setOutline,
+    section,
+    entity,
+    entityElement,
+    entityName,
+    setOutlinePart,
+    setShowJson,
+  } = props;
 
   const handleXClick = () => {
     setOutline(
@@ -43,7 +52,12 @@ const StructurerOutlineEntityElement = (
             : ""
         } border-t border-black ml-2 flex flex-row justify-between items-center p-1 gap-1`}
       >
-        <div>{entityElement.item}</div>
+        <div className="flex-grow">{entityElement.item}</div>
+        <StructurerOutlineShowJsonButton
+          setOutlinePart={setOutlinePart}
+          setShowJson={setShowJson}
+          outlinePart={entityElement}
+        />
         <TiDelete onClick={() => handleXClick()} className="flex-shrink-0" />
       </div>
 

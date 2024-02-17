@@ -364,7 +364,7 @@ export const handleUnmatchedEntities = async (
   matchedOutline: Entities,
   text: string,
   apiKey: string,
-  gptModel: string = "gpt-3.5-turbo",
+  gptModel: string,
   withAttributes: boolean = false
 ) => {
   const unmatchedEntities = findNoMatches(matchedOutline);
@@ -466,7 +466,7 @@ export const callLLMUnmatches = async (
   noMatchesLLM: NoMatchesLLM,
   text: string,
   apiKey: string | undefined,
-  gptModel: string = "gpt-3.5-turbo",
+  gptModel: string,
   withAttributes: boolean = false
 ) => {
   if (!apiKey) {
@@ -475,9 +475,9 @@ export const callLLMUnmatches = async (
   }
   try {
     const response = await fetch(
-      `${awsUrl}/structurer/bundleOutlineUnmatched${
+      `${awsUrl}/entities/bundleOutlineUnmatched${
         withAttributes ? "WithAttributes" : ""
-      }/?gptModel=${gptModel}`,
+      }/?model=${gptModel}`,
       {
         method: "POST",
         mode: "cors",
@@ -546,4 +546,44 @@ export const isValidSectionInfoArray = (data: any): data is SectionInfo[] => {
     (item) =>
       isSectionInfo(item) && (!item.entities || isEntities(item.entities))
   );
+};
+
+export const combineResponseWithRemainingText = (
+  outline: SectionInfo[],
+  text: string
+): SectionInfo[] => {
+  // the response from the API does only contain the sections that were found
+  // I want to display the sections in the context of the whole text
+  // for not found sections, I want to display them as unnamed sections
+  const new_outline: SectionInfo[] = [];
+  let last_end = 0;
+  // sort outline
+  outline.sort((a, b) => {
+    return a.startIndex - b.endIndex;
+  });
+  let unnamedCounter = 0;
+  for (const section of outline) {
+    if (section.startIndex > last_end) {
+      // add unnamed section
+      new_outline.push({
+        startIndex: last_end,
+        endIndex: section.startIndex,
+        key: `Unnamed section ${unnamedCounter++}`,
+        text: text.substring(last_end, section.startIndex),
+      });
+    }
+    new_outline.push(section);
+    last_end = section.endIndex;
+  }
+  // add last unnamed section
+  if (last_end < text.length) {
+    new_outline.push({
+      startIndex: last_end,
+      endIndex: text.length,
+      key: `Unnamed section ${unnamedCounter++}`,
+      text: text.substring(last_end, text.length),
+    });
+  }
+
+  return new_outline;
 };

@@ -1,3 +1,4 @@
+import { DomainResource } from "fhir/r4";
 import React, { RefObject } from "react";
 import seedrandom from "seedrandom";
 
@@ -10,7 +11,7 @@ export interface SectionInfo {
   key: string;
   startIndex: number;
   endIndex: number;
-  askedFor: boolean;
+  askedFor?: boolean;
   text?: string;
   entities?: Entities;
 }
@@ -41,6 +42,7 @@ export enum StructurerModes {
   inputText,
   labelText,
   segmentText,
+  segmentPredefined,
 }
 
 export interface ApiKeyElementProps {
@@ -206,6 +208,17 @@ export interface StructurerOutlineProps extends StructurerProps {}
 
 export interface StructurerOutlineSectionProps extends StructurerOutlineProps {
   section: SectionInfo;
+  setOutlinePart: React.Dispatch<
+    React.SetStateAction<
+      | SectionInfo[]
+      | SectionInfo
+      | Entities
+      | EntityElement[]
+      | EntityElement
+      | undefined
+    >
+  >;
+  setShowJson: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface StructurerOutlineEntityProps
@@ -237,8 +250,9 @@ export interface ValueState {
 
 export interface EntityElement {
   item: string;
-  matches?: [number, number][];
+  matches?: number[][];
   attributes?: EntityElementAttributes;
+  resources?: DomainResource[];
 }
 
 export interface EntityElementAttributes {
@@ -258,6 +272,38 @@ export interface Entities {
 
 export interface StructurerOutlineDownloadButtonProps {
   outlinePart: SectionInfo[] | SectionInfo | Entities;
+}
+
+export interface StructurerOutlineShowJsonButtonProps {
+  setOutlinePart: React.Dispatch<
+    React.SetStateAction<
+      | SectionInfo[]
+      | SectionInfo
+      | Entities
+      | EntityElement[]
+      | EntityElement
+      | undefined
+    >
+  >;
+  setShowJson: React.Dispatch<React.SetStateAction<boolean>>;
+  outlinePart:
+    | SectionInfo[]
+    | SectionInfo
+    | Entities
+    | EntityElement[]
+    | EntityElement
+    | undefined;
+}
+
+export interface JsonViewModalProps {
+  setShowJson: React.Dispatch<React.SetStateAction<boolean>>;
+  outlinePart:
+    | SectionInfo[]
+    | SectionInfo
+    | Entities
+    | EntityElement[]
+    | EntityElement
+    | undefined;
 }
 
 export interface MatchedEntitiesLLM {
