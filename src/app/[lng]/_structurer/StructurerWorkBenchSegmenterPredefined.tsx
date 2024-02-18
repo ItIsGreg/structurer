@@ -21,7 +21,6 @@ const StructurerWorkBenchSegmenterPredefined = (
   // fetch from APE
   const callApeAPI = async () => {
     try {
-      console.log("callApeAPI");
       setIsLoading(true);
       const response = await fetch(
         `${awsUrl}/structurer/text/?language=${lng}`,

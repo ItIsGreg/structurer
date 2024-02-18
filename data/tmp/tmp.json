@@ -1,0 +1,1199 @@
+[
+  {
+    "key": "Vorerkrankungen",
+    "startIndex": 1272,
+    "endIndex": 1382,
+    "text": "Primärer Hyperaldosteronismus, ED 2019 Cholezystolitiasis\nNephrolithiasis links\nNierenzyste links\nHiatushernie",
+    "entities": {
+      "Condition": [
+        {
+          "item": "Primärer Hyperaldosteronismus",
+          "matches": [[0, 29]],
+          "attributes": {
+            "clinicalStatus": "unknown",
+            "onsetDatetime": "2021-10-15T08:00:00Z",
+            "paraphrase": "Primary hyperaldosteronism",
+            "icd10gm_code": "E26.9",
+            "icd10gm_display": "Hyperaldosteronismus",
+            "snomed_code": "190507007",
+            "snomed_display": "Primary hyperaldosteronism"
+          },
+          "resources": [
+            {
+              "resourceType": "Condition",
+              "clinicalStatus": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                    "code": "unknown"
+                  }
+                ]
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "190507007",
+                    "display": "Primary hyperaldosteronism"
+                  },
+                  {
+                    "system": "http://icd10cm.org",
+                    "code": "E26.9",
+                    "display": "Hyperaldosteronismus"
+                  }
+                ]
+              },
+              "subject": {
+                "reference": "123"
+              }
+            }
+          ]
+        },
+        {
+          "item": "Cholezystolitiasis",
+          "matches": [[39, 57]],
+          "attributes": {
+            "clinicalStatus": "unknown",
+            "onsetDatetime": "2021-10-15T08:00:00Z",
+            "paraphrase": "Gallstone disease",
+            "icd10gm_code": "K65.8",
+            "icd10gm_display": "Galleperitonitis",
+            "snomed_code": "168036006",
+            "snomed_display": "On examination - gallstone (disorder)"
+          },
+          "resources": [
+            {
+              "resourceType": "Condition",
+              "clinicalStatus": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                    "code": "unknown"
+                  }
+                ]
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "168036006",
+                    "display": "On examination - gallstone (disorder)"
+                  },
+                  {
+                    "system": "http://icd10cm.org",
+                    "code": "K65.8",
+                    "display": "Galleperitonitis"
+                  }
+                ]
+              },
+              "subject": {
+                "reference": "123"
+              }
+            }
+          ]
+        },
+        {
+          "item": "Nephrolithiasis",
+          "matches": [[58, 73]],
+          "attributes": {
+            "clinicalStatus": "unknown",
+            "onsetDatetime": "2021-10-15T08:00:00Z",
+            "paraphrase": "Kidney stone disease",
+            "icd10gm_code": "N20.1",
+            "icd10gm_display": "Ureterolithiasis",
+            "snomed_code": "95570007",
+            "snomed_display": "Kidney stone (disorder)"
+          },
+          "resources": [
+            {
+              "resourceType": "Condition",
+              "clinicalStatus": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                    "code": "unknown"
+                  }
+                ]
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "95570007",
+                    "display": "Kidney stone (disorder)"
+                  },
+                  {
+                    "system": "http://icd10cm.org",
+                    "code": "N20.1",
+                    "display": "Ureterolithiasis"
+                  }
+                ]
+              },
+              "subject": {
+                "reference": "123"
+              }
+            }
+          ]
+        },
+        {
+          "item": "Hiatushernie",
+          "matches": [[98, 110]],
+          "attributes": {
+            "clinicalStatus": "unknown",
+            "onsetDatetime": "2021-10-15T08:00:00Z",
+            "paraphrase": "Hiatal hernia",
+            "icd10gm_code": "K44.9",
+            "icd10gm_display": "Hernia diaphragmatica",
+            "snomed_code": "84089009",
+            "snomed_display": "Hiatal hernia"
+          },
+          "resources": [
+            {
+              "resourceType": "Condition",
+              "clinicalStatus": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                    "code": "unknown"
+                  }
+                ]
+              },
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "84089009",
+                    "display": "Hiatal hernia"
+                  },
+                  {
+                    "system": "http://icd10cm.org",
+                    "code": "K44.9",
+                    "display": "Hernia diaphragmatica"
+                  }
+                ]
+              },
+              "subject": {
+                "reference": "123"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "Entlassmedikation",
+    "startIndex": 6093,
+    "endIndex": 8131,
+    "text": "Medikationsplan Nr.\n1. Allopurinol AL 300\n2. Benazepril AL 20mg\n3. MCP STADA 10mg\nNebivolol Glenmark\n4. 5mg\nMetamizol HEXAL\n5. 500mg\nAllopurinol 300 mg Tabletten\nBenazepril hydrochlorid 20 mg Filmtabletten Metoclopramid hydrochlorid 10 mg Tabletten\nNebivolol 5 mg Tabletten\nMetamizol natrium- 1-Wasser 500 mg Filmtabletten\ntäglich\ntäglich\nbei Bedarf täglich\ntäglich täglich\n0,5 - 0 - 0 Tabl.\n0 - 0,5 - 0 Tabl.\nbis zu 3 mal je 1 Tabl.\n(bei Übelkeit)\n0,5 - 0 - 0,5 Tabl. 1 - 1 - 1 - 1 Tabl.\nperoral/ora l\nperoral/ora l\nperoral/ora l\nperoral/ora l\nperoral/ora l\nbis auf weiteres gültig bis auf weiteres gültig bis auf weiteres gültig bis auf weiteres gültig bis auf weiteres gültig\n  Medikament\n   Wirkstoff\n   Häufigkeit\n   Dosierschema\n   DF\n   Kommentar\n                                \nDetlef\nKnitter *07.01.1960\nSeite 4\n26.12.2023\n  Medikament\n   Wirkstoff\n   Häufigkeit\n   Dosierschema\n   DF\n   Kommentar\n Nr.\nMetamizol HEXAL\n6. 500mg\n7. Onsetron-Denk 8mg\n8. Pregabalin AL 25mg\nSpironolacton-1A\n9. Pharma 100mg\n10. Tramagit\n11. Ampho-Moronal\nGurgellösung-\n12. ratiopharm\nNeulasta 6mg\n13. Injektionslösung\nAmlodipin (besilat)\n14. AbZ 10mg\nMetamizol natrium- 1-Wasser 500 mg Filmtabletten\nOndansetron 8 mg Schmelztabletten\nPregabalin 25 mg Hartkapseln\nSpironolacton 100 mg Tabletten\nTramadol hydrochlorid 50 mg Tabletten\nAmphotericin B 100 mg/ml Suspension\nDequalinium chlorid 0,1 mg/ml Lösung\nPegfilgrastim 6 mg/0,6 ml Injektionslösung\nAmlodipin 10 mg Tabletten\nbei Bedarf täglich\nbei Bedarf täglich\ntäglich\ntäglich\ntäglich\ntäglich\ntäglich\nEinmalgab e\ntäglich\n1 - 1 - 1 - 1 Tabl. (bei Schmerzen)\nbis zu 2 mal je 1 Tabl.\n(bei Übelkeit)\n1-1-1 Kaps.\n1-0-0 Tabl.\n1-1-1 Tabl.\n1-1-1 ml\n1-1-1 Anwendung\n0 - 0 - 1 Spritze\n1 - 0 - 0 Tabl.\nperoral/ora l\nperoral/ora l\nperoral/ora l\nperoral/ora l\nperoral/ora l\nperoral/ora l\nMundhöhle\nsubcutan\nperoral/ora l\nbis auf weiteres gültig bis auf weiteres gültig bis auf weiteres gültig bis auf weiteres gültig bis auf weiteres gültig bis auf weiteres gültig bis auf weiteres gültig\nGültig am 26.12.2023\n",
+    "entities": {
+      "Medication": [
+        {
+          "item": "Allopurinol AL 300",
+          "matches": [[23, 41]],
+          "attributes": {
+            "dosage": "300 mg Tabletten",
+            "active_ingredient": "AL 300",
+            "atc_code": "S01XA07",
+            "atc_display": "alum",
+            "snomed_code": "89201002",
+            "snomed_display": "ALR3"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "7a7c50a3-196d-4a69-9c50-330273428e46",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "S01XA07",
+                    "display": "alum"
+                  }
+                ],
+                "text": "Allopurinol AL 300"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "89201002",
+                          "display": "ALR3"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "7a7c50a3-196d-4a69-9c50-330273428e46"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "300 mg Tabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Benazepril AL 20mg",
+          "matches": [[45, 63]],
+          "attributes": {
+            "dosage": "20 mg Filmtabletten",
+            "active_ingredient": "AL 20mg",
+            "atc_code": "R07AB07",
+            "atc_display": "almitrine",
+            "snomed_code": "440775004",
+            "snomed_display": "Alvimopan 12mg capsule"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "030c656b-a872-4d2d-85bb-70690475c128",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "R07AB07",
+                    "display": "almitrine"
+                  }
+                ],
+                "text": "Benazepril AL 20mg"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "440775004",
+                          "display": "Alvimopan 12mg capsule"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "030c656b-a872-4d2d-85bb-70690475c128"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "20 mg Filmtabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "MCP STADA 10mg",
+          "matches": [[67, 81]],
+          "attributes": {
+            "dosage": "10 mg Tabletten",
+            "active_ingredient": "STADA 10mg",
+            "atc_code": "P01CB02",
+            "atc_display": "sodium stibogluconate",
+            "snomed_code": "407045000",
+            "snomed_display": "Strattera 10mg capsule"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "d253a602-e161-4933-abfd-5194ec43d6ff",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "P01CB02",
+                    "display": "sodium stibogluconate"
+                  }
+                ],
+                "text": "MCP STADA 10mg"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "407045000",
+                          "display": "Strattera 10mg capsule"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "d253a602-e161-4933-abfd-5194ec43d6ff"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "10 mg Tabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Allopurinol 300 mg Tabletten",
+          "matches": [[133, 161]],
+          "attributes": {
+            "atc_code": "M04AA01",
+            "atc_display": "allopurinol",
+            "snomed_code": "330062008",
+            "snomed_display": "Allopurinol 300mg tablet"
+          },
+          "resources": []
+        },
+        {
+          "item": "Benazepril hydrochlorid 20 mg Filmtabletten",
+          "matches": [[162, 205]],
+          "attributes": {
+            "atc_code": "C09AA07",
+            "atc_display": "benazepril",
+            "snomed_code": "108573008",
+            "snomed_display": "Benazepril hydrochloride"
+          },
+          "resources": []
+        },
+        {
+          "item": "Metoclopramid hydrochlorid 10 mg Tabletten",
+          "matches": [[206, 248]],
+          "attributes": {
+            "atc_code": "A03FA01",
+            "atc_display": "metoclopramide",
+            "snomed_code": "322091008",
+            "snomed_display": "Metoclopramide hydrochloride 10mg tablet"
+          },
+          "resources": []
+        },
+        {
+          "item": "Nebivolol 5 mg Tabletten",
+          "matches": [[249, 273]],
+          "attributes": {
+            "dosage": "5 mg Tabletten",
+            "active_ingredient": "5 mg",
+            "atc_code": "C07FB12",
+            "atc_display": "nebivolol and amlodipine",
+            "snomed_code": "318640004",
+            "snomed_display": "Nebivolol 5mg tablet"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "61adb347-7189-4031-b499-86195ab9e006",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "C07FB12",
+                    "display": "nebivolol and amlodipine"
+                  }
+                ],
+                "text": "Nebivolol 5 mg Tabletten"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "318640004",
+                          "display": "Nebivolol 5mg tablet"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "61adb347-7189-4031-b499-86195ab9e006"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "5 mg Tabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Nebivolol 5 mg Tabletten",
+          "matches": [[249, 273]],
+          "attributes": null,
+          "resources": []
+        },
+        {
+          "item": "Metamizol natrium- 1-Wasser 500 mg Filmtabletten",
+          "matches": [
+            [274, 322],
+            [1141, 1189]
+          ],
+          "attributes": {
+            "dosage": "500 mg Filmtabletten",
+            "atc_code": "N02BB02",
+            "atc_display": "metamizole sodium",
+            "snomed_code": "451019009",
+            "snomed_display": "Metamizole sodium (product)"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "63474e71-1c2d-4c22-9333-aff3f3e3ad5f",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "N02BB02",
+                    "display": "metamizole sodium"
+                  }
+                ],
+                "text": "Metamizol natrium- 1-Wasser 500 mg Filmtabletten"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "451019009",
+                          "display": "Metamizole sodium (product)"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "63474e71-1c2d-4c22-9333-aff3f3e3ad5f"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "500 mg Filmtabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Metamizol natrium- 1-Wasser 500 mg Filmtabletten",
+          "matches": [
+            [274, 322],
+            [1141, 1189]
+          ],
+          "attributes": null,
+          "resources": []
+        },
+        {
+          "item": "Metamizol natrium- 1-Wasser 500 mg Filmtabletten",
+          "matches": [
+            [274, 322],
+            [1141, 1189]
+          ],
+          "attributes": null,
+          "resources": []
+        },
+        {
+          "item": "Onsetron-Denk 8mg",
+          "matches": [[941, 958]],
+          "attributes": {
+            "dosage": "8 mg Schmelztabletten",
+            "active_ingredient": "Denk 8mg",
+            "atc_code": "M05BX04",
+            "atc_display": "denosumab",
+            "snomed_code": "377061005",
+            "snomed_display": "Dexpanthenol 250mg/cc"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "f4cc6963-ae95-4172-90cb-cd113567c660",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "M05BX04",
+                    "display": "denosumab"
+                  }
+                ],
+                "text": "Onsetron-Denk 8mg"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "377061005",
+                          "display": "Dexpanthenol 250mg/cc"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "f4cc6963-ae95-4172-90cb-cd113567c660"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "8 mg Schmelztabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Pregabalin AL 25mg",
+          "matches": [[962, 980]],
+          "attributes": {
+            "dosage": "25 mg Hartkapseln",
+            "active_ingredient": "AL 25mg",
+            "atc_code": "R07AB07",
+            "atc_display": "almitrine",
+            "snomed_code": "316937008",
+            "snomed_display": "Aluminium hydroxide 475mg capsule"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "eb2c046f-0bdd-4b9b-979d-77f11baa113e",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "R07AB07",
+                    "display": "almitrine"
+                  }
+                ],
+                "text": "Pregabalin AL 25mg"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "316937008",
+                          "display": "Aluminium hydroxide 475mg capsule"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "eb2c046f-0bdd-4b9b-979d-77f11baa113e"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "25 mg Hartkapseln"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Tramagit",
+          "matches": [[1018, 1026]],
+          "attributes": {
+            "dosage": "50 mg Tabletten",
+            "active_ingredient": "Tramagit",
+            "atc_code": "R01AA09",
+            "atc_display": "tramazoline",
+            "snomed_code": "699739002",
+            "snomed_display": "Trametes"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "2756b829-a070-426d-bd44-4ed75e23b46c",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "R01AA09",
+                    "display": "tramazoline"
+                  }
+                ],
+                "text": "Tramagit"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "699739002",
+                          "display": "Trametes"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "2756b829-a070-426d-bd44-4ed75e23b46c"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "50 mg Tabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Ondansetron 8 mg Schmelztabletten",
+          "matches": [[1190, 1223]],
+          "attributes": {
+            "dosage": "8 mg Schmelztabletten",
+            "atc_code": "N02CC03",
+            "atc_display": "zolmitriptan",
+            "snomed_code": "376919005",
+            "snomed_display": "Ondansetron hydrochloride 4mg tablet"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "e97f2dc6-3f9a-4549-b4be-f896a154769c",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "N02CC03",
+                    "display": "zolmitriptan"
+                  }
+                ],
+                "text": "Ondansetron 8 mg Schmelztabletten"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "376919005",
+                          "display": "Ondansetron hydrochloride 4mg tablet"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "e97f2dc6-3f9a-4549-b4be-f896a154769c"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "8 mg Schmelztabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Pregabalin 25 mg Hartkapseln",
+          "matches": [[1224, 1252]],
+          "attributes": {
+            "atc_code": "N03AX16",
+            "atc_display": "pregabalin",
+            "snomed_code": "415163005",
+            "snomed_display": "Pregabalin 200mg capsule"
+          },
+          "resources": []
+        },
+        {
+          "item": "Spironolacton 100 mg Tabletten",
+          "matches": [[1253, 1283]],
+          "attributes": {
+            "dosage": "100 mg Tabletten",
+            "atc_code": "C03DA01",
+            "atc_display": "spironolactone",
+            "snomed_code": "318058009",
+            "snomed_display": "Spironolactone 100mg tablet"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "2dd18fd9-dd23-4f60-94fd-2fc2304313d4",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "C03DA01",
+                    "display": "spironolactone"
+                  }
+                ],
+                "text": "Spironolacton 100 mg Tabletten"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "318058009",
+                          "display": "Spironolactone 100mg tablet"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "2dd18fd9-dd23-4f60-94fd-2fc2304313d4"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "100 mg Tabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Spironolacton 100 mg Tabletten",
+          "matches": [[1253, 1283]],
+          "attributes": null,
+          "resources": []
+        },
+        {
+          "item": "Tramadol hydrochlorid 50 mg Tabletten",
+          "matches": [[1284, 1321]],
+          "attributes": {
+            "dosage": "50 mg Tabletten",
+            "atc_code": "N02AX02",
+            "atc_display": "tramadol",
+            "snomed_code": "374896000",
+            "snomed_display": "Tramadol hydrochloride 50mg tablet"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "cea2175a-2632-4938-8481-7bfdf8003207",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "N02AX02",
+                    "display": "tramadol"
+                  }
+                ],
+                "text": "Tramadol hydrochlorid 50 mg Tabletten"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "374896000",
+                          "display": "Tramadol hydrochloride 50mg tablet"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "cea2175a-2632-4938-8481-7bfdf8003207"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "50 mg Tabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Amphotericin B 100 mg/ml Suspension",
+          "matches": [[1322, 1357]],
+          "attributes": {
+            "dosage": "100 mg/ml Suspension",
+            "active_ingredient": "100 mg/ml",
+            "atc_code": "A01AB04",
+            "atc_display": "amphotericin B",
+            "snomed_code": "375939002",
+            "snomed_display": "Amphotericin b 100mg/mL suspension"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "56814e98-b5a9-4472-a747-e7ac4bc0e2d9",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "A01AB04",
+                    "display": "amphotericin B"
+                  }
+                ],
+                "text": "Amphotericin B 100 mg/ml Suspension"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "375939002",
+                          "display": "Amphotericin b 100mg/mL suspension"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "56814e98-b5a9-4472-a747-e7ac4bc0e2d9"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "100 mg/ml Suspension"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Amphotericin B 100 mg/ml Suspension",
+          "matches": [[1322, 1357]],
+          "attributes": null,
+          "resources": []
+        },
+        {
+          "item": "Dequalinium chlorid 0,1 mg/ml Lösung",
+          "matches": [[1358, 1394]],
+          "attributes": {
+            "dosage": "0,1 mg/ml Lösung",
+            "active_ingredient": "0,1 mg/ml",
+            "atc_code": "S01XA03",
+            "atc_display": "sodium chloride, hypertonic",
+            "snomed_code": "258798001",
+            "snomed_display": "mg/mL"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "a55a09e1-50f9-4542-b693-215cc1fc511a",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "S01XA03",
+                    "display": "sodium chloride, hypertonic"
+                  }
+                ],
+                "text": "Dequalinium chlorid 0,1 mg/ml Lösung"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "258798001",
+                          "display": "mg/mL"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "a55a09e1-50f9-4542-b693-215cc1fc511a"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "0,1 mg/ml Lösung"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Pegfilgrastim 6 mg/0,6 ml Injektionslösung",
+          "matches": [[1395, 1437]],
+          "attributes": {
+            "dosage": "6 mg/0,6 ml Injektionslösung",
+            "active_ingredient": "6 mg/0,6 ml",
+            "atc_code": "L03AA13",
+            "atc_display": "pegfilgrastim",
+            "snomed_code": "388379009",
+            "snomed_display": "Pegfilgrastim (product)"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "ef123ce8-9ba7-41f7-a7f9-90947ec9feff",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "L03AA13",
+                    "display": "pegfilgrastim"
+                  }
+                ],
+                "text": "Pegfilgrastim 6 mg/0,6 ml Injektionslösung"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "388379009",
+                          "display": "Pegfilgrastim (product)"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "ef123ce8-9ba7-41f7-a7f9-90947ec9feff"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "6 mg/0,6 ml Injektionslösung"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Pegfilgrastim 6 mg/0,6 ml Injektionslösung",
+          "matches": [[1395, 1437]],
+          "attributes": null,
+          "resources": []
+        },
+        {
+          "item": "Amlodipin 10 mg Tabletten",
+          "matches": [[1438, 1463]],
+          "attributes": {
+            "dosage": "10 mg Tabletten",
+            "atc_code": "C08CA01",
+            "atc_display": "amlodipine",
+            "snomed_code": "319284000",
+            "snomed_display": "Amlodipine 10mg tablet"
+          },
+          "resources": [
+            {
+              "resourceType": "Medication",
+              "id": "310ddb81-efcc-459d-b823-fb064f194106",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.whocc.no/atc",
+                    "code": "C08CA01",
+                    "display": "amlodipine"
+                  }
+                ],
+                "text": "Amlodipin 10 mg Tabletten"
+              },
+              "status": "recorded",
+              "ingredient": [
+                {
+                  "item": {
+                    "concept": {
+                      "coding": [
+                        {
+                          "system": "http://snomed.info/sct",
+                          "code": "319284000",
+                          "display": "Amlodipine 10mg tablet"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "resourceType": "MedicationStatement",
+              "status": "recorded",
+              "medication": {
+                "reference": {
+                  "reference": "310ddb81-efcc-459d-b823-fb064f194106"
+                }
+              },
+              "subject": {
+                "reference": "123"
+              },
+              "dosage": [
+                {
+                  "text": "10 mg Tabletten"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "item": "Amlodipin 10 mg Tabletten",
+          "matches": [[1438, 1463]],
+          "attributes": null,
+          "resources": []
+        }
+      ]
+    }
+  }
+]

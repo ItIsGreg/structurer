@@ -2,6 +2,8 @@ import Head from "next/head";
 import Header from "./Header";
 import { languages } from "../i18n/settings";
 import "@/styles/globals.css";
+import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -32,15 +34,23 @@ export default function Layout(props: LayoutProps) {
         />
       </Head>
       <body>
-        <main className="flex flex-col h-screen antialiased">
-          <Header
-            params={{
-              lng: props.params.lng,
-            }}
-          />
-          <div className="flex-1 container mx-auto pt-20">{props.children}</div>
-        </main>
-        <footer></footer>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="flex pt-10 flex-col h-screen w-screen antialiased">
+            <Header
+              params={{
+                lng: props.params.lng,
+              }}
+            />
+            <div className="h-full w-full p-8">{props.children}</div>
+          </main>
+          <Toaster />
+          <footer></footer>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -11,7 +11,6 @@ export interface SectionInfo {
   key: string;
   startIndex: number;
   endIndex: number;
-  askedFor?: boolean;
   text?: string;
   entities?: Entities;
 }
@@ -31,7 +30,6 @@ export interface TextDisplayProps {
   selectedEntity?: EntityElement;
 }
 
-// enum with three states: "askedFor", "inferred", "notAllocated"
 export enum SectionState {
   askedFor,
   inferred,
@@ -39,7 +37,8 @@ export enum SectionState {
 }
 
 export enum StructurerModes {
-  inputText,
+  pipelineInput,
+  pipelineResult,
   labelText,
   segmentText,
   segmentPredefined,

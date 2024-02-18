@@ -36,7 +36,7 @@ const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
 
   return (
     <div className="flex flex-col items-center overflow-auto">
-      {mode === StructurerModes.inputText ? (
+      {mode === StructurerModes.pipelineInput ? (
         <StructurerWorkBenchTextInput
           {...props}
           gptModel={gptModel}

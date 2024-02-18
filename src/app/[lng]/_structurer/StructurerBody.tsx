@@ -24,6 +24,19 @@ import { useTranslation } from "@/app/i18n/client";
 import { LiaMarkerSolid } from "react-icons/lia";
 import { TiDownload } from "react-icons/ti";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { FileUp, Plus, X } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { t } from "i18next";
+import { Label } from "@/components/ui/label";
+import StructurerTextDisplaySegmenter from "./StructurerTextDisplaySegmenter";
+import StructurerWorkBenchSegmenter from "./StructurerWorkBenchSegmenter";
 
 const Joyride = dynamic(() => import("react-joyride"), { ssr: false });
 
@@ -36,7 +49,9 @@ interface StructurerBodyProps {
 const StructurerBody = (props: StructurerBodyProps) => {
   const lng = props.params.lng;
   const [text, setText] = useState("");
-  const [mode, setMode] = useState<StructurerModes>(StructurerModes.inputText);
+  const [mode, setMode] = useState<StructurerModes>(
+    StructurerModes.pipelineInput
+  );
   const [llmResponse, setLlmResponse] = useState<string>();
   const [outline, setOutline] = useState<SectionInfo[]>([]);
   const [focusSection, setFocusSection] = useState<SectionInfo | undefined>();
@@ -51,6 +66,25 @@ const StructurerBody = (props: StructurerBodyProps) => {
   const [runJoyride, setRunJoyride] = useState<boolean>(false);
   const [stepIndex, setStepIndex] = useState<number>(0);
   const [steps, setSteps] = useState<Step[]>([]);
+
+  // ############ NEW
+  const [sections, setSections] = useState<string[]>([
+    "Discharge Medication",
+    "Discharge Diagnosis",
+    "Discharge Instructions",
+    "Discharge Diet",
+    "Discharge Condition",
+    "Discharge Follow-up",
+    "Discharge Reason",
+    "Discharge Destination",
+    "Discharge Disposition",
+  ]);
+  const [entities, setEntities] = useState<string[]>([
+    "Condition",
+    "Medication",
+    "Procedure",
+    "Observation",
+  ]);
 
   useEffect(() => {
     const newExpandedSections: ExpandedSections = {};
@@ -89,7 +123,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
   };
 
   useEffect(() => {
-    if (mode === StructurerModes.inputText) {
+    if (mode === StructurerModes.pipelineInput) {
       setSteps([
         {
           target: "#joyride-start",
@@ -267,24 +301,42 @@ const StructurerBody = (props: StructurerBodyProps) => {
   const sectionRefs = outline.map(() => createRef<HTMLDivElement>());
   return (
     <div className="flex w-full h-full" id="joyride-start">
-      <div className="flex flex-col w-full">
-        <Tabs defaultValue="pipeline" className="">
-          <TabsList>
-            <TabsTrigger
-              value="pipeline"
-              onClick={() => setMode(StructurerModes.inputText)}
-            >
-              APE Pipeline
-            </TabsTrigger>
-            <TabsTrigger
-              value="annotator"
-              onClick={() => setMode(StructurerModes.segmentText)}
-            >
-              Annotator
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-        {mode === StructurerModes.inputText && (
+      {/* Left Side */}
+      <div className="flex flex-col grow">
+        <div className="flex">
+          <Tabs defaultValue="pipeline" className="">
+            <TabsList>
+              <TabsTrigger
+                value="pipeline"
+                onClick={() => setMode(StructurerModes.pipelineInput)}
+              >
+                APE Pipeline
+              </TabsTrigger>
+              <TabsTrigger
+                value="annotator"
+                onClick={() => setMode(StructurerModes.labelText)}
+              >
+                Annotator
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <div className="ml-4">
+            <Select>
+              <SelectTrigger className="w-64">
+                <SelectValue placeholder={t("Load an example text...")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">Example 1</SelectItem>
+                <SelectItem value="2">Example 2</SelectItem>
+                <SelectItem value="3">Example 3</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <Button variant={"ghost"} className="ml-2">
+            <FileUp strokeWidth={1} />
+          </Button>
+        </div>
+        {mode === StructurerModes.pipelineInput && (
           <Joyride
             steps={steps}
             run={runJoyride}
@@ -305,7 +357,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
             // callback={handleJoyrideCallback}
           />
         )}
-        <div className="mt-4 h-5/6">
+        <div className="mt-4 grow">
           <StructurerText
             setMode={setMode}
             setText={setText}
@@ -330,52 +382,131 @@ const StructurerBody = (props: StructurerBodyProps) => {
             setRunJoyride={setRunJoyride}
           />
         </div>
+        <div className="flex w-full justify-end">
+          <Button className="mt-4 w-64">{t("Submit")}</Button>
+        </div>
       </div>
-      <StructurerWorkBench
-        mode={mode}
-        setMode={setMode}
-        text={text}
-        setText={setText}
-        llmResponse={llmResponse}
-        setLlmResponse={setLlmResponse}
-        outline={outline}
-        setOutline={setOutline}
-        focusedSection={focusSection}
-        setFocusedSection={setFocusSection}
-        sectionRefs={sectionRefs}
-        focusedCategory={focusedCategory}
-        setFocusedCategory={setFocusedCategory}
-        colors={colors}
-        setColors={setColors}
-        rng={rng}
-        expandedSections={expandedSections}
-        setExpandedSections={setExpandedSections}
-        lng={lng}
-        runJoyride={runJoyride}
-        setRunJoyride={setRunJoyride}
-      />
-      {/* <StructurerOutline
-        setMode={setMode}
-        text={text}
-        setText={setText}
-        llmResponse={llmResponse}
-        setLlmResponse={setLlmResponse}
-        outline={outline}
-        setOutline={setOutline}
-        focusedSection={focusSection}
-        setFocusedSection={setFocusSection}
-        sectionRefs={sectionRefs}
-        focusedCategory={focusedCategory}
-        setFocusedCategory={setFocusedCategory}
-        colors={colors}
-        setColors={setColors}
-        rng={rng}
-        expandedSections={expandedSections}
-        setExpandedSections={setExpandedSections}
-        lng={lng}
-        runJoyride={runJoyride}
-        setRunJoyride={setRunJoyride}
-      /> */}
+      {/* Right Side */}
+      <div className="w-1/4">
+        <div className="flex flex-col px-4 gap-4">
+          <div>
+            <Select>
+              <SelectTrigger className="w-64">
+                <SelectValue placeholder={t("Load an example text...")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">Example 1</SelectItem>
+                <SelectItem value="2">Example 2</SelectItem>
+                <SelectItem value="3">Example 3</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="" className="font-bold">
+                {t("Sections")}
+              </Label>
+              <Button variant={"ghost"} size={"icon"}>
+                <Plus size={20} />
+              </Button>
+            </div>
+            <div className="flex flex-col rounded-xl gap-1 max-h-48 overflow-y-auto">
+              {sections.map((section, index) => (
+                <div className="flex items-center w-full">
+                  <Button
+                    key={index}
+                    className="grow"
+                    variant={"outline"}
+                    size={"sm"}
+                  >
+                    {section}
+                  </Button>
+                  <Button
+                    variant={"ghost"}
+                    size={"icon"}
+                    className="opacity-30"
+                  >
+                    <X />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="" className="font-bold">
+                {t("Entities")}
+              </Label>
+              <Button variant={"ghost"} size={"icon"}>
+                <Plus size={20} />
+              </Button>
+            </div>
+            <div>
+              <div className="flex flex-col rounded-xl gap-1 max-h-48 overflow-y-auto">
+                {entities.map((entity, index) => (
+                  <div className="flex items-center w-full">
+                    <Button key={index} className="grow" variant={"outline"}>
+                      {entity}
+                    </Button>
+                    <Button
+                      variant={"ghost"}
+                      size={"icon"}
+                      className="opacity-30"
+                    >
+                      <X />
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <StructurerWorkBench
+          mode={mode}
+          setMode={setMode}
+          text={text}
+          setText={setText}
+          llmResponse={llmResponse}
+          setLlmResponse={setLlmResponse}
+          outline={outline}
+          setOutline={setOutline}
+          focusedSection={focusSection}
+          setFocusedSection={setFocusSection}
+          sectionRefs={sectionRefs}
+          focusedCategory={focusedCategory}
+          setFocusedCategory={setFocusedCategory}
+          colors={colors}
+          setColors={setColors}
+          rng={rng}
+          expandedSections={expandedSections}
+          setExpandedSections={setExpandedSections}
+          lng={lng}
+          runJoyride={runJoyride}
+          setRunJoyride={setRunJoyride}
+        /> */}
+        {/* <StructurerOutline
+          setMode={setMode}
+          text={text}
+          setText={setText}
+          llmResponse={llmResponse}
+          setLlmResponse={setLlmResponse}
+          outline={outline}
+          setOutline={setOutline}
+          focusedSection={focusSection}
+          setFocusedSection={setFocusSection}
+          sectionRefs={sectionRefs}
+          focusedCategory={focusedCategory}
+          setFocusedCategory={setFocusedCategory}
+          colors={colors}
+          setColors={setColors}
+          rng={rng}
+          expandedSections={expandedSections}
+          setExpandedSections={setExpandedSections}
+          lng={lng}
+          runJoyride={runJoyride}
+          setRunJoyride={setRunJoyride}
+        /> */}
+      </div>
     </div>
   );
 };
