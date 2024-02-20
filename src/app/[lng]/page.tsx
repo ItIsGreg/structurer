@@ -1,19 +1,6 @@
 "use client";
 
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import StructurerBody from "./_structurer/StructurerBody";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectValue,
-} from "@/components/ui/select";
-import { SelectTrigger } from "@radix-ui/react-select";
-import { Button } from "@/components/ui/button";
-import { FileUp } from "lucide-react";
-import { t } from "i18next";
 import { useState } from "react";
-import { Textarea } from "@/components/ui/textarea";
 import { SectionInfo, StructurerModes } from "@/types";
 import MainDisplay from "@/components/MainDisplay";
 import WorkBench from "@/components/WorkBench";

@@ -10,16 +10,13 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
-import { t } from "i18next";
 import { SectionInfo, StructurerModes } from "@/types";
 import { fetchStructureText } from "@/lib/requests";
 import { useToast } from "./ui/use-toast";
 import { cn, sliceAnnotatedText } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
 import FhirDisplayDialog from "./FhirDisplayDialog";
-import { flatMap } from "lodash";
 
 interface Props {
   lng: string;
@@ -72,7 +69,7 @@ const MainDisplay = (props: Props) => {
   };
 
   return (
-    <div className="flex flex-col h-full grow">
+    <div className="flex flex-col h-full w-full overflow-hidden">
       <div className="flex">
         <Tabs defaultValue="pipeline" className="">
           <TabsList>
@@ -94,7 +91,7 @@ const MainDisplay = (props: Props) => {
         <div className="ml-4">
           <Select>
             <SelectTrigger className="w-64">
-              <SelectValue placeholder={t("Load an example text...")} />
+              <SelectValue placeholder={"Load an example text..."} />
             </SelectTrigger>
             <SelectContent></SelectContent>
           </Select>
@@ -104,11 +101,11 @@ const MainDisplay = (props: Props) => {
         </Button>
       </div>
       {mode === StructurerModes.pipelineInput && (
-        <Fragment>
-          <div className="mt-4 grow">
+        <div className="flex flex-col grow h-full">
+          <div className="mt-4 h-full">
             <Textarea
               className="resize-none h-full"
-              placeholder={t("Paste a medical text to be structured here...")}
+              placeholder={"Paste a medical text to be structured here..."}
               onChange={(e) => setMainText(e.target.value)}
               value={mainText}
               id="joyride-textarea"
@@ -127,13 +124,13 @@ const MainDisplay = (props: Props) => {
                   hidden: !isLoading,
                 })}
               />
-              {t("Submit")}
+              {"Submit"}
             </Button>
           </div>
-        </Fragment>
+        </div>
       )}
       {mode === StructurerModes.pipelineResult && (
-        <Fragment>
+        <div className="flex flex-col grow h-full">
           <div className="mt-4 h-full flex flex-col gap-4 overflow-y-auto">
             {pipelineResult?.map((section) => (
               <Card key={section.key} className="">
@@ -144,7 +141,7 @@ const MainDisplay = (props: Props) => {
                 </CardHeader>
                 <CardContent className="flex flex-row gap-4 p-0">
                   <div className="w-3/4 p-4 overflow-x-auto">
-                    <h3 className="font-semibold">{t("Original Text")}</h3>
+                    <h3 className="font-semibold">{"Original Text"}</h3>
                     <div className="mt-2 p-2 rounded">
                       <pre className="p-2">
                         {section.entities
@@ -177,7 +174,7 @@ const MainDisplay = (props: Props) => {
                     </div>
                   </div>
                   <div className="shrink-0 w-1/4 bg-secondary p-4">
-                    <h3 className="font-semibold">{t("Found Entities")}</h3>
+                    <h3 className="font-semibold">{"Found Entities"}</h3>
                     <div className="mt-2">
                       {section.entities &&
                         Object.entries(section.entities).map(
@@ -233,10 +230,10 @@ const MainDisplay = (props: Props) => {
                   hidden: !isLoading,
                 })}
               />
-              {t("Back to input")}
+              {"Back to input"}
             </Button>
           </div>
-        </Fragment>
+        </div>
       )}
       <FhirDisplayDialog
         open={showFhirDialog}
