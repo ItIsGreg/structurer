@@ -27,16 +27,9 @@ const FhirDisplayDialog = (props: Props) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="overflow-auto min-w-[60vw]">
-        <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
-        </DialogHeader>
         <JsonView
           src={json}
-          displaySize={"expanded"}
+          displaySize={false}
           className="h-[60vh] overflow-y-auto"
           theme="atom"
         />
