@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { Button } from "./ui/button";
 
 interface Props {
   apiKey: string;
@@ -20,10 +21,6 @@ const WorkBench = (props: Props) => {
   return (
     <div className="flex flex-col px-4 gap-2 w-1/6 shrink-0">
       <div>
-        <Label htmlFor="model">Model</Label>
-        <Input value={model} id="model" type="text" placeholder="" disabled />
-      </div>
-      <div>
         <Label htmlFor="openAIKey">OpenAI Key</Label>
         <Input
           value={apiKey}
@@ -33,6 +30,13 @@ const WorkBench = (props: Props) => {
           placeholder=""
         />
       </div>
+      <Button
+        onClick={() => {
+          setApiKey("default");
+        }}
+      >
+        Set Default
+      </Button>
     </div>
   );
 };

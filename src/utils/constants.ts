@@ -652,3 +652,251 @@ export const dummyOutlineWithResources = [
     },
   },
 ];
+
+export const exampleDischargeSummaryDE = `
+ 
+Name:  ___ Einheit Nr:   ___
+ 
+Aufnahmedatum:  ___ Entlassungsdatum:   ___
+ 
+Geburtsdatum:  ___ Geschlecht:   F
+ 
+Dienst: CHIRURGIE
+ 
+Allergien:
+Sulfonamide / Kodein / Bactrim
+ 
+Behandelnd: ___.
+ 
+Hauptbeschwerde:
+Unterleibsschmerzen und Erbrechen
+ 
+Größerer chirurgischer oder invasiver Eingriff:
+Explorative Laparotomie, Lysis von Verwachsungen, Dünndarmresektion
+Dünndarmresektion mit Enteroenterostomie.
+
+ 
+Aktuelle Krankheitsgeschichte:
+Die Patientin ist eine ___ Jahre alte Frau, s/p Hysterektomie wegen Uterus
+Hysterektomie wegen Gebärmuttermyomen und R-Lungenresektion wegen Karzinoidtumor
+in der chirurgischen Sprechstunde wegen Bauchschmerzen, Übelkeit und
+Erbrechen. Der Patientin ging es bis zum frühen Morgen gut
+um etwa 1:00 Uhr morgens, als sie krampfartige Unterleibsschmerzen
+Bauchschmerzen in Verbindung mit Übelkeit und galligem Erbrechen ohne Blut.  
+Sie
+übergab sich etwa ___ Mal, woraufhin sie sich
+in der Notaufnahme.  Zum Zeitpunkt des Erbrechens hatte sie Durchfall und
+hatte sie Durchfall und bewegte ihren Darm > 3 Mal.  Sie hatte noch nie diese oder ähnliche
+Schmerzen gehabt, und sie gibt an, dass sie noch nie zuvor einen
+Dünndarmverschluss hatte.  Sie hatte noch nie eine Darmspiegelung.
+
+ 
+
+ 
+
+ 
+Medizinische Vorgeschichte:
+PMH:
+Karzinoid-Tumor wie oben
+Vitamin-B12-Mangel
+Depression
+Hyperlipidämie
+
+PSH:
+s/p R Lungenresektion in ___ bei ___
+s/p Hysterektomie in ___
+s/p R Armoperation
+
+ 
+Soziale Vorgeschichte:
+___
+Familienanamnese:
+nicht beitragspflichtig
+ 
+Körperliche Untersuchung:
+Temperatur 96,9 HR 105 Blutdruck 108/92 100%RA
+NAD, scheint nicht toxisch, aber unangenehm
+Herz tachykard, aber regelmäßig, keine Herzgeräusche wahrnehmbar
+Lunge bei der Auskultation klar; verminderte Atemgeräusche im R;
+gut verheilte R-Thorakotomienarbe vorhanden
+Abdomen weich, sehr fettleibig, minimal gebläht, etwas schmerzhaft
+auf
+Palpation diffus im gesamten Abdomen; kein Guarding; kein Rebound
+Zärtlichkeit, niedrige Mittellinie der Bauchwunde c/d/i, keine Drainage, kein
+Erythem
+
+ 
+Relevante Ergebnisse:
+___ 04:40 UHR WBC-12,5*# RBC-4,46 HGB-13,6 HCT-39,7 MCV-89
+MCH-30,5 MCHC-34,2 RDW-13,0
+___ 04:40 UHR NEUTS-91.1* LYMPHS-7.4* MONOS-0.8* EOS-0.3
+BASOS-0.2
+04:40 UHR PLÄTTCHENZAHL-329
+04:40 UHR GLUKOSE-151* HARNSTOFF-N-10 KREAT-0,8 NATRIUM-142
+KALIUM-3,8 CHLORID-105 GESAMT-CO2-28 ANIONENLÜCKE-13
+___ 04:40 UHR ALT(SGPT)-12 AST(SGOT)-16 LD(LDH)-180 ALK
+PHOS-62
+
+CT des Abdomens und des Beckens: 1. leicht erweiterte Dünndarmschlingen
+Dünndarmschlingen mit Fäkalisierung des Dünndarminhalts und distalen
+kollabierten Dünndarmschlingen, was auf eine frühe vollständige oder partielle
+Dünndarmobstruktion.
+2. Postoperative Veränderungen an den rechten Rippen, wie oben beschrieben.
+oben beschrieben.
+
+CT des Abdomens und des Beckens:
+1. Intervallweise Verschlimmerung der Dünndarmobstruktion. Übergang
+Punkt in der
+linken Mittelbauch. (Der Patient ging am Abend der Studie in den OP)
+der Studie).
+2. Freie Flüssigkeitsspuren im Becken sind wahrscheinlich physiologisch.  
+
+  
+
+10:57 Uhr URIN FARBE-GELB ERSCHEINEN-Hazy SP ___
+22:57 UHR URIN BLUT-LG NITRIT-NEG PROTEIN-TR
+GLUKOSE-NEG KETON-15 BILIRUBIN-NEG UROBILNGN-NEG PH-6.5
+LEUK-NEG
+22:57 UHR URIN RBC->50 ___ BAKTERIEN-MOD HEFE-KEINE
+EPI-0
+22:57 UHR URIN SCHLEIMIG-OKK
+04:40 UHR GLUKOSE-151* HARNSTOFF-N-10 CREAT-0.8 NATRIUM-142
+KALIUM-3,8 CHLORID-105 GESAMT-CO2-28 ANIONENLÜCKE-13
+04:40 Uhr estGFR-Verwendung
+04:40 UHR ALT(SGPT)-12 AST(SGOT)-16 LD(LDH)-180 ALK
+PHOS-62 TOT BILI-0.2
+04:40 UHR LIPASE-17
+___ 04:40 UHR WBC-12,5*# RBC-4,46 HGB-13,6 HCT-39,7 MCV-89
+MCH-30,5 MCHC-34,2 RDW-13,0
+___ 04:40 UHR NEUTS-91.1* LYMPHS-7.4* MONOS-0.8* EOS-0.3
+BASOS-0.2
+04:40 UHR BLUTPLÄTTCHENZAHL-329
+ 
+Kurzer Krankenhausaufenthalt:
+Diese ___ Jahre alte Frau wurde ins Krankenhaus eingeliefert und wurde
+Sie wurde nüchtern eingeliefert, bekam Infusionen und eine nasogastrische Sonde
+gelegt.  Bei einer Temperatur von 101 wurde eine Pan-Kultur angelegt.
+serielle KUBs und eine körperliche Untersuchung durchgeführt. Ihr nasogastraler
+wurde am 2. Krankenhaustag abgeklemmt, und sie entwickelte bald
+zunehmende Bauchschmerzen, die eine erneute CT des Abdomens und
+Beckens veranlasste.  Dabei zeigte sich eine Zunahme des Grades der
+Obstruktion und wurde daraufhin in den Operationssaal gebracht
+für den oben erwähnten Eingriff gebracht.
+
+Sie vertrug den Eingriff gut, blieb nüchtern mit nasogastraler
+nasogastraler Sonde und wurde mit intravenöser Flüssigkeit behandelt.  Ihre Schmerzen wurden
+anfänglich mit einer Morphin-PCA kontrolliert.  Ihr nasogastraler Schlauch
+wurde am 2. postoperativen Tag entfernt und sie begann mit einer klaren Flüssigdiät
+die sie gut vertrug.  Diese wurde schrittweise über 36
+Stunden zu einer normalen Diät, die gut vertragen wurde.  Sie hatte
+Stuhlgang und vertrug orale Schmerzmittel.  Ihr
+Inzision heilte gut und die Klammern waren intakt.  Nach einem
+unkomplizierten Verlauf wurde sie am ___ nach Hause entlassen.
+ 
+Medikamente bei Aufnahme:
+Albuteral MDI prn wheezes
+Flovent Inhalator prn Keuchen
+Srtralin 200 mg oral täglich
+Simvastatin 20 mg oral täglich
+Trazadon 100 mg oral täglich vor dem Schlafengehen
+Wellbutrin 75 mg oral zweimal täglich
+ 
+Entlassungsmedikamente:
+1. Albuterol Sulfat 90 mcg/Aktuation HFA Aerosol Inhalator Sig:
+Zwei (2) Puff Inhalation Q6H (alle 6 Stunden) nach Bedarf für
+Keuchen, Kurzatmigkeit.  
+2. Fluticason 110 mcg/Aktuation Aerosol Sig: Zwei (2) Züge
+Inhalation BID (2 mal täglich).  
+3. Oxycodon-Acetaminophen ___ mg Tablette Sig: ___ Tabletten PO
+Q4H (alle 4 Stunden) je nach Bedarf bei Schmerzen.
+Abgabe:*40 Tablette(n)* Nachfüllpackungen:*0*
+4. Docusat-Natrium 100 mg Kapsel Sig: Eine (1) Kapsel PO BID (2
+mal pro Tag).
+Abgabe:*60 Kapsel(n)* Nachfüllpackungen:*2*
+5. Simvastatin 20 mg Tablette Sig: Eine (1) Tablette PO einmal täglich.
+Abgabe:*30 Tablette(n)* Nachfüllpackungen:*2*
+6. Trazodon 100 mg Tablette Sig: Eine (1) Tablette PO vor dem Schlafengehen.  
+7. Wellbutrin 75 mg Tablette Sig: Eine (1) Tablette PO zweimal pro Tag.  
+
+ 
+Verabreichung bei der Entlassung:
+Zuhause
+ 
+Entlassungsdiagnose:
+Hochgradige Dünndarmobstruktion
+
+ 
+Zustand bei der Entlassung:
+Henodynamisch stabil, toleriert eine regelmäßige Diät, hat Stuhlgang
+Stuhlgang, ausreichende Schmerzkontrolle
+
+ 
+Anweisungen für die Entlassung:
+Bitte rufen Sie Ihren Arzt oder Ihre Krankenschwester an oder kommen Sie in die
+Notaufnahme, wenn Sie eines der folgenden Probleme haben:
+
+*Sie haben neue Schmerzen, Druck, Quetschung oder Enge in der Brust.
+Engegefühl.
+
+*Neuer oder sich verschlimmernder Husten, Kurzatmigkeit oder Keuchen.
+
+* Wenn Sie erbrechen und weder Flüssigkeit noch Ihre Medikamente bei sich behalten können
+Medikamente.
+
+*Wenn Sie aufgrund von anhaltendem Erbrechen, Durchfall oder aus anderen Gründen dehydriert sind,
+oder aus anderen Gründen. Anzeichen für Dehydrierung sind ein trockener Mund, ein schneller
+Herzschlag, Schwindelgefühl oder Ohnmacht beim Stehen.
+
+*Sie sehen Blut oder dunkles/schwarzes Material, wenn Sie erbrechen oder Stuhlgang haben.
+Stuhlgang haben.
+
+*Sie haben Brennen beim Urinieren, Blut im Urin oder Ausfluss.
+Blut im Urin oder einen Ausfluss.
+
+*Ihre Schmerzen bessern sich nicht innerhalb von ___ Stunden oder sind nicht
+innerhalb von 24 Stunden. Rufen Sie sofort an oder kommen Sie zurück, wenn Ihre Schmerzen
+sich verschlimmern, den Ort wechseln oder in die Brust oder den
+Rücken.
+
+*Sie haben Schüttelfrost oder Fieber von mehr als 101,5 Grad
+Fahrenheit oder 38 Grad Celsius.
+
+*Jede Veränderung Ihrer Symptome oder jedes neue Symptom, das Sie beunruhigt.
+Sie beunruhigen.
+
+Bitte nehmen Sie alle regelmäßig eingenommenen Medikamente wieder ein, es sei denn
+es sei denn, es wird Ihnen ausdrücklich empfohlen, ein bestimmtes Medikament nicht einzunehmen. Bitte nehmen Sie auch
+neue Medikamente wie verordnet ein.
+
+Bitte ruhen Sie sich ausreichend aus, bewegen Sie sich weiterhin mehrmals am Tag
+täglich und trinken Sie ausreichend Flüssigkeit. Vermeiden Sie das Heben von
+Vermeiden Sie das Heben von Gewichten über ___ lbs, bis Sie sich mit Ihrem
+Chirurgen.
+
+Vermeiden Sie es, während der Einnahme von Schmerzmitteln Auto zu fahren oder schwere Maschinen zu bedienen.
+Medikamenten.
+
+Pflege der Inzision:
+
+*Bitte rufen Sie Ihren Arzt oder Ihre Krankenschwester an, wenn Sie
+Schmerzen, Schwellungen, Rötungen oder Ausfluss an der Einschnittstelle
+Stelle.
+
+*Vermeiden Sie Schwimmen und Baden bis zu Ihrem Nachsorgetermin.
+
+*Sie können duschen und die Einschnitte mit einer milden Seife und warmem Wasser waschen.
+und warmem Wasser waschen. Tupfen Sie den Bereich sanft trocken.
+
+*Wenn Sie Klammern haben, werden diese bei Ihrem Nachsorgetermin entfernt.
+Termin entfernt.
+
+*Wenn Sie Steri-Strips haben, fallen diese von selbst ab.
+Bitte entfernen Sie alle verbleibenden Streifen ___ Tage nach der Operation.
+
+*Bitte kontrollieren Sie die Stelle täglich auf Anzeichen einer Infektion
+(verstärkte Rötung oder Schmerzen, Schwellung, Geruch, gelb oder blutig
+
+ 
+Anweisungen zur Nachsorge:
+___
+`;

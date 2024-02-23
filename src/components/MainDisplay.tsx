@@ -3,7 +3,12 @@ import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { FileUp, Flame, Loader2, SlidersHorizontal } from "lucide-react";
 import { Select } from "@radix-ui/react-select";
-import { SelectContent, SelectTrigger, SelectValue } from "./ui/select";
+import {
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { SectionInfo, StructurerModes } from "@/types";
 import { fetchStructureText } from "@/lib/requests";
@@ -19,6 +24,7 @@ import FhirDisplayDialog from "./FhirDisplayDialog";
 import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { exampleDischargeSummaryDE } from "@/utils/constants";
 
 interface Props {
   lng: string;
@@ -98,48 +104,22 @@ const MainDisplay = (props: Props) => {
 
   return (
     <div className="flex flex-col h-full w-full overflow-hidden">
-      <div className="flex">
-        <Tabs defaultValue="pipeline" className="">
-          <TabsList>
-            <TabsTrigger
-              value="pipeline"
-              onClick={() => setMode(StructurerModes.pipelineInput)}
-            >
-              APE Pipeline
-            </TabsTrigger>
-            <TabsTrigger
-              disabled
-              value="annotator"
-              onClick={() => setMode(StructurerModes.labelText)}
-            >
-              Annotator
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+      <div className="flex gap-4 justify-between">
         <div className="ml-4">
-          <Select>
-            <SelectTrigger className="w-64">
-              <SelectValue placeholder={"Load an example text..."} />
-            </SelectTrigger>
-            <SelectContent></SelectContent>
-          </Select>
+          <Button
+            onClick={() => {
+              setMainText(exampleDischargeSummaryDE);
+            }}
+          >
+            Load Example Text
+          </Button>
         </div>
-        <Button variant={"ghost"} className="ml-2">
-          <FileUp strokeWidth={1} />
-        </Button>
-        <Popover>
-          <PopoverTrigger>
-            <SlidersHorizontal strokeWidth={1} />
-          </PopoverTrigger>
-          <PopoverContent>
-            <div className="flex gap-2 justify-between">
-              <Label htmlFor="whole-text" className="text-md">
-                {"Whole Text"}
-              </Label>
-              <Switch id="whole-text" onCheckedChange={onWholeTextChange} />
-            </div>
-          </PopoverContent>
-        </Popover>
+        <div className="flex gap-2 justify-between">
+          <Label htmlFor="whole-text" className="text-md">
+            {"Whole Text"}
+          </Label>
+          <Switch id="whole-text" onCheckedChange={onWholeTextChange} />
+        </div>
       </div>
       {mode === StructurerModes.pipelineInput && (
         <div className="flex flex-col grow h-full">
@@ -257,23 +237,22 @@ const MainDisplay = (props: Props) => {
               </Card>
             ))}
           </div>
-          <div className="flex w-full justify-end">
-            <Button
-              className="mt-4 w-64"
-              onClick={handleBackToInput}
-              disabled={isLoading}
-              variant={"destructive"}
-            >
-              <Loader2
-                size={20}
-                strokeWidth={2}
-                className={cn("animate-spin mr-2", {
-                  hidden: !isLoading,
-                })}
-              />
-              {"Back to input"}
-            </Button>
-          </div>
+          <div className="flex w-full justify-end"></div>
+          <Button
+            className="mt-4 w-64"
+            onClick={handleBackToInput}
+            disabled={isLoading}
+            variant={"destructive"}
+          >
+            <Loader2
+              size={20}
+              strokeWidth={2}
+              className={cn("animate-spin mr-2", {
+                hidden: !isLoading,
+              })}
+            />
+            {"Back to input"}
+          </Button>
         </div>
       )}
       <FhirDisplayDialog
