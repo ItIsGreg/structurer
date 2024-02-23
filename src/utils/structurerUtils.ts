@@ -89,7 +89,7 @@ export const prepareIndexList = (
           key: `unnamed-${unnamedSectionIndex++}`,
           startIndex: section.endIndex,
           endIndex: nextSection.startIndex,
-          askedFor: false,
+          // askedFor: false,
         };
       } else {
         // If the gap text only contains newlines and whitespace, add the gap text to the current section
@@ -109,7 +109,7 @@ export const prepareIndexList = (
       key: `unnamed-${unnamedSectionIndex++}`,
       startIndex: 0,
       endIndex: sectionsWithGaps[0].startIndex,
-      askedFor: false,
+      // askedFor: false,
     });
   }
 
@@ -215,7 +215,7 @@ export const combineSections = (
             section1.text!.length
           )
         : section1.entities || section2.entities,
-    askedFor: true,
+    // askedFor: true,
   };
   return combinedSection;
 };
@@ -510,10 +510,8 @@ export const callLLMUnmatches = async (
 // Function to check if a given object is a SectionInfo
 export const isSectionInfo = (obj: any): obj is SectionInfo => {
   return (
-    "key" in obj &&
-    "startIndex" in obj &&
-    "endIndex" in obj &&
-    "askedFor" in obj
+    "key" in obj && "startIndex" in obj && "endIndex" in obj
+    // "askedFor" in obj
   );
 };
 

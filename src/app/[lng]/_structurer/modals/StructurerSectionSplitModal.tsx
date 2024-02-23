@@ -54,7 +54,7 @@ const StructurerSectionSplitModal = (
       // prepare the new sections
       const newSection1: SectionInfo = {
         key: splitSection.key + ".0",
-        askedFor: splitSection.askedFor,
+        // askedFor: splitSection.askedFor,
         startIndex: splitSection.startIndex,
         endIndex: splitSection.startIndex + offset,
         text: newSection1Text,
@@ -62,7 +62,7 @@ const StructurerSectionSplitModal = (
       };
       const newSection2: SectionInfo = {
         key: splitSection.key + ".1",
-        askedFor: splitSection.askedFor,
+        // askedFor: splitSection.askedFor,
         startIndex: splitSection.startIndex + offset,
         endIndex: splitSection.endIndex,
         text: newSection2Text,

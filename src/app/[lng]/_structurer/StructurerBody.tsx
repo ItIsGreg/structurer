@@ -412,7 +412,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
             </div>
             <div className="flex flex-col rounded-xl gap-1 max-h-48 overflow-y-auto">
               {sections.map((section, index) => (
-                <div className="flex items-center w-full">
+                <div className="flex items-center w-full" key={section}>
                   <Button
                     key={index}
                     className="grow"
@@ -444,7 +444,7 @@ const StructurerBody = (props: StructurerBodyProps) => {
             <div>
               <div className="flex flex-col rounded-xl gap-1 max-h-48 overflow-y-auto">
                 {entities.map((entity, index) => (
-                  <div className="flex items-center w-full">
+                  <div className="flex items-center w-full" key={entity}>
                     <Button key={index} className="grow" variant={"outline"}>
                       {entity}
                     </Button>
