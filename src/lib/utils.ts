@@ -1,4 +1,4 @@
-import { Entities, EntityElement } from "@/types";
+import { Entities, EntityElement, SectionInfo } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { flatMap } from "lodash";
 import { twMerge } from "tailwind-merge";
@@ -58,4 +58,44 @@ export const sliceAnnotatedText = (
   }
 
   return slices;
+};
+
+export const combineResponseWithRemainingText = (
+  outline: SectionInfo[],
+  text: string
+): SectionInfo[] => {
+  // the response from the API does only contain the sections that were found
+  // I want to display the sections in the context of the whole text
+  // for not found sections, I want to display them as unnamed sections
+  const new_outline: SectionInfo[] = [];
+  let last_end = 0;
+  // sort outline
+  outline.sort((a, b) => {
+    return a.startIndex - b.endIndex;
+  });
+  let unnamedCounter = 1;
+  for (const section of outline) {
+    if (section.startIndex > last_end) {
+      // add unnamed section
+      new_outline.push({
+        startIndex: last_end,
+        endIndex: section.startIndex,
+        key: `Text ${unnamedCounter++}`,
+        text: text.substring(last_end, section.startIndex),
+      });
+    }
+    new_outline.push(section);
+    last_end = section.endIndex;
+  }
+  // add last unnamed section
+  if (last_end < text.length) {
+    new_outline.push({
+      startIndex: last_end,
+      endIndex: text.length,
+      key: `Text ${unnamedCounter++}`,
+      text: text.substring(last_end, text.length),
+    });
+  }
+
+  return new_outline;
 };

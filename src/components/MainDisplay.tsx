@@ -1,22 +1,24 @@
 import React, { Fragment, useState } from "react";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
-import { FileUp, Flame, Loader2 } from "lucide-react";
+import { FileUp, Flame, Loader2, SlidersHorizontal } from "lucide-react";
 import { Select } from "@radix-ui/react-select";
-import {
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
+import { SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { SectionInfo, StructurerModes } from "@/types";
 import { fetchStructureText } from "@/lib/requests";
 import { useToast } from "./ui/use-toast";
-import { cn, sliceAnnotatedText } from "@/lib/utils";
+import {
+  cn,
+  combineResponseWithRemainingText,
+  sliceAnnotatedText,
+} from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import FhirDisplayDialog from "./FhirDisplayDialog";
+import { Switch } from "./ui/switch";
+import { Label } from "./ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 interface Props {
   lng: string;
@@ -44,14 +46,40 @@ const MainDisplay = (props: Props) => {
   const [showFhirDialog, setShowFhirDialog] = useState<boolean>(false);
   const [selectedEntity, setSelectedEntity] = useState<string | null>(null);
   const [selectedResource, setSelectedResource] = useState<any | null>(null);
+  const [wholeTextSections, setWholeTextSections] = useState<SectionInfo[]>([]);
+  const [displaySections, setDisplaySections] = useState<
+    SectionInfo[] | undefined
+  >(pipelineResult);
   const { toast } = useToast();
+
+  const onWholeTextChange = (checked: boolean) => {
+    if (checked) {
+      setDisplaySections(wholeTextSections);
+    } else {
+      setDisplaySections(pipelineResult);
+    }
+  };
 
   const onSubmit = async () => {
     setIsLoading(true);
     try {
       const data = await fetchStructureText(mainText, lng, apiKey);
       setMode(StructurerModes.pipelineResult);
+
+      // sort the sections by start index
+      data.sort(
+        (a: SectionInfo, b: SectionInfo) => a.startIndex - b.startIndex
+      );
+
+      // create sections with the remaining text
+      const wholeTextSections: SectionInfo[] = combineResponseWithRemainingText(
+        data,
+        mainText
+      );
+      setWholeTextSections(wholeTextSections);
+
       setPipelineResult(data);
+      setDisplaySections(data);
     } catch (error) {
       toast({
         title: "Error",
@@ -99,6 +127,19 @@ const MainDisplay = (props: Props) => {
         <Button variant={"ghost"} className="ml-2">
           <FileUp strokeWidth={1} />
         </Button>
+        <Popover>
+          <PopoverTrigger>
+            <SlidersHorizontal strokeWidth={1} />
+          </PopoverTrigger>
+          <PopoverContent>
+            <div className="flex gap-2 justify-between">
+              <Label htmlFor="whole-text" className="text-md">
+                {"Whole Text"}
+              </Label>
+              <Switch id="whole-text" onCheckedChange={onWholeTextChange} />
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
       {mode === StructurerModes.pipelineInput && (
         <div className="flex flex-col grow h-full">
@@ -132,7 +173,7 @@ const MainDisplay = (props: Props) => {
       {mode === StructurerModes.pipelineResult && (
         <div className="flex flex-col grow h-full">
           <div className="mt-4 h-full flex flex-col gap-4 overflow-y-auto">
-            {pipelineResult?.map((section) => (
+            {displaySections?.map((section) => (
               <Card key={section.key} className="">
                 <CardHeader className="bg-secondary p-4 rounded-t-lg">
                   <CardTitle className="text-xl font-semibold">

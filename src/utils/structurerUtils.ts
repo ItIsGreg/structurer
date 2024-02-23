@@ -561,14 +561,14 @@ export const combineResponseWithRemainingText = (
   outline.sort((a, b) => {
     return a.startIndex - b.endIndex;
   });
-  let unnamedCounter = 0;
+  let unnamedCounter = 1;
   for (const section of outline) {
     if (section.startIndex > last_end) {
       // add unnamed section
       new_outline.push({
         startIndex: last_end,
         endIndex: section.startIndex,
-        key: `Unnamed section ${unnamedCounter++}`,
+        key: `Text ${unnamedCounter++}`,
         text: text.substring(last_end, section.startIndex),
       });
     }
@@ -580,7 +580,7 @@ export const combineResponseWithRemainingText = (
     new_outline.push({
       startIndex: last_end,
       endIndex: text.length,
-      key: `Unnamed section ${unnamedCounter++}`,
+      key: `Text ${unnamedCounter++}`,
       text: text.substring(last_end, text.length),
     });
   }
