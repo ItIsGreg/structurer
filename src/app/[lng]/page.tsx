@@ -16,7 +16,7 @@ const MainPage = (props: Props) => {
   const [mainText, setMainText] = useState("");
   const [mode, setMode] = useState(StructurerModes.pipelineInput);
   const [model, setModel] = useState("gpt-4");
-  const [apiKey, setApiKey] = useState("");
+  const [apiKey, setApiKey] = useState("default");
   const [pipelineResult, setPipelineResult] = useState<
     SectionInfo[] | undefined
   >(undefined);
