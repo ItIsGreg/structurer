@@ -3,6 +3,7 @@ import ChangeTextButton from "./ChangeTextButton";
 import StructurerTextDisplaySegmenter from "./StructurerTextDisplaySegmenter";
 import StructurerTextDisplayLabeler from "./StructurerTextDisplayLabeler";
 import StructurerTextDisplayAnnotator from "./StructurerTextDisplayAnnotator";
+import MultTextAdmin from "./MutlTextAdmin";
 
 const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
   const {
@@ -12,6 +13,7 @@ const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
     setOutline,
     entityAnnotationSections,
     setEntityAnnotationSections,
+    outline,
   } = props;
 
   return (
@@ -31,6 +33,12 @@ const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
           setMode(StructurerModes.inputText);
         }}
         lng={lng}
+      />
+      <MultTextAdmin
+        entityAnnotationSections={entityAnnotationSections}
+        setEntityAnnotationSections={setEntityAnnotationSections}
+        outline={outline}
+        setOutline={setOutline}
       />
     </div>
   );

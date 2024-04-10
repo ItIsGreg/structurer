@@ -1,6 +1,15 @@
-import { MultTextAdminProps } from "@/types";
+import { MultTextAdminProps, SectionInfo } from "@/types";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
-const MultTextAdming = (props: MultTextAdminProps) => {
+const MultTextAdmin = (props: MultTextAdminProps) => {
   const {
     entityAnnotationSections,
     setEntityAnnotationSections,
@@ -8,5 +17,27 @@ const MultTextAdming = (props: MultTextAdminProps) => {
     setOutline,
   } = props;
 
-  return <div></div>;
+  return (
+    <div>
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          {entityAnnotationSections.map((section: SectionInfo[]) => {
+            return (
+              <PaginationItem key={section[0].key}>
+                {section[0].key}
+              </PaginationItem>
+            );
+          })}
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
+  );
 };
+
+export default MultTextAdmin;
