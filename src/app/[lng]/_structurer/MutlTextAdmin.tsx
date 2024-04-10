@@ -67,8 +67,9 @@ const MultTextAdmin = (props: MultTextAdminProps) => {
           {getCurrentSectionsIndex() > 0 && (
             <PaginationItem>
               <PaginationPrevious
+                className="border p-1"
                 onClick={() => {
-                  handleNextPreviousClick(true);
+                  handleNextPreviousClick(false);
                 }}
               />
             </PaginationItem>
@@ -88,6 +89,7 @@ const MultTextAdmin = (props: MultTextAdminProps) => {
           {getCurrentSectionsIndex() < entityAnnotationSections.length - 1 && (
             <PaginationItem>
               <PaginationNext
+                className="border p-1"
                 onClick={() => {
                   handleNextPreviousClick(true);
                 }}
