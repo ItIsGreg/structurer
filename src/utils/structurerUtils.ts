@@ -210,7 +210,6 @@ export const handleAnnotationChangeForSection = (
 export const handleAnnotationChange = (args: HandleAnnotationChangeArgs) => {
   const { value, focusedSection, focusedCategory, text, setOutline, outline } =
     args;
-
   if (!focusedCategory) {
     toastError("Please select a Category!");
     return;
@@ -260,7 +259,11 @@ export const downloadOutlinePart = (
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "download.json";
+  let filename = "download.json";
+  if (Array.isArray(outlinePart)) {
+    filename = outlinePart[0].key + ".json";
+  }
+  a.download = filename;
   a.click();
 };
 
