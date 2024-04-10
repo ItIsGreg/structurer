@@ -202,8 +202,8 @@ const StructurerUpload = (props: StructurerUploadProps) => {
             },
           ];
         });
-        console.log(sections);
         setEntityAnnotationSections(sections);
+        setOutline(sections[0]);
       });
     }
   };
