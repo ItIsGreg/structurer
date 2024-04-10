@@ -3,7 +3,15 @@ import StructurerUpload from "./StructurerUpload";
 import { useTranslation } from "@/app/i18n/client";
 
 const StructurerTextInput = (props: StructurerTextInputProps) => {
-  const { setText, text, lng, setOutline, setMode } = props;
+  const {
+    setText,
+    text,
+    lng,
+    setOutline,
+    setMode,
+    entityAnnotationSections,
+    setEntityAnnotationSections,
+  } = props;
   const { t } = useTranslation(lng, "StructurerTextInput");
 
   return (
@@ -13,6 +21,8 @@ const StructurerTextInput = (props: StructurerTextInputProps) => {
         lng={lng}
         setOutline={setOutline}
         setMode={setMode}
+        entityAnnotationSections={entityAnnotationSections}
+        setEntityAnnotationSections={setEntityAnnotationSections}
       />
       <textarea
         className="rounded"
@@ -23,6 +33,12 @@ const StructurerTextInput = (props: StructurerTextInputProps) => {
         value={text}
         id="joyride-textarea"
       ></textarea>
+      {entityAnnotationSections.length > 0 && (
+        <div>
+          There are {entityAnnotationSections.length} texts uploaded for
+          annotation.
+        </div>
+      )}
     </div>
   );
 };

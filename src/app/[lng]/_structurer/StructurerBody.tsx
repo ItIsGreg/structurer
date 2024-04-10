@@ -45,6 +45,9 @@ const StructurerBody = (props: StructurerBodyProps) => {
   const [colors, setColors] = useState<ColorStore>(
     setColorsForDefaultResources(resourcesToColor, rng)
   );
+  const [entityAnnotationSections, setEntityAnnotationSections] = useState<
+    SectionInfo[][]
+  >([]);
   const [expandedSections, setExpandedSections] = useState<ExpandedSections>(
     {}
   );
@@ -314,6 +317,8 @@ const StructurerBody = (props: StructurerBodyProps) => {
         setRunJoyride={setRunJoyride}
         annotatorMode={annotatorMode}
         setAnnotatorMode={setAnnotatorMode}
+        entityAnnotationSections={entityAnnotationSections}
+        setEntityAnnotationSections={setEntityAnnotationSections}
       />
       <StructurerWorkBench
         mode={mode}
@@ -339,6 +344,8 @@ const StructurerBody = (props: StructurerBodyProps) => {
         setRunJoyride={setRunJoyride}
         annotatorMode={annotatorMode}
         setAnnotatorMode={setAnnotatorMode}
+        entityAnnotationSections={entityAnnotationSections}
+        setEntityAnnotationSections={setEntityAnnotationSections}
       />
       <StructurerOutline
         setMode={setMode}
@@ -363,6 +370,8 @@ const StructurerBody = (props: StructurerBodyProps) => {
         setRunJoyride={setRunJoyride}
         annotatorMode={annotatorMode}
         setAnnotatorMode={setAnnotatorMode}
+        entityAnnotationSections={entityAnnotationSections}
+        setEntityAnnotationSections={setEntityAnnotationSections}
       />
     </div>
   );

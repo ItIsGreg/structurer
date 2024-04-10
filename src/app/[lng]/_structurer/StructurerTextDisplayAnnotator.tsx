@@ -29,6 +29,8 @@ const StructurerTextDisplayAnnotator = (props: StructurerTextDisplayProps) => {
     focusedSection,
     focusedCategory,
     colors,
+    entityAnnotationSections,
+    setEntityAnnotationSections,
   } = props;
 
   const [showSplitSectionModal, setShowSplitSectionModal] = useState(false);

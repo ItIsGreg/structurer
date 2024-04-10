@@ -5,7 +5,14 @@ import StructurerTextDisplayLabeler from "./StructurerTextDisplayLabeler";
 import StructurerTextDisplayAnnotator from "./StructurerTextDisplayAnnotator";
 
 const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
-  const { mode, setMode, lng, setOutline } = props;
+  const {
+    mode,
+    setMode,
+    lng,
+    setOutline,
+    entityAnnotationSections,
+    setEntityAnnotationSections,
+  } = props;
 
   return (
     <div className="flex flex-col gap-3">

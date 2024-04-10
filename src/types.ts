@@ -77,6 +77,8 @@ export interface StructurerProps {
   setRunJoyride: (runJoyride: boolean) => void;
   annotatorMode: AnnotatorModes;
   setAnnotatorMode: (annotatorMode: AnnotatorModes) => void;
+  entityAnnotationSections: SectionInfo[][];
+  setEntityAnnotationSections: (sections: SectionInfo[][]) => void;
 }
 
 export interface StructurerTextProps extends StructurerProps {
@@ -131,6 +133,13 @@ export interface EntityAttributes {
 }
 
 export interface StructurerTextDisplayProps extends StructurerTextProps {}
+
+export interface MultTextAdminProps {
+  entityAnnotationSections: SectionInfo[][];
+  setEntityAnnotationSections: (sections: SectionInfo[][]) => void;
+  outline: SectionInfo[];
+  setOutline: (outline: SectionInfo[]) => void;
+}
 
 export interface StructurerTextDisplaySectionProps
   extends StructurerTextDisplayProps {
@@ -298,6 +307,8 @@ export interface StructurerUploadProps {
   lng: string;
   setOutline: (outline: SectionInfo[]) => void;
   setMode: (mode: StructurerModes) => void;
+  entityAnnotationSections: SectionInfo[][];
+  setEntityAnnotationSections: (sections: SectionInfo[][]) => void;
 }
 
 export interface SetApiKeyModalProps {

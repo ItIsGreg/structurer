@@ -121,6 +121,20 @@ export const prepareIndexList = (
   return sectionsWithGaps;
 };
 
+export const splitFilename = (
+  filename: string
+): { baseName: string; extension: string | null } => {
+  const result = /^(.+?)(\.[^.]*$|$)/.exec(filename);
+  if (!result) {
+    return { baseName: filename, extension: null };
+  }
+
+  return {
+    baseName: result[1],
+    extension: result[2] ? result[2].slice(1) : null, // Remove the dot at the start of the extension
+  };
+};
+
 export const transformValueToEntity = (value: ValueState[], text: string) => {
   const entity: EntityElement = {
     item: text.slice(

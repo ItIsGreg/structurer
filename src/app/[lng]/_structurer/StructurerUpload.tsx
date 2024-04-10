@@ -7,9 +7,12 @@ import {
   TextExtractionApiEndpoints,
 } from "@/types";
 import { awsUrl } from "@/utils/constants";
-import { isValidSectionInfoArray } from "@/utils/structurerUtils";
+import {
+  isValidSectionInfoArray,
+  splitFilename,
+} from "@/utils/structurerUtils";
 import { useRef, useState } from "react";
-import { GrDocumentPdf, GrScan } from "react-icons/gr";
+import { GrDocumentPdf, GrScan, GrDocumentTxt } from "react-icons/gr";
 import { TiUpload } from "react-icons/ti";
 
 interface JsonData {
@@ -17,14 +20,19 @@ interface JsonData {
 }
 
 const StructurerUpload = (props: StructurerUploadProps) => {
-  const { setText, lng, setOutline, setMode } = props;
+  const { setText, lng, setOutline, setEntityAnnotationSections } = props;
 
   const [textExtractionLoading, setTextExtractionLoading] = useState(false);
   const { t } = useTranslation(lng, "StructurerUpload");
 
+  const multTxtRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
   const scanInputRef = useRef<HTMLInputElement>(null);
   const outlineUploadRef = useRef<HTMLInputElement>(null);
+
+  const handleMultTxtClick = () => {
+    multTxtRef.current?.click();
+  };
 
   const handlePdfExtractClick = () => {
     pdfInputRef.current?.click();
@@ -162,8 +170,64 @@ const StructurerUpload = (props: StructurerUploadProps) => {
     }
   };
 
+  const handleMultTxtUpload = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const files = e.target.files;
+    if (files) {
+      // Map each file to a promise that resolves to its text content and name
+      const fileReadPromises: Promise<{ name: string; text: string }>[] =
+        Array.from(files).map((file) => {
+          return new Promise<{ name: string; text: string }>((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e: ProgressEvent<FileReader>) => {
+              if (e.target?.result) {
+                const text: string = e.target.result as string;
+                resolve({ name: file.name, text: text });
+              }
+            };
+            reader.readAsText(file);
+          });
+        });
+
+      Promise.all(fileReadPromises).then((results) => {
+        const sections: SectionInfo[][] = results.map(({ name, text }) => {
+          return [
+            {
+              key: splitFilename(name).baseName,
+              text: text,
+              startIndex: 0,
+              endIndex: text.length,
+              askedFor: true,
+            },
+          ];
+        });
+        console.log(sections);
+        setEntityAnnotationSections(sections);
+      });
+    }
+  };
+
   return (
     <div className="flex flex-row gap-2 m-2">
+      <input
+        type="file"
+        multiple
+        name="txtupload"
+        className="hidden"
+        onChange={(e) => handleMultTxtUpload(e)}
+        ref={multTxtRef}
+      />
+      <button
+        className={
+          "bg-blue-500 rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105"
+        }
+        onClick={() => handleMultTxtClick()}
+      >
+        <GrDocumentTxt size={20} />
+        {t("Upload Txts for Annotation")}
+        <TiUpload size={20} />
+      </button>
       <input
         type="file"
         name="pdfupload"
