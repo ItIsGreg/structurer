@@ -1,5 +1,6 @@
 import {
   CombineSectionButtonState,
+  SectionInfo,
   StructurerTextDisplaySectionProps,
   ValueState,
 } from "@/types";
@@ -35,11 +36,21 @@ const StructurerTextDisplaySection = (
 
   let dummyValue: ValueState[] = []; // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability
 
+  // so that the user does not always have to set the focused section by hand
+  const handleOnMouveOver = (section: SectionInfo) => {
+    if (focusedSection?.key != section.key) {
+      setFocusedSection(section);
+    }
+  };
+
   return (
     <div
       ref={sectionRefs[index]}
       key={section.startIndex}
       className="border border-blue-500 rounded-md flex flex-col gap-1 p-2"
+      onMouseOver={() => {
+        handleOnMouveOver(section);
+      }}
     >
       <div className="flex flex-row justify-between gap-2">
         <div className="flex flex-grow gap-2">
