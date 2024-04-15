@@ -28,13 +28,6 @@ const StructurerWorkBenchTextInput = (
       >
         {t("Segment Text")}
       </button>
-      <Image
-        src={structurerImg}
-        alt="The shining hero that structures the medical texts"
-        width={500}
-        height={300}
-        className="rounded-full"
-      />
     </div>
   );
 };

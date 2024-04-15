@@ -29,7 +29,8 @@ const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
 
   return (
     <div className="flex flex-col items-center w-4/12 overflow-auto">
-      {mode === StructurerModes.inputText ? (
+      {mode === StructurerModes.inputText ||
+      StructurerModes.verifyLLMAnnotationsSetup ? (
         <StructurerWorkBenchTextInput
           {...props}
           gptModel={gptModel}

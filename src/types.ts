@@ -42,6 +42,7 @@ export enum StructurerModes {
   labelText,
   segmentText,
   annotateText,
+  verifyLLMAnnotationsSetup,
 }
 
 export enum AnnotatorModes {
@@ -174,7 +175,9 @@ export interface StructurerWorkBenchLabelerProps
   setGptModel: (gptModel: string) => void;
 }
 
-export interface StructurerTextInputProps extends StructurerProps {}
+export interface StructurerTextInputProps extends StructurerProps {
+  mode: StructurerModes;
+}
 
 export interface GPTModelAdminProps {
   gptModel: string;

@@ -14,9 +14,6 @@ import StructurerOutline from "./StructurerOutline";
 import seedrandom from "seedrandom";
 import { awsUrl, colorSeed, resourcesToColor } from "@/utils/constants";
 import { setColorsForDefaultResources } from "@/utils/annotator_utils";
-import dynamic from "next/dynamic";
-import { LiaMarkerSolid } from "react-icons/lia";
-import { TiDownload } from "react-icons/ti";
 
 interface StructurerBodyProps {
   params: {

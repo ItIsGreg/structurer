@@ -209,7 +209,7 @@ const StructurerUpload = (props: StructurerUploadProps) => {
   };
 
   return (
-    <div className="flex flex-row gap-2 m-2">
+    <div className="flex flex-row flex-wrap gap-2 m-2">
       <input
         type="file"
         multiple
@@ -284,6 +284,12 @@ const StructurerUpload = (props: StructurerUploadProps) => {
       >
         {t("Upload Sections")}
         <TiUpload size={20} />
+      </button>
+      <button
+        className="bg-blue-500 rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105"
+        onClick={() => props.setMode(StructurerModes.verifyLLMAnnotationsSetup)}
+      >
+        {t("Verify LLM Annotation")}
       </button>
     </div>
   );
