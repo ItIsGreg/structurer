@@ -243,7 +243,6 @@ const StructurerUpload = (props: StructurerUploadProps) => {
           textExtractionLoading ? "bg-gray-500" : "bg-blue-500"
         } rounded-md flex flex-row gap-1 items-center p-1 transform hover:scale-105`}
         onClick={() => handlePdfExtractClick()}
-        id="joyride-extract-text-pdf" // Used for testing, REMOVE
       >
         <GrDocumentPdf size={20} />
         {t("Extract Text from PDF")}

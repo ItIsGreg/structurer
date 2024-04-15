@@ -7,14 +7,7 @@ import { defaultGPTModel, dummySections } from "@/utils/constants";
 import StructurerWorkBenchAnnotator from "./StructurerWorkBenchAnnotator";
 
 const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
-  const {
-    mode,
-    text,
-    setOutline,
-    setFocusedSection,
-    runJoyride,
-    setRunJoyride,
-  } = props;
+  const { mode, text, setOutline, setFocusedSection } = props;
   const [gptModel, setGPTModel] = useState<string>(defaultGPTModel);
 
   const labelerSection = {
@@ -41,8 +34,6 @@ const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
           {...props}
           gptModel={gptModel}
           setGptModel={setGPTModel}
-          setRunJoyride={setRunJoyride}
-          runJoyride={runJoyride}
         />
       ) : mode === StructurerModes.segmentText ? (
         <StructurerWorkBenchSegmenter

@@ -97,7 +97,6 @@ const StructurerTextDisplaySegmenter = (props: StructurerTextDisplayProps) => {
       <button
         className="flex justify-center items-center p-1"
         onClick={() => handleExpandAll()}
-        id="joyride-expand-all"
       >
         <ExpandAccordionToggle isOpen={!checkAllClosed()} size={26} />
         {checkAllClosed() ? t("Expand all") : t("Collapse all")}

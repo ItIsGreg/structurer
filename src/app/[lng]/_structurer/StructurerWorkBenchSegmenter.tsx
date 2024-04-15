@@ -98,7 +98,6 @@ const StructurerWorkBenchSegmenter = (
           isLoading ? "bg-gray-500" : "bg-blue-500"
         } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
         disabled={isLoading}
-        id="joyride-find-sections"
       >
         {isLoading ? t("Loading") : t("Find Sections")}
         {isLoading && <PuffLoader size={20} />}

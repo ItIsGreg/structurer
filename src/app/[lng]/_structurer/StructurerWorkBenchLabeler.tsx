@@ -237,14 +237,13 @@ const StructurerWorkBenchLabeler = (props: StructurerWorkBenchLabelerProps) => {
         } rounded-md transform hover:scale-y-105 flex flex-row gap-2 p-2 justify-center items-center`}
         disabled={isLoading || !focusedSection}
         onClick={async () => await handleLLMLabel("2", true)}
-        id="joyride-find-entities"
       >
         {isLoading ? t("Loading") : t("Find Entities")}
         {isLoading && <PuffLoader size={20} />}
       </button>
       <GPTModelAdmin gptModel={gptModel} setGptModel={setGptModel} />
       <ApiKeyAdmin lng={lng} />
-      <div id="joyride-find-label-button"></div>
+      <div></div>
     </div>
   );
 };

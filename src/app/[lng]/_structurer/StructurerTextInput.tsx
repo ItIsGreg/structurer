@@ -31,7 +31,6 @@ const StructurerTextInput = (props: StructurerTextInputProps) => {
         placeholder={t("Or, paste a medical text to be structured here")}
         onChange={(e) => setText(e.target.value)}
         value={text}
-        id="joyride-textarea"
       ></textarea>
       {entityAnnotationSections.length > 0 && (
         <div>
