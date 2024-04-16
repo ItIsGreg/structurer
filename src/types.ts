@@ -43,6 +43,13 @@ export enum StructurerModes {
   segmentText,
   annotateText,
   verifyLLMAnnotationsSetup,
+  verifyLLMAnnotations,
+}
+
+export interface PredGtMapping {
+  case: string;
+  pred: SectionInfo[];
+  gt: SectionInfo[];
 }
 
 export enum AnnotatorModes {
@@ -78,6 +85,15 @@ export interface StructurerProps {
   setAnnotatorMode: (annotatorMode: AnnotatorModes) => void;
   entityAnnotationSections: SectionInfo[][];
   setEntityAnnotationSections: (sections: SectionInfo[][]) => void;
+  matchedGtAndPred: PredGtMapping[];
+  setMatchedGtAndPred: (matchedGtAndPred: PredGtMapping[]) => void;
+  currentMatchedGtAndPredIndex: number;
+  setCurrentMatchedGtAndPredIndex: (index: number) => void;
+}
+
+export interface StructurerLLMVerificationUpsetterProps {
+  matchedGtAndPred: PredGtMapping[];
+  setMatchedGtAndPred: (matchedGtAndPred: PredGtMapping[]) => void;
 }
 
 export interface StructurerTextProps extends StructurerProps {
@@ -138,6 +154,13 @@ export interface MultTextAdminProps {
   setEntityAnnotationSections: (sections: SectionInfo[][]) => void;
   outline: SectionInfo[];
   setOutline: (outline: SectionInfo[]) => void;
+}
+
+export interface LLMVerificationAdminProps {
+  matchedGtAndPred: PredGtMapping[];
+  currentMatchedGtAndPredIndex: number;
+  setCurrentMatchedGtAndPredIndex: (index: number) => void;
+  setExpandedSections: (expandedSections: ExpandedSections) => void;
 }
 
 export interface StructurerTextDisplaySectionProps

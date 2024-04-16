@@ -86,27 +86,29 @@ const StructurerTextDisplaySection = (
           lng={lng}
         />
       </div>
-      {section.text && expandedSections[section.key] && (
-        <TextAnnotator
-          content={section.text}
-          onChange={(value) =>
-            handleAnnotationChange({
-              value: value,
-              outline: outline,
-              setOutline: setOutline,
-              focusedSection:
-                focusedSection?.key === section.key
-                  ? focusedSection
-                  : undefined,
-              focusedCategory: focusedCategory,
-              text: focusedSection?.text,
-            })
-          }
-          value={dummyValue} // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability
-          colors={colors}
-          setOutline={() => {}}
-          outline={outline.find((sec) => sec.key === section.key)?.entities}
-        />
+      {section.text && (
+        <div className="whitespace-pre">
+          <TextAnnotator
+            content={section.text}
+            onChange={(value) =>
+              handleAnnotationChange({
+                value: value,
+                outline: outline,
+                setOutline: setOutline,
+                focusedSection:
+                  focusedSection?.key === section.key
+                    ? focusedSection
+                    : undefined,
+                focusedCategory: focusedCategory,
+                text: focusedSection?.text,
+              })
+            }
+            value={dummyValue} // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability
+            colors={colors}
+            setOutline={() => {}}
+            outline={section.entities}
+          />
+        </div>
       )}
       <div className="flex justify-end">
         <StructurerSectionCombineButton

@@ -5,9 +5,17 @@ import StructurerWorkBenchLabeler from "./StructurerWorkBenchLabeler";
 import { useEffect, useState } from "react";
 import { defaultGPTModel, dummySections } from "@/utils/constants";
 import StructurerWorkBenchAnnotator from "./StructurerWorkBenchAnnotator";
+import StructurerTextDisplaySection from "./StructurerTextDisplaySection";
 
 const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
-  const { mode, text, setOutline, setFocusedSection } = props;
+  const {
+    mode,
+    text,
+    setOutline,
+    setFocusedSection,
+    matchedGtAndPred,
+    currentMatchedGtAndPredIndex,
+  } = props;
   const [gptModel, setGPTModel] = useState<string>(defaultGPTModel);
 
   const labelerSection = {
@@ -28,9 +36,13 @@ const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
   }, [mode]);
 
   return (
-    <div className="flex flex-col items-center w-4/12 overflow-auto">
+    <div
+      className={`flex flex-col items-center ${
+        mode === StructurerModes.verifyLLMAnnotations ? "w-6/12" : "w-4/12"
+      } overflow-auto`}
+    >
       {mode === StructurerModes.inputText ||
-      StructurerModes.verifyLLMAnnotationsSetup ? (
+      mode === StructurerModes.verifyLLMAnnotationsSetup ? (
         <StructurerWorkBenchTextInput
           {...props}
           gptModel={gptModel}
@@ -53,6 +65,19 @@ const StructurerWorkBench = (props: StructurerWorkBenchProps) => {
           {...props}
           gptModel={gptModel}
           setGptModel={setGPTModel}
+        />
+      ) : mode === StructurerModes.verifyLLMAnnotations ? (
+        <StructurerTextDisplaySection
+          key={
+            matchedGtAndPred[currentMatchedGtAndPredIndex].pred[0].startIndex
+          }
+          {...props}
+          section={matchedGtAndPred[currentMatchedGtAndPredIndex].pred[0]}
+          index={0}
+          setRenameSection={() => {}}
+          setShowSectionRenameModal={() => {}}
+          setShowSplitSectionModal={() => {}}
+          setSplitSection={() => {}}
         />
       ) : null}
     </div>

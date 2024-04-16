@@ -1,5 +1,3 @@
-import Image from "next/image";
-import structurerImg from "@/../data/img/structurer.png";
 import { StructurerModes, StructurerWorkBenchTextInputProps } from "@/types";
 import { useTranslation } from "@/app/i18n/client";
 
@@ -27,6 +25,12 @@ const StructurerWorkBenchTextInput = (
         onClick={() => props.setMode(StructurerModes.segmentText)}
       >
         {t("Segment Text")}
+      </button>
+      <button
+        className="bg-blue-500 rounded-md text-white w-full transform hover:bg-blue-700 hover:scale-110"
+        onClick={() => props.setMode(StructurerModes.verifyLLMAnnotations)}
+      >
+        {t("Verify LLM Annotation")}
       </button>
     </div>
   );

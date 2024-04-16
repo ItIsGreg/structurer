@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { SectionInfo } from "@/types";
-import { splitFilename } from "@/utils/structurerUtils";
+import { SectionInfo, StructurerLLMVerificationUpsetterProps } from "@/types";
 import { useRef, useState } from "react";
 
 interface CaseSectionMapping {
@@ -14,10 +13,13 @@ interface PredGtMapping {
   gt: SectionInfo[];
 }
 
-const StructurerLLMVerificationUpsetter = () => {
+const StructurerLLMVerificationUpsetter = (
+  props: StructurerLLMVerificationUpsetterProps
+) => {
+  const { matchedGtAndPred, setMatchedGtAndPred } = props;
+
   const [gtSections, setGtSections] = useState<CaseSectionMapping[]>([]);
   const [predSections, setPredSections] = useState<CaseSectionMapping[]>([]);
-  const [matchedGtAndPred, setMatchedGtAndPred] = useState<PredGtMapping[]>([]);
 
   const predUploadRef = useRef<HTMLInputElement>(null);
   const gtUploadRef = useRef<HTMLInputElement>(null);

@@ -7,6 +7,7 @@ import {
   ColorStore,
   ExpandedSections,
   AnnotatorModes,
+  PredGtMapping,
 } from "@/types";
 import StructurerText from "./StructurerText";
 import StructurerWorkBench from "./StructurerWorkBench";
@@ -42,6 +43,9 @@ const StructurerBody = (props: StructurerBodyProps) => {
   const [annotatorMode, setAnnotatorMode] = useState<AnnotatorModes>(
     AnnotatorModes.segmentText
   );
+  const [matchedGtAndPred, setMatchedGtAndPred] = useState<PredGtMapping[]>([]);
+  const [currentMatchedGtAndPredIndex, setCurrentMatchedGtAndPredIndex] =
+    useState<number>(0);
 
   useEffect(() => {
     const newExpandedSections: ExpandedSections = {};
@@ -106,6 +110,10 @@ const StructurerBody = (props: StructurerBodyProps) => {
         setAnnotatorMode={setAnnotatorMode}
         entityAnnotationSections={entityAnnotationSections}
         setEntityAnnotationSections={setEntityAnnotationSections}
+        matchedGtAndPred={matchedGtAndPred}
+        setMatchedGtAndPred={setMatchedGtAndPred}
+        currentMatchedGtAndPredIndex={currentMatchedGtAndPredIndex}
+        setCurrentMatchedGtAndPredIndex={setCurrentMatchedGtAndPredIndex}
       />
       <StructurerWorkBench
         mode={mode}
@@ -131,31 +139,41 @@ const StructurerBody = (props: StructurerBodyProps) => {
         setAnnotatorMode={setAnnotatorMode}
         entityAnnotationSections={entityAnnotationSections}
         setEntityAnnotationSections={setEntityAnnotationSections}
+        matchedGtAndPred={matchedGtAndPred}
+        setMatchedGtAndPred={setMatchedGtAndPred}
+        currentMatchedGtAndPredIndex={currentMatchedGtAndPredIndex}
+        setCurrentMatchedGtAndPredIndex={setCurrentMatchedGtAndPredIndex}
       />
-      <StructurerOutline
-        setMode={setMode}
-        text={text}
-        setText={setText}
-        llmResponse={llmResponse}
-        setLlmResponse={setLlmResponse}
-        outline={outline}
-        setOutline={setOutline}
-        focusedSection={focusSection}
-        setFocusedSection={setFocusSection}
-        sectionRefs={sectionRefs}
-        focusedCategory={focusedCategory}
-        setFocusedCategory={setFocusedCategory}
-        colors={colors}
-        setColors={setColors}
-        rng={rng}
-        expandedSections={expandedSections}
-        setExpandedSections={setExpandedSections}
-        lng={lng}
-        annotatorMode={annotatorMode}
-        setAnnotatorMode={setAnnotatorMode}
-        entityAnnotationSections={entityAnnotationSections}
-        setEntityAnnotationSections={setEntityAnnotationSections}
-      />
+      {mode === StructurerModes.verifyLLMAnnotations ? null : (
+        <StructurerOutline
+          setMode={setMode}
+          text={text}
+          setText={setText}
+          llmResponse={llmResponse}
+          setLlmResponse={setLlmResponse}
+          outline={outline}
+          setOutline={setOutline}
+          focusedSection={focusSection}
+          setFocusedSection={setFocusSection}
+          sectionRefs={sectionRefs}
+          focusedCategory={focusedCategory}
+          setFocusedCategory={setFocusedCategory}
+          colors={colors}
+          setColors={setColors}
+          rng={rng}
+          expandedSections={expandedSections}
+          setExpandedSections={setExpandedSections}
+          lng={lng}
+          annotatorMode={annotatorMode}
+          setAnnotatorMode={setAnnotatorMode}
+          entityAnnotationSections={entityAnnotationSections}
+          setEntityAnnotationSections={setEntityAnnotationSections}
+          matchedGtAndPred={matchedGtAndPred}
+          setMatchedGtAndPred={setMatchedGtAndPred}
+          currentMatchedGtAndPredIndex={currentMatchedGtAndPredIndex}
+          setCurrentMatchedGtAndPredIndex={setCurrentMatchedGtAndPredIndex}
+        />
+      )}
     </div>
   );
 };
