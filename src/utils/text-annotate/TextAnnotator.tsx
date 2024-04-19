@@ -7,7 +7,13 @@ import {
   splitWithOutline,
 } from "./utils";
 import { Span } from "./span";
-import { ColorStore, Entities, OutlineArrayItem, EntityElement } from "@/types";
+import {
+  ColorStore,
+  Entities,
+  OutlineArrayItem,
+  EntityElement,
+  SectionInfo,
+} from "@/types";
 import { random } from "lodash";
 
 export interface SplitProps {
@@ -47,8 +53,10 @@ interface TextSpan extends Span {
 }
 
 type TextBaseProps<T> = {
-  outline?: Entities;
-  setOutline: (outline: Entities) => void;
+  entities?: Entities;
+  setOutline: (sections: SectionInfo[]) => void;
+  sections: SectionInfo[];
+  focusedSection: SectionInfo | undefined;
   content: string;
   value: T[];
   onChange: (value: T[]) => any;
@@ -99,20 +107,35 @@ export const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
   };
 
   const handleSplitClick = (outlineItem: OutlineArrayItem) => {
-    if (props.outline && outlineItem) {
-      props.setOutline({
-        ...props.outline,
-        [outlineItem.resourceType]: props.outline[
-          outlineItem.resourceType
-        ].filter((entity) => {
-          return entity.item !== outlineItem.item;
-        }),
-      });
+    if (props.entities && outlineItem) {
+      props.setOutline(
+        props.sections.map((section) => {
+          if (section.key != props.focusedSection?.key) {
+            return section;
+          } else {
+            return {
+              key: section.key,
+              startIndex: section.startIndex,
+              endIndex: section.endIndex,
+              askedFor: section.askedFor,
+              text: section.text,
+              entities: {
+                ...section.entities,
+                [outlineItem.resourceType]: section.entities![
+                  outlineItem.resourceType
+                ].filter((entity) => {
+                  return entity.item !== outlineItem.item;
+                }),
+              },
+            };
+          }
+        })
+      );
     }
   };
 
   const { content, value, style } = props;
-  const splits = splitWithOutline(content, value, props.colors, props.outline);
+  const splits = splitWithOutline(content, value, props.colors, props.entities);
   return (
     <div onMouseUp={handleMouseUp} className="overflow-auto max-w-3xl">
       {splits.map((split) => (

@@ -105,8 +105,10 @@ const StructurerTextDisplaySection = (
             }
             value={dummyValue} // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability
             colors={colors}
-            setOutline={() => {}}
-            outline={section.entities}
+            setOutline={setOutline}
+            entities={section.entities}
+            sections={outline}
+            focusedSection={focusedSection}
           />
         </div>
       )}

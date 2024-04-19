@@ -29,8 +29,6 @@ const StructurerTextDisplayAnnotator = (props: StructurerTextDisplayProps) => {
     focusedSection,
     focusedCategory,
     colors,
-    entityAnnotationSections,
-    setEntityAnnotationSections,
   } = props;
 
   const [showSplitSectionModal, setShowSplitSectionModal] = useState(false);
@@ -126,9 +124,10 @@ const StructurerTextDisplayAnnotator = (props: StructurerTextDisplayProps) => {
         <div className="whitespace-pre">
           <TextAnnotator
             content={text}
-            outline={dummyOutline[0].entities}
+            entities={dummyOutline[0].entities}
+            sections={outline}
+            focusedSection={focusedSection}
             onChange={(value) =>
-              // handleAnnotationChange({
               handleAnnotationChangeForSection({
                 value: value,
                 outline: outline,
@@ -140,7 +139,7 @@ const StructurerTextDisplayAnnotator = (props: StructurerTextDisplayProps) => {
             }
             value={dummyValue} // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability
             colors={colors}
-            setOutline={() => {}}
+            setOutline={setOutline}
           />
         </div>
       ) : null}

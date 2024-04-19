@@ -16,7 +16,9 @@ const StructurerTextDisplayLabeler = (props: StructurerTextDisplayProps) => {
       {outline[0] && (
         <TextAnnotator
           content={text}
-          outline={outline[0].entities}
+          entities={outline[0].entities}
+          sections={outline}
+          focusedSection={focusedSection}
           onChange={(value) =>
             // handleAnnotationChange({
             handleAnnotationChangeForSection({
@@ -30,7 +32,7 @@ const StructurerTextDisplayLabeler = (props: StructurerTextDisplayProps) => {
           }
           value={dummyValue} // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability
           colors={colors}
-          setOutline={() => {}}
+          setOutline={setOutline}
         />
       )}
       ;
