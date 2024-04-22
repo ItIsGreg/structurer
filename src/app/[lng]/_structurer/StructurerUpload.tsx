@@ -20,7 +20,14 @@ interface JsonData {
 }
 
 const StructurerUpload = (props: StructurerUploadProps) => {
-  const { setText, lng, setOutline, setEntityAnnotationSections } = props;
+  const {
+    setText,
+    lng,
+    setOutline,
+    setEntityAnnotationSections,
+    setAnnotationDocuments,
+    annotationDocuments,
+  } = props;
 
   const [textExtractionLoading, setTextExtractionLoading] = useState(false);
   const { t } = useTranslation(lng, "StructurerUpload");
@@ -202,6 +209,14 @@ const StructurerUpload = (props: StructurerUploadProps) => {
             },
           ];
         });
+        const annotationDocuments = results.map(({ name, text }) => {
+          return {
+            name: name,
+            text: text,
+            sections: [],
+          };
+        });
+        setAnnotationDocuments(annotationDocuments);
         setEntityAnnotationSections(sections);
         setOutline(sections[0]);
       });

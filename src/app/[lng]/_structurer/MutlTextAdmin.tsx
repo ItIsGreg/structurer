@@ -1,4 +1,4 @@
-import { MultTextAdminProps, SectionInfo } from "@/types";
+import { AnnotationDocument, MultTextAdminProps, SectionInfo } from "@/types";
 import {
   Pagination,
   PaginationContent,
@@ -8,63 +8,71 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useEffect } from "react";
 
 const MultTextAdmin = (props: MultTextAdminProps) => {
   const {
-    entityAnnotationSections,
-    setEntityAnnotationSections,
-    outline,
-    setOutline,
+    annotationDocumentIndex,
+    setAnnotationDocumentIndex,
+    annotationDocuments,
   } = props;
 
-  const saveCurrentSections = () => {
-    setEntityAnnotationSections(
-      entityAnnotationSections.map((sections) => {
-        if (outline[0].key === sections[0].key) {
-          return outline;
-        } else {
-          return sections;
-        }
-      })
-    );
-  };
+  useEffect(() => {
+    // Define the function to handle the keydown event
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowLeft":
+          handleNextPreviousClick(false);
+          break;
+        case "ArrowRight":
+          handleNextPreviousClick(true);
+          break;
+        default:
+          // Handle other keys if needed
+          break;
+      }
+    };
 
-  const getCurrentSectionsIndex = () => {
-    // section might have been altered by annotation
-    const correspondingSection = entityAnnotationSections.filter((sections) => {
-      return sections[0].key === outline[0].key;
-    });
-    const currentIndex = entityAnnotationSections.indexOf(
-      correspondingSection[0]
-    );
-    return currentIndex;
-  };
+    // Add the event listener to the window
+    window.addEventListener("keydown", handleKeyDown);
 
-  const handleItemClick = (section: SectionInfo[]) => {
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [annotationDocumentIndex]);
+
+  const handleItemClick = (annotationDocument: AnnotationDocument) => {
     // save current sections that were edited
-    saveCurrentSections();
+    const documentIndex = getDocumentIndex(annotationDocument);
+    setAnnotationDocumentIndex(documentIndex);
     // set new outline
-    setOutline(section);
   };
 
   const handleNextPreviousClick = (next: boolean) => {
-    const currentIndex = getCurrentSectionsIndex();
-    saveCurrentSections();
-    // set next outline
-    let nextIndex = currentIndex;
+    let nextIndex = annotationDocumentIndex;
     if (next) {
       nextIndex++; // Move to the next item if 'next' is true
     } else {
       nextIndex--; // Move to the previous item if 'next' is false
     }
-    setOutline(entityAnnotationSections[nextIndex]);
+    if (nextIndex >= 0 && nextIndex <= annotationDocuments.length - 1) {
+      setAnnotationDocumentIndex(nextIndex);
+    }
+  };
+
+  const getDocumentIndex = (annotationDocument: AnnotationDocument) => {
+    const index = annotationDocuments.findIndex(
+      (document) => document.name === annotationDocument.name
+    );
+    return index;
   };
 
   return (
     <div>
       <Pagination>
         <PaginationContent>
-          {getCurrentSectionsIndex() > 0 && (
+          {annotationDocumentIndex > 0 && (
             <PaginationItem>
               <PaginationPrevious
                 className="border p-1"
@@ -74,19 +82,19 @@ const MultTextAdmin = (props: MultTextAdminProps) => {
               />
             </PaginationItem>
           )}
-          {entityAnnotationSections.map((section: SectionInfo[]) => {
+          {annotationDocuments.map((annotationDocument) => {
             return (
               <PaginationItem
-                key={section[0].key}
+                key={annotationDocument.name}
                 onClick={() => {
-                  handleItemClick(section);
+                  handleItemClick(annotationDocument);
                 }}
               >
-                {section[0].key}
+                {annotationDocument.name}
               </PaginationItem>
             );
           })}
-          {getCurrentSectionsIndex() < entityAnnotationSections.length - 1 && (
+          {annotationDocumentIndex < annotationDocuments.length - 1 && (
             <PaginationItem>
               <PaginationNext
                 className="border p-1"

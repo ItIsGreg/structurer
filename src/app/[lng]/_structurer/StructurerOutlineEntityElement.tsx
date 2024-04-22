@@ -5,25 +5,63 @@ import { Tooltip } from "react-tooltip";
 const StructurerOutlineEntityElement = (
   props: StructurerOutlineEntityElementProps
 ) => {
-  const { outline, setOutline, section, entity, entityElement, entityName } =
-    props;
+  const {
+    // outline, setOutline,
+    section,
+    entity,
+    entityElement,
+    entityName,
+    annotationDocumentIndex,
+    annotationDocuments,
+    setAnnotationDocuments,
+  } = props;
 
   const handleXClick = () => {
-    setOutline(
-      outline.map((outlineSection) => {
-        if (outlineSection.key === section.key) {
-          return {
-            ...outlineSection,
-            entities: {
-              ...outlineSection.entities,
-              [entityName]: entity.filter((e) => e.item !== entityElement.item),
-            },
-          };
+    setAnnotationDocuments(
+      annotationDocuments.map((annotationDocument) => {
+        if (
+          annotationDocument.name !==
+          annotationDocuments[annotationDocumentIndex].name
+        ) {
+          return annotationDocument;
         } else {
-          return outlineSection;
+          return {
+            name: annotationDocument.name,
+            text: annotationDocument.text,
+            sections: annotationDocument.sections.map((documentSection) => {
+              if (
+                documentSection.key === section.key &&
+                documentSection.entities
+              ) {
+                const { [entityName]: _, ...remainingEntities } =
+                  documentSection.entities;
+                return {
+                  ...documentSection,
+                  entities: remainingEntities,
+                };
+              } else {
+                return documentSection;
+              }
+            }),
+          };
         }
       })
     );
+    // setOutline(
+    //   outline.map((outlineSection) => {
+    //     if (outlineSection.key === section.key) {
+    //       return {
+    //         ...outlineSection,
+    //         entities: {
+    //           ...outlineSection.entities,
+    //           [entityName]: entity.filter((e) => e.item !== entityElement.item),
+    //         },
+    //       };
+    //     } else {
+    //       return outlineSection;
+    //     }
+    //   })
+    // );
   };
 
   // Function to create a valid ID

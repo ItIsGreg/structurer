@@ -1,7 +1,6 @@
 import { StructurerModes, StructurerTextInputProps } from "@/types";
 import StructurerUpload from "./StructurerUpload";
 import { useTranslation } from "@/app/i18n/client";
-import { divide } from "lodash";
 
 const StructurerTextInput = (props: StructurerTextInputProps) => {
   const {
@@ -13,6 +12,8 @@ const StructurerTextInput = (props: StructurerTextInputProps) => {
     entityAnnotationSections,
     setEntityAnnotationSections,
     mode,
+    annotationDocuments,
+    setAnnotationDocuments,
   } = props;
   const { t } = useTranslation(lng, "StructurerTextInput");
 
@@ -25,6 +26,8 @@ const StructurerTextInput = (props: StructurerTextInputProps) => {
         setMode={setMode}
         entityAnnotationSections={entityAnnotationSections}
         setEntityAnnotationSections={setEntityAnnotationSections}
+        annotationDocuments={annotationDocuments}
+        setAnnotationDocuments={setAnnotationDocuments}
       />
       {mode === StructurerModes.verifyLLMAnnotationsSetup ? (
         <div></div>

@@ -29,6 +29,9 @@ const StructurerTextDisplayAnnotator = (props: StructurerTextDisplayProps) => {
     focusedSection,
     focusedCategory,
     colors,
+    annotationDocuments,
+    annotationDocumentIndex,
+    setAnnotationDocuments,
   } = props;
 
   const [showSplitSectionModal, setShowSplitSectionModal] = useState(false);
@@ -123,18 +126,19 @@ const StructurerTextDisplayAnnotator = (props: StructurerTextDisplayProps) => {
       ) : annotatorMode === AnnotatorModes.segmentText ? (
         <div className="whitespace-pre">
           <TextAnnotator
-            content={text}
+            content={annotationDocuments[annotationDocumentIndex].text}
             entities={dummyOutline[0].entities}
-            sections={outline}
+            sections={annotationDocuments[annotationDocumentIndex].sections}
             focusedSection={focusedSection}
             onChange={(value) =>
               handleAnnotationChangeForSection({
                 value: value,
-                outline: outline,
-                setOutline: setOutline,
                 focusedSection: focusedSection,
                 focusedCategory: focusedCategory,
-                text: text,
+                text: annotationDocuments[annotationDocumentIndex].text,
+                annotationDocumentIndex: annotationDocumentIndex,
+                annotationDocuments: annotationDocuments,
+                setAnnotationDocuments: setAnnotationDocuments,
               })
             }
             value={dummyValue} // need this somehow so that the type in the TextAnnotator is not never... might be nice to get rid off for usability

@@ -6,6 +6,12 @@ export interface OptionType {
   value: string;
 }
 
+export interface AnnotationDocument {
+  name: string;
+  text: string;
+  sections: SectionInfo[];
+}
+
 export interface SectionInfo {
   key: string;
   startIndex: number;
@@ -89,6 +95,10 @@ export interface StructurerProps {
   setMatchedGtAndPred: (matchedGtAndPred: PredGtMapping[]) => void;
   currentMatchedGtAndPredIndex: number;
   setCurrentMatchedGtAndPredIndex: (index: number) => void;
+  annotationDocuments: AnnotationDocument[];
+  setAnnotationDocuments: (annotationDocuments: AnnotationDocument[]) => void;
+  annotationDocumentIndex: number;
+  setAnnotationDocumentIndex: (index: number) => void;
 }
 
 export interface StructurerLLMVerificationUpsetterProps {
@@ -150,10 +160,10 @@ export interface EntityAttributes {
 export interface StructurerTextDisplayProps extends StructurerTextProps {}
 
 export interface MultTextAdminProps {
-  entityAnnotationSections: SectionInfo[][];
-  setEntityAnnotationSections: (sections: SectionInfo[][]) => void;
-  outline: SectionInfo[];
-  setOutline: (outline: SectionInfo[]) => void;
+  annotationDocuments: AnnotationDocument[];
+  setAnnotationDocuments: (annotationDocuments: AnnotationDocument[]) => void;
+  annotationDocumentIndex: number;
+  setAnnotationDocumentIndex: (annotationDocumentIndex: number) => void;
 }
 
 export interface LLMVerificationAdminProps {
@@ -331,10 +341,18 @@ export interface StructurerUploadProps {
   setMode: (mode: StructurerModes) => void;
   entityAnnotationSections: SectionInfo[][];
   setEntityAnnotationSections: (sections: SectionInfo[][]) => void;
+  annotationDocuments: AnnotationDocument[];
+  setAnnotationDocuments: (annotationDocuments: AnnotationDocument[]) => void;
 }
 
 export interface SetApiKeyModalProps {
   setShowSetApiKeyModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface AnnotationModeSelectModalProps {
+  setShowAnnotationModeSelectModal: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
 }
 
 export interface SetEntityAttributesModalProps {

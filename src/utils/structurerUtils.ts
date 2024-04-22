@@ -9,6 +9,7 @@ import {
   MatchedEntitiesLLM,
   EntityAttributes,
   EntityElementAttributes,
+  AnnotationDocument,
 } from "@/types";
 import { FormEvent } from "react";
 import { addMatches } from "./annotator_utils";
@@ -151,8 +152,9 @@ interface HandleAnnotationChangeArgs {
   focusedSection: SectionInfo | undefined;
   focusedCategory: string | undefined;
   text: string | undefined;
-  setOutline: (outline: SectionInfo[]) => void;
-  outline: SectionInfo[];
+  setAnnotationDocuments: (annotationDocuments: AnnotationDocument[]) => void;
+  annotationDocuments: AnnotationDocument[];
+  annotationDocumentIndex: number;
 }
 
 const getNumberString = (number: number) => {
@@ -181,8 +183,15 @@ const transformValueToSection = (
 export const handleAnnotationChangeForSection = (
   args: HandleAnnotationChangeArgs
 ) => {
-  const { value, focusedSection, focusedCategory, text, setOutline, outline } =
-    args;
+  const {
+    value,
+    focusedSection,
+    focusedCategory,
+    text,
+    setAnnotationDocuments,
+    annotationDocuments,
+    annotationDocumentIndex,
+  } = args;
 
   if (!focusedCategory) {
     toastError("Please select a Category!");
@@ -193,7 +202,9 @@ export const handleAnnotationChangeForSection = (
     return;
   }
   if (Array.isArray(value)) {
-    const categoryCounter = outline.filter((section) =>
+    const categoryCounter = annotationDocuments[
+      annotationDocumentIndex
+    ].sections.filter((section) =>
       section.key.includes(focusedCategory)
     ).length;
     const newSection = transformValueToSection(
@@ -203,7 +214,23 @@ export const handleAnnotationChangeForSection = (
       categoryCounter
     );
     // add new section to outline
-    setOutline([...outline, newSection]);
+    setAnnotationDocuments(
+      annotationDocuments.map((annotationDocument) => {
+        if (
+          annotationDocument.name !=
+          annotationDocuments[annotationDocumentIndex].name
+        ) {
+          return annotationDocument;
+        } else {
+          return {
+            name: annotationDocument.name,
+            text: annotationDocument.text,
+            sections: [...annotationDocument.sections, newSection],
+          };
+        }
+      })
+    );
+    // setOutline([...outline, newSection]);
   }
 };
 

@@ -11,9 +11,10 @@ const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
     setMode,
     lng,
     setOutline,
-    entityAnnotationSections,
-    setEntityAnnotationSections,
-    outline,
+    annotationDocumentIndex,
+    setAnnotationDocumentIndex,
+    annotationDocuments,
+    setAnnotationDocuments,
   } = props;
 
   return (
@@ -35,10 +36,10 @@ const StructurerTextDisplay = (props: StructurerTextDisplayProps) => {
         lng={lng}
       />
       <MultTextAdmin
-        entityAnnotationSections={entityAnnotationSections}
-        setEntityAnnotationSections={setEntityAnnotationSections}
-        outline={outline}
-        setOutline={setOutline}
+        annotationDocumentIndex={annotationDocumentIndex}
+        setAnnotationDocumentIndex={setAnnotationDocumentIndex}
+        annotationDocuments={annotationDocuments}
+        setAnnotationDocuments={setAnnotationDocuments}
       />
     </div>
   );

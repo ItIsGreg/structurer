@@ -8,6 +8,7 @@ import {
   ExpandedSections,
   AnnotatorModes,
   PredGtMapping,
+  AnnotationDocument,
 } from "@/types";
 import StructurerText from "./StructurerText";
 import StructurerWorkBench from "./StructurerWorkBench";
@@ -23,6 +24,11 @@ interface StructurerBodyProps {
 }
 
 const StructurerBody = (props: StructurerBodyProps) => {
+  const dummyAnnotationDocument: AnnotationDocument = {
+    name: "",
+    text: "",
+    sections: [],
+  };
   const lng = props.params.lng;
   const [text, setText] = useState("");
   const [mode, setMode] = useState<StructurerModes>(StructurerModes.inputText);
@@ -34,6 +40,11 @@ const StructurerBody = (props: StructurerBodyProps) => {
   const [colors, setColors] = useState<ColorStore>(
     setColorsForDefaultResources(resourcesToColor, rng)
   );
+  const [annotationDocuments, setAnnotationDocuments] = useState<
+    AnnotationDocument[]
+  >([dummyAnnotationDocument]);
+  const [annotationDocumentIndex, setAnnotationDocumentIndex] =
+    useState<number>(0);
   const [entityAnnotationSections, setEntityAnnotationSections] = useState<
     SectionInfo[][]
   >([]);
@@ -114,6 +125,10 @@ const StructurerBody = (props: StructurerBodyProps) => {
         setMatchedGtAndPred={setMatchedGtAndPred}
         currentMatchedGtAndPredIndex={currentMatchedGtAndPredIndex}
         setCurrentMatchedGtAndPredIndex={setCurrentMatchedGtAndPredIndex}
+        annotationDocuments={annotationDocuments}
+        setAnnotationDocuments={setAnnotationDocuments}
+        annotationDocumentIndex={annotationDocumentIndex}
+        setAnnotationDocumentIndex={setAnnotationDocumentIndex}
       />
       <StructurerWorkBench
         mode={mode}
@@ -143,6 +158,10 @@ const StructurerBody = (props: StructurerBodyProps) => {
         setMatchedGtAndPred={setMatchedGtAndPred}
         currentMatchedGtAndPredIndex={currentMatchedGtAndPredIndex}
         setCurrentMatchedGtAndPredIndex={setCurrentMatchedGtAndPredIndex}
+        annotationDocuments={annotationDocuments}
+        setAnnotationDocuments={setAnnotationDocuments}
+        annotationDocumentIndex={annotationDocumentIndex}
+        setAnnotationDocumentIndex={setAnnotationDocumentIndex}
       />
       {mode === StructurerModes.verifyLLMAnnotations ? null : (
         <StructurerOutline
@@ -172,6 +191,10 @@ const StructurerBody = (props: StructurerBodyProps) => {
           setMatchedGtAndPred={setMatchedGtAndPred}
           currentMatchedGtAndPredIndex={currentMatchedGtAndPredIndex}
           setCurrentMatchedGtAndPredIndex={setCurrentMatchedGtAndPredIndex}
+          annotationDocuments={annotationDocuments}
+          setAnnotationDocuments={setAnnotationDocuments}
+          annotationDocumentIndex={annotationDocumentIndex}
+          setAnnotationDocumentIndex={setAnnotationDocumentIndex}
         />
       )}
     </div>

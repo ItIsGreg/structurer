@@ -7,18 +7,23 @@ import { TiDelete } from "react-icons/ti";
 
 const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
   const {
-    outline,
-    setOutline,
+    // outline,
+    // setOutline,
     section,
     sectionRefs,
     expandedSections,
     setExpandedSections,
+    annotationDocumentIndex,
+    annotationDocuments,
+    setAnnotationDocuments,
   } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const handleSectionClick = () => {
     setExpandedSections({ ...expandedSections, [section.key]: true });
-    const refIndex = outline.findIndex((s) => s.key === section.key);
+    const refIndex = annotationDocuments[
+      annotationDocumentIndex
+    ].sections.findIndex((s) => s.key === section.key);
     if (refIndex !== -1) {
       sectionRefs[refIndex].current?.scrollIntoView({
         behavior: "smooth",
@@ -28,9 +33,29 @@ const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
   };
 
   const handleXClick = () => {
-    setOutline(
-      outline.filter((outlineSection) => outlineSection.key !== section.key)
+    setAnnotationDocuments(
+      annotationDocuments.map((annotationDocument) => {
+        if (
+          annotationDocument.name !==
+          annotationDocuments[annotationDocumentIndex].name
+        ) {
+          return annotationDocument;
+        } else {
+          return {
+            name: annotationDocuments[annotationDocumentIndex].name,
+            text: annotationDocuments[annotationDocumentIndex].text,
+            sections: annotationDocuments[
+              annotationDocumentIndex
+            ].sections.filter(
+              (documentSection) => documentSection.key !== section.key
+            ),
+          };
+        }
+      })
     );
+    // setOutline(
+    //   outline.filter((outlineSection) => outlineSection.key !== section.key)
+    // );
   };
 
   return (
@@ -54,7 +79,9 @@ const StructurerOutlineSection = (props: StructurerOutlineSectionProps) => {
           onClick={() => handleXClick()}
           className="flex-shrink-0 transform hover:bg-gray-700"
         />
-        <StructurerOutlineDownloadButton outlinePart={outline} />
+        <StructurerOutlineDownloadButton
+          outlinePart={annotationDocuments[annotationDocumentIndex].sections}
+        />
       </div>
       <div
         className={`flex flex-col gap-1 transition-all overflow-hidden ${

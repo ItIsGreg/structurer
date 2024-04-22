@@ -6,26 +6,65 @@ import ExpandAccordionToggle from "../ExpandAccordionToggle";
 import { TiDelete } from "react-icons/ti";
 
 const StructuerOutlineEntity = (props: StructurerOutlineEntityProps) => {
-  const { entity, entityName, colors, section } = props;
+  const {
+    entity,
+    entityName,
+    colors,
+    section,
+    annotationDocumentIndex,
+    annotationDocuments,
+    setAnnotationDocuments,
+    //  setOutline, outline
+  } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleXClick = () => {
     // delete entity from section of outline
-    props.setOutline(
-      props.outline.map((outlineSection) => {
-        if (outlineSection.key === section.key && outlineSection.entities) {
-          // Create a new object without the entityName key
-          const { [entityName]: _, ...remainingEntities } =
-            outlineSection.entities;
-          return {
-            ...outlineSection,
-            entities: remainingEntities,
-          };
+    setAnnotationDocuments(
+      annotationDocuments.map((annotationDocument) => {
+        if (
+          annotationDocument.name !==
+          annotationDocuments[annotationDocumentIndex].name
+        ) {
+          return annotationDocument;
         } else {
-          return outlineSection;
+          return {
+            name: annotationDocument.name,
+            text: annotationDocument.text,
+            sections: annotationDocument.sections.map((documentSection) => {
+              if (
+                documentSection.key === section.key &&
+                documentSection.entities
+              ) {
+                const { [entityName]: _, ...remainingEntities } =
+                  documentSection.entities;
+                return {
+                  ...documentSection,
+                  entities: remainingEntities,
+                };
+              } else {
+                return documentSection;
+              }
+            }),
+          };
         }
       })
     );
+    // setOutline(
+    //   outline.map((outlineSection) => {
+    //     if (outlineSection.key === section.key && outlineSection.entities) {
+    //       // Create a new object without the entityName key
+    //       const { [entityName]: _, ...remainingEntities } =
+    //         outlineSection.entities;
+    //       return {
+    //         ...outlineSection,
+    //         entities: remainingEntities,
+    //       };
+    //     } else {
+    //       return outlineSection;
+    //     }
+    //   })
+    // );
   };
 
   return (
