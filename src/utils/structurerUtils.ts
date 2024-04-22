@@ -171,7 +171,7 @@ const transformValueToSection = (
   categoryCounter: number
 ) => {
   const section: SectionInfo = {
-    key: `${sectionCategory}${getNumberString(categoryCounter)}`,
+    key: `${sectionCategory}_${getNumberString(categoryCounter)}`,
     startIndex: value[0].start,
     endIndex: value[value.length - 1].end,
     text: text.slice(value[0].start, value[value.length - 1].end),
@@ -279,15 +279,15 @@ export const handleAnnotationChange = (args: HandleAnnotationChangeArgs) => {
 };
 
 export const downloadOutlinePart = (
-  outlinePart: SectionInfo[] | SectionInfo | Entities
+  outlinePart: SectionInfo[] | SectionInfo | Entities,
+  filename: string = "download.json"
 ) => {
   const outlinePartString = JSON.stringify(outlinePart, null, 2);
   const blob = new Blob([outlinePartString], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  let filename = "download.json";
-  if (Array.isArray(outlinePart)) {
+  if (Array.isArray(outlinePart) && filename === "download.json") {
     filename = outlinePart[0].key + ".json";
   }
   a.download = filename;

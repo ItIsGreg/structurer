@@ -177,6 +177,21 @@ const StructurerUpload = (props: StructurerUploadProps) => {
     }
   };
 
+  function splitExtension(filename: string): [string, string | undefined] {
+    const lastDotIndex = filename.lastIndexOf(".");
+
+    // Check if there is a dot, and it is not the first character
+    if (lastDotIndex > 0) {
+      return [
+        filename.substring(0, lastDotIndex), // The name part
+        filename.substring(lastDotIndex + 1), // The extension part
+      ];
+    }
+
+    // If no dot found, or it's the first character, there's no extension
+    return [filename, undefined];
+  }
+
   const handleMultTxtUpload = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
@@ -198,27 +213,15 @@ const StructurerUpload = (props: StructurerUploadProps) => {
         });
 
       Promise.all(fileReadPromises).then((results) => {
-        const sections: SectionInfo[][] = results.map(({ name, text }) => {
-          return [
-            {
-              key: splitFilename(name).baseName,
-              text: text,
-              startIndex: 0,
-              endIndex: text.length,
-              askedFor: true,
-            },
-          ];
-        });
         const annotationDocuments = results.map(({ name, text }) => {
+          const filename = splitExtension(name);
           return {
-            name: name,
+            name: filename[0],
             text: text,
             sections: [],
           };
         });
         setAnnotationDocuments(annotationDocuments);
-        setEntityAnnotationSections(sections);
-        setOutline(sections[0]);
       });
     }
   };

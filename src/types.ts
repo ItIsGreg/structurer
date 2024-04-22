@@ -307,6 +307,7 @@ export interface Entities {
 
 export interface StructurerOutlineDownloadButtonProps {
   outlinePart: SectionInfo[] | SectionInfo | Entities;
+  filename?: string;
 }
 
 export interface MatchedEntitiesLLM {

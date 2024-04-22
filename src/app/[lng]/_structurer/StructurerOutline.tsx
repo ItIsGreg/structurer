@@ -34,6 +34,7 @@ const StructurerOutline = (props: StructurerOutlineProps) => {
         </h2>
         <StructurerOutlineDownloadButton
           outlinePart={annotationDocuments[annotationDocumentIndex].sections}
+          filename={annotationDocuments[annotationDocumentIndex].name}
         />
       </div>
       <div

@@ -218,11 +218,14 @@ export const defaultFocusResources: OptionType[] = [
 ];
 
 export const defaultFocusSections: OptionType[] = [
-  { value: "ConditionList", label: "ConditionList" },
-  { value: "DischargeMedication", label: "DischargeMedication" },
-  { value: "AdmissionMedication", label: "AdmissionMedication" },
-  { value: "LabResults", label: "LabResults" },
-  { value: "Allergies", label: "Allergies" },
+  { value: "Allergien", label: "Allergien" },
+  { value: "DiagnosenListe", label: "DiagnosenListe" },
+  { value: "MedikationListe", label: "MedikationListe" },
+  { value: "Laborwerte", label: "Laborwerte" },
+  { value: "RadiologischeBildgebung", label: "RadiologischeBildgebung" },
+  { value: "KörperlicheUntersuchung", label: "KörperlicheUntersuchung" },
+  { value: "InterventionBericht", label: "InterventionBericht" },
+  { value: "MikrobiologischerBefund", label: "MikrobiologischerBefund" },
 ];
 
 export const resourcesToColor: OptionType[] = [

@@ -5,10 +5,10 @@ import { TiDownload } from "react-icons/ti";
 const StructurerOutlineDownloadButton = (
   props: StructurerOutlineDownloadButtonProps
 ) => {
-  const { outlinePart } = props;
+  const { outlinePart, filename } = props;
   return (
     <div className="rounded-md p-1 transform hover:scale-110 hover:bg-gray-700">
-      <TiDownload onClick={() => downloadOutlinePart(outlinePart)} />
+      <TiDownload onClick={() => downloadOutlinePart(outlinePart, filename)} />
     </div>
   );
 };
